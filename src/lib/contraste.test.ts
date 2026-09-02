@@ -68,6 +68,40 @@ describe('contraste da paleta (WCAG 2.1 AA)', () => {
   }
 })
 
+describe('anel de foco', () => {
+  /**
+   * O anel tem dois tons porque o foco cai sobre branco, sobre o canvas,
+   * sobre o navy e sobre o vermelho do botao — e nenhuma cor unica alcanca
+   * 3:1 contra todos. Enquanto os dois tons estiverem longe um do outro,
+   * pelo menos um deles contrasta com o que houver atras.
+   */
+  const CLARO = BRANCO
+  const ESCURO = NAVY_900
+
+  it('os dois tons ficam a pelo menos 3:1 um do outro', () => {
+    expect(razaoDeContraste(CLARO, ESCURO)).toBeGreaterThanOrEqual(3)
+  })
+
+  it.each([
+    ['branco', BRANCO],
+    ['canvas', CANVAS],
+    ['navy 900', NAVY_900],
+    ['navy 950', NAVY_950],
+    ['vermelho do botao', '#d22b26'],
+    ['verde do WhatsApp', '#118848'],
+    ['amarelo de pendente', AMARELO_PENDENTE],
+  ])('pelo menos um tom aparece sobre %s', (_nome, fundo) => {
+    const melhor = Math.max(razaoDeContraste(CLARO, fundo), razaoDeContraste(ESCURO, fundo))
+    expect(melhor).toBeGreaterThanOrEqual(3)
+  })
+
+  it('o azul de sistema antigo teria falhado sobre o botao vermelho', () => {
+    // Registra por que o anel de uma cor so foi trocado: 1.32:1, invisivel
+    // exatamente no controle mais clicado do site.
+    expect(razaoDeContraste('#2f80ed', '#d22b26')).toBeLessThan(3)
+  })
+})
+
 describe('razaoDeContraste', () => {
   it('devolve 21 para preto sobre branco', () => {
     expect(razaoDeContraste('#000000', '#ffffff')).toBeCloseTo(21, 2)

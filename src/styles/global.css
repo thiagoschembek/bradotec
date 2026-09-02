@@ -121,11 +121,84 @@
     text-wrap: balance;
   }
 
-  /* Foco sempre visivel: quem navega por teclado precisa enxergar onde esta. */
+  /* Foco sempre visivel: quem navega por teclado precisa enxergar onde esta.
+
+     Anel de dois tons, e nao de uma cor so. O site tem foco sobre branco,
+     sobre o canvas, sobre o navy escuro e sobre o vermelho do botao — e
+     nenhuma cor unica alcanca os 3:1 exigidos contra todos esses fundos.
+     Medido: o antigo #2f80ed dava 1.32:1 sobre o botao vermelho, ou seja,
+     sumia justamente no controle mais clicado do site.
+
+     Branco e navy estao a 16.5:1 um do outro, entao pelo menos um dos dois
+     sempre contrasta com o que estiver atras. */
   :focus-visible {
-    outline: 3px solid #2f80ed;
-    outline-offset: 3px;
-    border-radius: 6px;
+    outline: 2px solid var(--color-white);
+    outline-offset: 0;
+    box-shadow: 0 0 0 5px var(--color-navy-900);
+    border-radius: 5px;
+  }
+
+  /* --------------------------------------------------------------------
+     Superficies do navegador.
+
+     Selecao de texto, cursor, barra de rolagem e sublinhado vem com um
+     padrao que nao pertence a design system nenhuma — normalmente um azul
+     de sistema. Deixar assim e o detalhe que denuncia pagina montada em vez
+     de construida, e some no meio de um site que acerta todo o resto.
+     -------------------------------------------------------------------- */
+
+  ::selection {
+    background-color: var(--color-fire);
+    color: var(--color-white);
+  }
+
+  /* O cursor de texto e um tracinho de 1px: precisa da cor mais forte, nao
+     do vermelho de acento, para nao desaparecer enquanto se digita. */
+  :where(input, textarea, select) {
+    caret-color: var(--color-navy-900);
+  }
+
+  /* Checkbox, radio e barra de progresso nativos. Sem isto ficam azuis. */
+  :where(input, progress) {
+    accent-color: var(--color-fire);
+  }
+
+  /* O sublinhado padrao corta as descidas do g, j, p e q. */
+  a:where(:not([class*="no-underline"])) {
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: from-font;
+  }
+
+  /* Numero em coluna precisa de largura fixa por digito, senao "30 dias" e
+     "8 dias" nao alinham no painel de vencimentos. */
+  :where(time, [data-numerico]) {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Barra de rolagem discreta, na paleta. Firefox usa scrollbar-color;
+     WebKit e Chromium usam o pseudo-elemento. */
+  html {
+    scrollbar-color: var(--color-steel-400) var(--color-line-soft);
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-line-soft);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-steel-400);
+    border: 3px solid var(--color-line-soft);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-steel-500);
   }
 
   /* Respeita quem configurou o sistema para reduzir animacao (enjoo, vertigem). */
@@ -171,7 +244,10 @@
   --destructive: var(--color-fire-dark);
   --border: var(--color-line);
   --input: #cfdae6;
-  --ring: #2f80ed;
+  /* O anel do shadcn segue o anel do site: navy, nao o azul de sistema que
+     vem no template. Ainda nao ha componente shadcn instalado, mas se um
+     entrar com o valor original o foco dele destoaria do resto. */
+  --ring: var(--color-navy-900);
   --radius: 0.6875rem;
 }
 
