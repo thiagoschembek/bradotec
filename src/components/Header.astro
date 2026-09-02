@@ -15,10 +15,10 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
       <a class="mr-auto flex items-center gap-3 no-underline" href="/" aria-label={`${site.nome} — página inicial`}>
         <Image src={logo} alt="" width={49} height={42} loading="eager" class="h-[42px] w-auto" />
         <span class="flex flex-col leading-[1.05]">
-          <b class="text-[1.14rem] font-extrabold tracking-[0.01em] text-white">
+          <b class="text-guia font-extrabold tracking-[0.01em] text-white">
             {site.nome.toUpperCase()}
           </b>
-          <span class="text-[0.7rem] font-semibold tracking-[0.02em] text-[#93a7bc]">
+          <span class="text-micro font-semibold tracking-[0.02em] text-[#93a7bc]">
             {site.descritivo}
           </span>
         </span>
@@ -33,7 +33,7 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
                   href={item.href}
                   aria-current={estaAtiva(item.href) ? 'page' : undefined}
                   class:list={[
-                    'block whitespace-nowrap rounded-lg px-3 py-2 text-[0.95rem] font-semibold no-underline transition-colors',
+                    'block whitespace-nowrap rounded-lg px-3 py-2 text-corpo font-semibold no-underline transition-colors',
                     estaAtiva(item.href)
                       ? 'bg-white/10 text-white'
                       : 'text-[#c9d6e4] hover:bg-white/10 hover:text-white',

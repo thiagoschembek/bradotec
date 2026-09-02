@@ -45,7 +45,7 @@ const linhas = [
 >
   <div class="mb-2 flex items-center justify-between gap-3 border-b border-white/10 pb-4">
     <strong class="text-base text-white">Painel de vencimentos</strong>
-    <span class="text-[0.8rem] text-[#93a7bc]">exemplo ilustrativo</span>
+    <span class="text-rotulo text-[#93a7bc]">exemplo ilustrativo</span>
   </div>
 
   {
@@ -53,12 +53,12 @@ const linhas = [
       <div class="flex items-center gap-3 border-b border-white/5 px-0.5 py-3 last:border-b-0">
         <span class="size-2.5 shrink-0 rounded-full" style={{ background: linha.cor }} />
         <span class="min-w-0 flex-1">
-          <b class="block text-[0.95rem] font-bold text-[#eaf1f8]">{linha.titulo}</b>
-          <small class="text-[0.8rem] text-[#8fa3b8]">{linha.detalhe}</small>
+          <b class="block text-corpo font-bold text-[#eaf1f8]">{linha.titulo}</b>
+          <small class="text-rotulo text-[#8fa3b8]">{linha.detalhe}</small>
         </span>
         <span
           class:list={[
-            'whitespace-nowrap rounded-full px-2.5 py-1 text-[0.74rem] font-bold',
+            'whitespace-nowrap rounded-full px-2.5 py-1 text-micro font-bold',
             linha.tom,
           ]}
         >
@@ -68,7 +68,7 @@ const linhas = [
     ))
   }
 
-  <p class="mt-3.5 border-t border-white/10 pt-3.5 text-[0.83rem] text-[#8fa3b8]">
+  <p class="mt-3.5 border-t border-white/10 pt-3.5 text-rotulo text-[#8fa3b8]">
     É assim que a Bradotec organiza a documentação de quem contrata a gestão recorrente: cada item
     com responsável, situação e prazo.
   </p>

@@ -1,4 +1,5 @@
 ---
+import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import PainelVencimentos from '@/components/PainelVencimentos.astro'
 import { site } from '@/config/site'
@@ -21,7 +22,7 @@ const provas = [
       <div class="grid items-center gap-11 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
         <div>
           <span
-            class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 py-2 pl-3 pr-4 text-[0.9rem] font-semibold text-[#dce7f2]"
+            class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 py-2 pl-3 pr-4 text-apoio font-semibold text-[#dce7f2]"
           >
             <svg
               width="17"
@@ -44,7 +45,7 @@ const provas = [
             Regularização, licenças e documentação sem complicação.
           </h1>
 
-          <p class="max-w-[56ch] text-[1.12rem] text-[#b9c9da]">
+          <p class="max-w-[56ch] text-guia text-[#b9c9da]">
             Em {site.cidade} e região, a {site.nome} cuida dos processos documentais da sua empresa,
             condomínio, imóvel e veículo — reunindo gestão, acompanhamento e profissionais
             especializados para você ter mais segurança e menos burocracia.
@@ -52,16 +53,11 @@ const provas = [
 
           <div class="mt-7 flex flex-wrap gap-3">
             <BotaoWhatsapp origem="orcamento">Solicitar orçamento</BotaoWhatsapp>
-            <a
-              class="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-[11px] border border-white/30 bg-white/10 px-6 py-3.5 font-bold text-white no-underline transition-colors hover:bg-white/20"
-              href="/contato"
-            >
-              Falar com um especialista
-            </a>
+            <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
           </div>
 
           <ul
-            class="mt-8 flex flex-wrap gap-x-7 gap-y-2.5 border-t border-white/15 pt-6 text-[0.93rem] text-[#a7bacd]"
+            class="mt-8 flex flex-wrap gap-x-7 gap-y-2.5 border-t border-white/15 pt-6 text-apoio text-[#a7bacd]"
           >
             {
               provas.map((prova) => (

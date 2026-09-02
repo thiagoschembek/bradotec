@@ -75,7 +75,7 @@ function montarMensagem(dados: Dados): string {
   return linhas.filter((linha): linha is string => linha !== null).join('\n')
 }
 
-const rotulo = 'block text-[0.92rem] font-bold text-ink'
+const rotulo = 'block text-apoio font-bold text-ink'
 
 const campo =
   'mt-1.5 w-full rounded-[11px] border border-[#c6d2e0] bg-white px-3.5 py-3 text-ink outline-none transition-colors focus-visible:border-navy-900 focus-visible:ring-2 focus-visible:ring-navy-900/25 aria-[invalid=true]:border-fire'
@@ -109,7 +109,7 @@ export default function FormularioContato() {
     const mensagem = errors[nome]?.message
     if (!mensagem) return null
     return (
-      <p id={`erro-${nome}`} role="alert" className="mt-1.5 text-[0.87rem] font-semibold text-fire">
+      <p id={`erro-${nome}`} role="alert" className="mt-1.5 text-apoio font-semibold text-fire">
         {mensagem}
       </p>
     )
@@ -233,7 +233,7 @@ export default function FormularioContato() {
           Descreva a situação <span className="font-normal text-steel-500">(opcional)</span>
         </label>
         <textarea id="descricao" rows={5} className={campo} {...register('descricao')} />
-        <p className="mt-1.5 text-[0.87rem] text-steel-500">
+        <p className="mt-1.5 text-apoio text-steel-500">
           Quanto mais específico for o que você contar, mais direto será o retorno.
         </p>
         {erro('descricao')}
@@ -247,7 +247,7 @@ export default function FormularioContato() {
         >
           {numeroConfigurado ? 'Enviar pelo WhatsApp' : 'Montar mensagem'}
         </button>
-        <p className="mt-3 text-[0.87rem] text-steel-500">
+        <p className="mt-3 text-apoio text-steel-500">
           O envio abre o WhatsApp com os dados preenchidos. Nenhum dado é armazenado neste site.
         </p>
       </div>
@@ -255,7 +255,7 @@ export default function FormularioContato() {
       {mensagemPronta ? (
         <div role="status" className="rounded-xl border border-[#e9c877] bg-[#fff8e9] p-5">
           <p className="font-bold text-ink">Mensagem montada</p>
-          <p className="mt-1.5 text-[0.92rem] text-ink-soft">
+          <p className="mt-1.5 text-apoio text-ink-soft">
             O número de WhatsApp ainda não foi configurado neste site. Copie o texto abaixo e envie
             pelo canal que preferir.
           </p>
@@ -264,7 +264,7 @@ export default function FormularioContato() {
             rows={10}
             value={mensagemPronta}
             aria-label="Mensagem pronta para copiar"
-            className="mt-3 w-full rounded-[11px] border border-[#e0cfa4] bg-white px-3.5 py-3 text-[0.92rem] text-ink"
+            className="mt-3 w-full rounded-[11px] border border-[#e0cfa4] bg-white px-3.5 py-3 text-apoio text-ink"
           />
         </div>
       ) : null}

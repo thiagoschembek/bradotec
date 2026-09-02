@@ -58,6 +58,24 @@
     var(--font-plus-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     sans-serif;
 
+  /* --- Escala tipografica.
+         Antes dela havia 26 tamanhos avulsos escritos direto nas paginas:
+         0.96, 0.97 e 0.98rem eram tres numeros para o mesmo tamanho visual.
+         Sao oito degraus nomeados. Se um texto nao couber em nenhum, o
+         degrau e que esta faltando — nao se inventa um valor na pagina. --- */
+  --text-micro: 0.75rem;
+  --text-rotulo: 0.82rem;
+  --text-apoio: 0.9rem;
+  --text-corpo: 0.96rem;
+  --text-guia: 1.14rem;
+  --text-guia--line-height: 1.6;
+  --text-cartao: 1.08rem;
+  --text-cartao--line-height: 1.35;
+  --text-cartao-lg: 1.35rem;
+  --text-cartao-lg--line-height: 1.25;
+  --text-secao: 1.6rem;
+  --text-secao--line-height: 1.2;
+
   /* --- Raios de borda --- */
   --radius-sm: 8px;
   --radius-md: 11px;

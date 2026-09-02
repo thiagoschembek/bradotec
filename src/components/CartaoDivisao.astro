@@ -1,4 +1,5 @@
 ---
+import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import type { OrigemWhatsapp } from '@/config/whatsapp'
 
@@ -36,14 +37,14 @@ const estilo = estilos[cor]
     estilo.topo,
   ]}
 >
-  <p class:list={['text-[0.82rem] font-bold uppercase tracking-[0.08em]', estilo.texto]}>
+  <p class:list={['text-rotulo font-bold uppercase tracking-[0.08em]', estilo.texto]}>
     {marca}
   </p>
 
-  <h2 class="mt-2 text-[1.35rem] text-ink">{titulo}</h2>
+  <h2 class="mt-2 text-cartao-lg text-ink">{titulo}</h2>
   <p class="mt-2 text-ink-soft">{resumo}</p>
 
-  <ul class="mt-5 flex flex-col gap-2.5 border-t border-line-soft pt-5 text-[0.95rem] text-ink-soft">
+  <ul class="mt-5 flex flex-col gap-2.5 border-t border-line-soft pt-5 text-corpo text-ink-soft">
     {
       servicos.map((servico) => (
         <li class="flex items-start gap-2.5">
@@ -58,12 +59,7 @@ const estilo = estilos[cor]
   </ul>
 
   <div class="mt-6 flex flex-wrap gap-2.5 pt-1">
-    <a
-      class="inline-flex min-h-[42px] items-center justify-center rounded-[11px] border border-[#c6d2e0] px-4 py-2.5 text-[0.94rem] font-bold text-navy-900 no-underline transition-colors hover:border-navy-900 hover:bg-line-soft"
-      href={href}
-    >
-      Ver a divisão
-    </a>
+    <BotaoLink href={href} pequeno>Ver a divisão</BotaoLink>
     <BotaoWhatsapp origem={origemWhatsapp as OrigemWhatsapp} pequeno>Falar agora</BotaoWhatsapp>
   </div>
 </article>

@@ -14,12 +14,12 @@ const hrefTelefone = ehPlaceholder(site.telefone)
 const hrefEmail = ehPlaceholder(site.email) ? '/contato' : `mailto:${site.email}`
 ---
 
-<footer class="bg-navy-950 px-0 pb-28 pt-14 text-[0.94rem] text-[#93a7bc]">
+<footer class="bg-navy-950 px-0 pb-28 pt-14 text-corpo text-[#93a7bc]">
   <div class="mx-auto w-full max-w-wrap px-5">
     <div class="grid gap-9 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
       <div>
         <Image src={logo} alt={site.nome} width={61} height={52} loading="lazy" class="mb-3.5 h-[52px] w-auto" />
-        <p class="max-w-[34ch] text-[0.92rem] text-[#8298af]">
+        <p class="max-w-[34ch] text-apoio text-[#8298af]">
           Gestão documental, regularização, licenciamento e segurança contra incêndio para
           empresas, condomínios e frotas em {site.cidade} e região.
         </p>
@@ -28,7 +28,7 @@ const hrefEmail = ehPlaceholder(site.email) ? '/contato' : `mailto:${site.email}
       {
         navegacaoRodape.map((coluna) => (
           <div>
-            <h4 class="mb-3.5 text-[0.98rem] font-bold text-white">{coluna.titulo}</h4>
+            <h4 class="mb-3.5 text-corpo font-bold text-white">{coluna.titulo}</h4>
             <ul>
               {coluna.itens.map((item) => (
                 <li class="py-1">
@@ -43,7 +43,7 @@ const hrefEmail = ehPlaceholder(site.email) ? '/contato' : `mailto:${site.email}
       }
 
       <div>
-        <h4 class="mb-3.5 text-[0.98rem] font-bold text-white">Atendimento</h4>
+        <h4 class="mb-3.5 text-corpo font-bold text-white">Atendimento</h4>
         <ul>
           <li class="py-1">
             <a
@@ -73,7 +73,7 @@ const hrefEmail = ehPlaceholder(site.email) ? '/contato' : `mailto:${site.email}
     </div>
 
     <div
-      class="mt-9 flex flex-wrap justify-between gap-x-6 gap-y-2.5 border-t border-white/10 pt-5 text-[0.85rem] text-[#71889f]"
+      class="mt-9 flex flex-wrap justify-between gap-x-6 gap-y-2.5 border-t border-white/10 pt-5 text-rotulo text-[#71889f]"
     >
       <span>
         © {ano} {site.nome} — CNPJ <DadoCliente valor={site.cnpj} />. Todos os direitos reservados.

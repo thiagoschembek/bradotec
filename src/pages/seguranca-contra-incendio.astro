@@ -1,8 +1,10 @@
 ---
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
+import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
 import Faq from '@/components/Faq.astro'
+import Kicker from '@/components/Kicker.astro'
 import SecaoServicos from '@/components/SecaoServicos.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { schemaFaqDaPagina } from '@/lib/faq'
@@ -63,21 +65,14 @@ const etapas = [
   >
     <div class="mt-6 flex flex-wrap gap-3">
       <BotaoWhatsapp origem="incendio">Falar sobre incêndio</BotaoWhatsapp>
-      <a
-        class="inline-flex min-h-[50px] items-center justify-center rounded-[11px] border border-white/30 bg-white/10 px-6 py-3.5 font-bold text-white no-underline transition-colors hover:bg-white/20"
-        href="/contato"
-      >
-        Solicitar diagnóstico
-      </a>
+      <BotaoLink href="/contato" variante="sobreEscuro">Solicitar diagnóstico</BotaoLink>
     </div>
   </CabecalhoPagina>
 
   <section class="py-14" aria-labelledby="urgencia">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <p class="text-[0.82rem] font-bold uppercase tracking-[0.08em] text-div-fire">
-        Bradotec Fire
-      </p>
-      <h2 id="urgencia" class="mt-2 text-[1.6rem] text-ink">Quando esse processo vira urgência</h2>
+      <Kicker class="text-div-fire">Bradotec Fire</Kicker>
+      <h2 id="urgencia" class="mt-2 text-secao text-ink">Quando esse processo vira urgência</h2>
       <p class="mt-3 max-w-[72ch] text-ink-soft">
         Condomínio com exigência aberta, comércio que não consegue renovar o alvará, edificação que
         nunca foi regularizada, instituição que recebe público e precisa se adequar. São situações
@@ -95,10 +90,8 @@ const etapas = [
 
   <section class="bg-navy-900 py-16 text-white" aria-labelledby="em-jogo">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <p class="text-[0.82rem] font-bold uppercase tracking-[0.08em] text-[#e8a5a2]">
-        O que está em jogo
-      </p>
-      <h2 id="em-jogo" class="mt-2 max-w-[26ch] text-[1.65rem] text-white">
+      <Kicker class="text-[#e8a5a2]">O que está em jogo</Kicker>
+      <h2 id="em-jogo" class="mt-2 max-w-[26ch] text-secao text-white">
         Documentação de incêndio pendente não fica parada. Ela cobra.
       </h2>
       <p class="mt-3 max-w-[72ch] text-[#b9c9da]">
@@ -109,7 +102,7 @@ const etapas = [
       <ul class="mt-8 grid list-none gap-4 md:grid-cols-2">
         {
           riscos.map((risco) => (
-            <li class="flex items-start gap-3 rounded-lg border border-white/12 bg-white/5 p-5 text-[0.97rem] text-[#dce7f2]">
+            <li class="flex items-start gap-3 rounded-lg border border-white/12 bg-white/5 p-5 text-corpo text-[#dce7f2]">
               <span class="mt-[0.45em] size-1.5 shrink-0 rounded-full bg-fire" aria-hidden="true" />
               {risco}
             </li>
@@ -128,17 +121,17 @@ const etapas = [
 
   <section class="py-16" aria-labelledby="como-conduzimos">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <h2 id="como-conduzimos" class="text-[1.6rem] text-ink">Como conduzimos o processo</h2>
+      <h2 id="como-conduzimos" class="text-secao text-ink">Como conduzimos o processo</h2>
 
       <ol class="mt-8 grid list-none gap-5 md:grid-cols-2 lg:grid-cols-3">
         {
           etapas.map((etapa, indice) => (
             <li class="rounded-xl border border-line bg-white p-6 shadow-card">
-              <span class="inline-flex size-8 items-center justify-center rounded-full bg-navy-900 text-[0.9rem] font-bold text-white">
+              <span class="inline-flex size-8 items-center justify-center rounded-full bg-navy-900 text-apoio font-bold text-white">
                 {indice + 1}
               </span>
-              <h3 class="mt-4 text-[1.08rem] text-ink">{etapa.titulo}</h3>
-              <p class="mt-2 text-[0.96rem] text-ink-soft">{etapa.descricao}</p>
+              <h3 class="mt-4 text-cartao text-ink">{etapa.titulo}</h3>
+              <p class="mt-2 text-corpo text-ink-soft">{etapa.descricao}</p>
             </li>
           ))
         }
