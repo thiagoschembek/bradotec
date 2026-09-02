@@ -1,20 +1,58 @@
 ---
+import { getCollection } from 'astro:content'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
+import CartaoDivisao from '@/components/CartaoDivisao.astro'
+import Faq from '@/components/Faq.astro'
+import Kicker from '@/components/Kicker.astro'
 import PainelVencimentos from '@/components/PainelVencimentos.astro'
 import { site } from '@/config/site'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { schemaFaqDaPagina } from '@/lib/faq'
 
 const titulo = `${site.nome} — Regularização, licenças e segurança contra incêndio em ${site.cidade} (${site.estado})`
+
+const schemaFaq = await schemaFaqDaPagina('home')
+
+const caminhos = (await getCollection('caminhos')).sort((a, b) => a.data.ordem - b.data.ordem)
+const divisoes = (await getCollection('divisoes')).sort((a, b) => a.data.ordem - b.data.ordem)
+const servicos = (await getCollection('servicos')).sort((a, b) => a.data.ordem - b.data.ordem)
+
+const titulosDaDivisao = (idDivisao: string) =>
+  servicos.filter(({ data }) => data.divisao === idDivisao).map(({ data }) => data.titulo)
 
 const provas = [
   'Segurança contra incêndio e pânico',
   'Empresas, condomínios e instituições',
   'Acompanhamento de processo do início ao fim',
 ] as const
+
+/**
+ * Diferenciais. Todos verificaveis: dizem o que a empresa faz, nao quanto ela
+ * e boa. Numero de clientes e nota do Google ficam de fora enquanto forem
+ * placeholder — a prova social so aparece quando for real.
+ */
+const diferenciais = [
+  {
+    titulo: 'Base em João Pessoa',
+    descricao: 'Atendimento presencial na capital e na região metropolitana da Paraíba.',
+  },
+  {
+    titulo: 'Processo acompanhado',
+    descricao: 'Do protocolo à conclusão, com retorno sobre cada etapa e cada exigência.',
+  },
+  {
+    titulo: 'Profissionais habilitados',
+    descricao: 'Projetos e laudos executados por quem tem habilitação legal para assinar.',
+  },
+  {
+    titulo: 'Retorno direto',
+    descricao: 'O atendimento é feito por quem vai conduzir o processo, não por central.',
+  },
+] as const
 ---
 
-<BaseLayout titulo={titulo}>
+<BaseLayout titulo={titulo} schemasExtras={schemaFaq ? [schemaFaq] : []}>
   <section
     class="overflow-hidden bg-navy-900 bg-[radial-gradient(900px_480px_at_85%_-10%,rgba(210,43,38,0.2),transparent_62%)] py-16 text-white lg:py-24"
   >
@@ -53,11 +91,13 @@ const provas = [
 
           <div class="mt-7 flex flex-wrap gap-3">
             <BotaoWhatsapp origem="orcamento">Solicitar orçamento</BotaoWhatsapp>
-            <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
+            <BotaoLink href="/diagnostico" variante="sobreEscuro">
+              Responder as 4 perguntas
+            </BotaoLink>
           </div>
 
           <ul
-            class="mt-8 flex flex-wrap gap-x-7 gap-y-2.5 border-t border-white/15 pt-6 text-apoio text-[#a7bacd]"
+            class="mt-8 flex flex-wrap gap-x-7 gap-y-2.5 border-t border-white/15 pt-6 text-corpo text-[#a7bacd]"
           >
             {
               provas.map((prova) => (
@@ -87,4 +127,86 @@ const provas = [
       </div>
     </div>
   </section>
+
+  <section class="bg-canvas py-16" aria-labelledby="caminhos">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <Kicker>Comece por aqui</Kicker>
+      <h2 id="caminhos" class="mt-2 text-secao text-ink">O que você precisa resolver?</h2>
+      <p class="mt-3 max-w-[64ch] text-ink-soft">
+        Escolha a situação mais parecida com a sua. Cada caminho leva direto à solução
+        correspondente.
+      </p>
+
+      <ul class="mt-8 grid list-none gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          caminhos.map((caminho) => (
+            <li>
+              <a
+                class="group flex h-full flex-col rounded-xl border border-line bg-white p-5 no-underline shadow-card transition-colors hover:border-navy-900"
+                href={caminho.data.href}
+              >
+                <span class="text-cartao text-ink group-hover:text-fire">
+                  {caminho.data.titulo}
+                </span>
+                <span class="mt-2 text-corpo text-ink-soft">{caminho.data.descricao}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16" aria-labelledby="divisoes">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <Kicker>Três divisões, uma só empresa</Kicker>
+      <h2 id="divisoes" class="mt-2 text-secao text-ink">Uma central de soluções documentais</h2>
+      <p class="mt-3 max-w-[68ch] text-ink-soft">
+        A {site.nome} organiza o que costuma estar espalhado entre contador, síndico, engenheiro e
+        despachante. Você trata com uma equipe só — e ela coordena o resto.
+      </p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          divisoes.map((divisao) => (
+            <CartaoDivisao
+              marca={divisao.data.marca}
+              titulo={divisao.data.titulo}
+              resumo={divisao.data.resumo}
+              href={divisao.data.href}
+              cor={divisao.data.cor}
+              origemWhatsapp={divisao.data.origemWhatsapp}
+              servicos={titulosDaDivisao(divisao.id)}
+            />
+          ))
+        }
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <BotaoLink href="/solucoes">Comparar as três divisões</BotaoLink>
+        <BotaoLink href="/diagnostico" variante="escuro">Não sei qual é o meu caso</BotaoLink>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy-900 py-16 text-white" aria-labelledby="como-atuamos">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <h2 id="como-atuamos" class="max-w-[24ch] text-secao text-white">
+        O que você pode esperar da Bradotec
+      </h2>
+
+      <dl class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          diferenciais.map((item) => (
+            <div class="border-t border-white/15 pt-5">
+              <dt class="text-cartao text-white">{item.titulo}</dt>
+              <dd class="mt-2 text-corpo text-[#b9c9da]">{item.descricao}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <Faq pagina="home" />
 </BaseLayout>

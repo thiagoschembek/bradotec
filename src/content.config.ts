@@ -95,4 +95,21 @@ const segmentos = defineCollection({
   }),
 })
 
-export const collections = { faq, divisoes, servicos, segmentos }
+/**
+ * Os oito caminhos da home: "o que voce precisa resolver?".
+ *
+ * Aparecem so na home, mas moram aqui pelo mesmo motivo do resto — o schema
+ * quebra o build se alguem apontar um caminho para uma rota que nao existe,
+ * e um link morto na secao de maior conversao passaria despercebido.
+ */
+const caminhos = defineCollection({
+  loader: file('src/content/caminhos.json'),
+  schema: z.object({
+    titulo: z.string().min(10),
+    descricao: z.string().min(30).max(200),
+    href: z.string().startsWith('/'),
+    ordem: z.number().int().positive(),
+  }),
+})
+
+export const collections = { faq, divisoes, servicos, segmentos, caminhos }
