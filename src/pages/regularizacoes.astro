@@ -1,17 +1,22 @@
 ---
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import Faq from '@/components/Faq.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { schemaFaqDaPagina } from '@/lib/faq'
 
 const trilha = [
   { nome: 'Início', href: '/' },
   { nome: 'Regularizações', href: '/regularizacoes' },
 ] as const
+
+const schemaFaq = await schemaFaqDaPagina('regularizacoes')
 ---
 
 <BaseLayout
   titulo="Regularização de empresas e imóveis em João Pessoa (PB) | Bradotec"
   descricao="Licenças, certidões, protocolos e regularização de empresas, comércios e imóveis em João Pessoa/PB. Acompanhamento de exigências e controle de vencimentos com a Bradotec Documentos."
   trilha={trilha}
+  schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
     titulo="Regularizações, licenças e gestão documental"
@@ -27,4 +32,5 @@ const trilha = [
       </p>
     </div>
   </section>
+  <Faq pagina="regularizacoes" />
 </BaseLayout>

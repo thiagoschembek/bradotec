@@ -1,17 +1,22 @@
 ---
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import Faq from '@/components/Faq.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { schemaFaqDaPagina } from '@/lib/faq'
 
 const trilha = [
   { nome: 'Início', href: '/' },
   { nome: 'Segurança contra incêndio', href: '/seguranca-contra-incendio' },
 ] as const
+
+const schemaFaq = await schemaFaqDaPagina('seguranca-contra-incendio')
 ---
 
 <BaseLayout
   titulo="Segurança contra incêndio e pânico em João Pessoa (PB) | Bradotec Fire"
   descricao="Regularização contra incêndio em João Pessoa/PB: organização documental, AVCB e documentos equivalentes conforme aplicabilidade, vistorias, exigências, brigada e treinamentos. Projetos e laudos com profissionais habilitados."
   trilha={trilha}
+  schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
     titulo="Segurança contra incêndio e pânico"
@@ -27,4 +32,5 @@ const trilha = [
       </p>
     </div>
   </section>
+  <Faq pagina="seguranca-contra-incendio" />
 </BaseLayout>

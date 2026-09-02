@@ -1,0 +1,68 @@
+[
+  {
+    "id": "como-funciona",
+    "pergunta": "Como funciona a regularização com a Bradotec?",
+    "resposta": "Começa por um levantamento da situação atual: o que a empresa, o imóvel ou a edificação já possui e o que está pendente. A partir daí organizamos a documentação, protocolamos o que for necessário e acompanhamos o processo junto aos órgãos, informando cada etapa. Quando o caso exige projeto, laudo ou serviço técnico, o trabalho é executado por profissional legalmente habilitado.",
+    "paginas": ["home", "solucoes", "regularizacoes", "seguranca-contra-incendio"]
+  },
+  {
+    "id": "documentos-necessarios",
+    "pergunta": "Quais documentos eu preciso separar antes de falar com vocês?",
+    "resposta": "Não é preciso ter tudo pronto para iniciar a conversa. Costuma ajudar ter em mãos os dados da empresa ou do imóvel, documentos anteriores (licenças, alvarás, certificados) e qualquer exigência ou notificação recebida. A lista definitiva depende do tipo de atividade, da edificação e do órgão envolvido — isso é definido na análise inicial.",
+    "paginas": ["home", "solucoes", "regularizacoes"]
+  },
+  {
+    "id": "acompanha-ate-o-fim",
+    "pergunta": "A Bradotec acompanha o processo até o fim?",
+    "resposta": "Sim. O acompanhamento de protocolos, exigências e vistorias faz parte do serviço. Você é informado sobre o andamento e sobre o que for solicitado pelo órgão em cada etapa.",
+    "paginas": ["home", "solucoes", "regularizacoes"]
+  },
+  {
+    "id": "atendem-condominios",
+    "pergunta": "Vocês atendem condomínios?",
+    "resposta": "Sim. Condomínios são um dos públicos principais, tanto na parte de segurança contra incêndio e pânico quanto na organização e no controle de vencimentos da documentação do empreendimento.",
+    "paginas": ["home", "solucoes", "seguranca-contra-incendio", "empresas"]
+  },
+  {
+    "id": "contrato-recorrente",
+    "pergunta": "Vocês atendem empresas com contrato recorrente?",
+    "resposta": "Sim. Além dos processos pontuais, a Bradotec oferece gestão documental contínua: controle de vencimentos, organização dos documentos, acompanhamento de renovações e orientação administrativa.",
+    "paginas": ["home", "solucoes", "empresas"]
+  },
+  {
+    "id": "documentacao-veicular",
+    "pergunta": "Vocês fazem documentação veicular?",
+    "resposta": "Sim, pela divisão Bradotec Auto: transferência, emplacamento, primeiro registro, segunda via, alteração de dados, regularização de pendências e gestão de documentação de frotas.",
+    "paginas": ["home", "solucoes", "documentacao-veicular"]
+  },
+  {
+    "id": "diagnostico",
+    "pergunta": "Como funciona o Diagnóstico de Regularização?",
+    "resposta": "É uma análise inicial da sua situação: coletamos informações, verificamos o que existe, identificamos pendências e apresentamos um plano de ação com os próximos passos. Serve para você saber exatamente por onde começar antes de contratar qualquer serviço.",
+    "paginas": ["home", "regularizacoes", "documentacao-veicular"]
+  },
+  {
+    "id": "prazo",
+    "pergunta": "Quanto tempo demora uma regularização?",
+    "resposta": "O prazo depende do tipo de processo, da documentação existente, das exigências emitidas e da análise do órgão público responsável. Por isso não trabalhamos com prazo garantido: informamos o que está sob nosso controle, acompanhamos cada etapa e comunicamos o andamento.",
+    "paginas": ["home", "regularizacoes", "seguranca-contra-incendio", "empresas"]
+  },
+  {
+    "id": "projetos-e-laudos",
+    "pergunta": "A Bradotec assina projetos e laudos técnicos?",
+    "resposta": "A Bradotec atua na gestão, na organização e no acompanhamento administrativo dos processos. Projetos, laudos e serviços técnicos que exigem habilitação específica são executados por profissionais e empresas legalmente habilitados, com quem coordenamos o trabalho.",
+    "paginas": ["home", "seguranca-contra-incendio", "empresas"]
+  },
+  {
+    "id": "orcamento",
+    "pergunta": "Como funciona o orçamento?",
+    "resposta": "O valor depende do tipo de processo, da situação documental encontrada e do que precisa ser executado por profissional habilitado. Por isso o orçamento é feito depois do levantamento inicial, e não por tabela: você recebe o escopo do que será feito, o que está incluído e o que depende de terceiros ou de taxas de órgão público.",
+    "paginas": ["home"]
+  },
+  {
+    "id": "fora-de-joao-pessoa",
+    "pergunta": "Vocês atendem fora de João Pessoa?",
+    "resposta": "A base de atuação é João Pessoa e região metropolitana, na Paraíba. Para outras localidades, a viabilidade é avaliada caso a caso — vale consultar pelo WhatsApp.",
+    "paginas": ["home", "documentacao-veicular"]
+  }
+]
