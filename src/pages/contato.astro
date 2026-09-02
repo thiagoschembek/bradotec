@@ -2,7 +2,7 @@
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
 import DadoCliente from '@/components/DadoCliente.astro'
-import FormularioContato from '@/components/FormularioContato'
+import FormularioContato from '@/components/FormularioContato.astro'
 import { site } from '@/config/site'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
@@ -43,7 +43,7 @@ const canais = [
             Solicitar orçamento ou diagnóstico
           </h2>
           <div class="mt-6">
-            <FormularioContato client:load />
+            <FormularioContato />
           </div>
         </div>
 
