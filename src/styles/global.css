@@ -15,7 +15,10 @@
 
   /* --- Cinzas de apoio --- */
   --color-steel-500: #5c6e85;
-  --color-steel-400: #8496a9;
+  /* Escurecido de #8496a9: aquele valor dava 3.04:1 sobre branco, abaixo do
+     minimo de 4.5:1 do WCAG AA. Nao estava em uso — era armadilha esperando
+     o primeiro texto secundario. */
+  --color-steel-400: #667482;
 
   /* --- Texto --- */
   --color-ink: #0f2033;
@@ -39,7 +42,15 @@
 
   /* --- Sinalizacao de status (usada no painel de vencimentos) --- */
   --color-ok: #127a4b;
-  --color-warn: #b4720c;
+
+  /* --- Verde do WhatsApp (botao flutuante).
+         #128c4a dava 4.31:1 com texto branco, abaixo do minimo de 4.5:1.
+         Estava escrito dentro do componente, contra a regra do projeto. --- */
+  --color-whats: #118848;
+  --color-whats-dark: #0e7539;
+  /* Escurecido de #b4720c: sobre o amarelo do DadoCliente (#fff8e9) dava
+     3.71:1. Este da 4.55:1. */
+  --color-warn: #a0650b;
 
   /* --- Tipografia. A variavel --font-plus-jakarta vem da Fonts API do Astro,
          configurada em astro.config.mjs e servida do nosso dominio. --- */
