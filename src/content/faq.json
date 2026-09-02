@@ -73,14 +73,14 @@
   },
   {
     "id": "renovacao-avcb",
-    "pergunta": "De quanto em quanto tempo o AVCB precisa ser renovado?",
-    "resposta": "A validade é definida pela legislação estadual e varia entre os estados, além de depender do tipo de ocupação da edificação. Por isso não repetimos aqui o prazo de outro estado: o que vale para a sua edificação é a norma aplicável na Paraíba e ao seu tipo de imóvel. Esse levantamento é a primeira coisa que a Bradotec faz, antes de qualquer orçamento.",
+    "pergunta": "De quanto em quanto tempo o AVCB precisa ser renovado na Paraíba?",
+    "resposta": "Na Paraíba o AVCB vale 1 ano (Lei nº 9.625/2011, art. 3º-A, § 1º). O prazo de três a cinco anos que circula na internet é de outros estados e não se aplica aqui. O que se repete em intervalo maior é a vistoria completa: até 5 anos para baixo risco, 2 anos para médio e 1 ano para alto risco. Entre uma vistoria e outra, a renovação é feita pela RAS — Renovação Anual Simplificada, declarada pelo proprietário com firma reconhecida, nas edificações de baixo e médio risco.",
     "paginas": ["avcb", "seguranca-contra-incendio"]
   },
   {
     "id": "multa-sem-avcb",
-    "pergunta": "O condomínio pode ser multado por estar sem AVCB?",
-    "resposta": "Sim. Em uma ação de fiscalização, a edificação sem AVCB ou com o documento vencido recebe notificação com prazo para corrigir as não conformidades, e a multa é uma das consequências previstas. O valor é definido pela legislação estadual. Além da multa, a irregularidade costuma travar alvará de funcionamento e renovações, e pode ser motivo para a seguradora recusar o pagamento em caso de sinistro.",
+    "pergunta": "Qual o valor da multa por estar sem AVCB na Paraíba?",
+    "resposta": "A Lei nº 9.625/2011, art. 25, § 6º, fixa a multa em UFR-PB conforme o risco: 4 para baixo, 8 para médio e 16 para alto. O § 7º acrescenta 0,05 UFR-PB por metro quadrado acima de 200 m², e é esse acréscimo que faz a diferença em prédios grandes. A UFR-PB é corrigida mensalmente pelo IPCA, então o valor em reais muda todo mês. O número de R$ 200 mil que circula na internet é de outro estado. Vale lembrar que a multa é a consequência mais barata: interdição, embargo e recusa de seguro não têm teto.",
     "paginas": ["avcb", "seguranca-contra-incendio", "empresas"]
   },
   {

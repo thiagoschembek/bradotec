@@ -6,8 +6,31 @@ import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
 import Faq from '@/components/Faq.astro'
 import Kicker from '@/components/Kicker.astro'
+import {
+  areaBaseM2,
+  emReais,
+  leis,
+  multaEmReaisPara,
+  multaEmUfr,
+  multaEmUfrPara,
+  type NivelDeRisco,
+  ufrPb,
+  validadeDaInspecaoEmAnos,
+} from '@/config/avcb'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { schemaFaqDaPagina } from '@/lib/faq'
+
+const rotuloDoRisco: Record<NivelDeRisco, string> = {
+  baixo: 'baixo risco',
+  medio: 'médio risco',
+  alto: 'alto risco',
+}
+
+/** Exemplo escolhido por ser o caso mais comum entre os clientes: prédio residencial. */
+const exemplo = { risco: 'medio', area: 4000 } as const satisfies {
+  risco: NivelDeRisco
+  area: number
+}
 
 const trilha = [
   { nome: 'Início', href: '/' },
@@ -127,36 +150,123 @@ const cotacao = doGrupo('cotacao')
   </section>
 
   <!--
-    Bloco deliberado. O texto de referencia que originou esta pagina trazia
-    prazo de renovacao e valor de multa de Sao Paulo, Minas, Rio e Santa
-    Catarina. Copiar esses numeros para um site de Joao Pessoa seria informar
-    errado: os dois sao definidos por legislacao estadual. Dizer isso, em vez
-    de repetir o numero de outro estado, e o que separa quem conhece o assunto
-    de quem copiou um texto da internet.
+    Os numeros desta secao saem de src/config/avcb.ts, travados por teste.
+    Sao dado de lei estadual publicado para sindico e dono de comercio ler:
+    errar aqui nao e defeito de layout, e informar errado sobre multa e prazo.
+
+    A multa aparece primeiro em UFR-PB, que a lei fixa e nao muda, e so depois
+    em reais com o mes de referencia ao lado — a UFR-PB e corrigida todo mes
+    pelo IPCA, entao valor em real sem data envelhece em semanas.
   -->
   <section class="py-20 lg:py-24" aria-labelledby="prazo-multa">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <div class="max-w-[70ch] rounded-xl border-l-4 border-l-fire border-y border-r border-line bg-white p-7 shadow-card">
-        <h2 id="prazo-multa" class="text-cartao-lg text-ink">
-          Sobre prazo de validade e valor de multa
-        </h2>
-        <div class="mt-4 space-y-4 text-ink-soft">
-          <p>
-            Os dois são definidos pela legislação de cada estado e variam bastante entre eles. Um
-            mesmo tipo de condomínio pode ter validade de três anos em um estado e cinco em outro,
-            e o teto da multa não é o mesmo em lugar nenhum.
+      <Kicker>Base legal na Paraíba</Kicker>
+      <h2 id="prazo-multa" class="mt-2 max-w-[24ch] text-secao text-ink">
+        Quanto vale a multa e por quanto tempo vale o AVCB
+      </h2>
+      <p class="mt-4 max-w-[70ch] text-guia text-ink-soft">
+        Quase todo texto sobre AVCB que circula na internet é de São Paulo, e fala em validade de
+        três a cinco anos e multa que passa de R$ 200 mil. Nenhum dos dois números vale aqui: os
+        dois são definidos por legislação estadual. Na Paraíba, quem manda é a{' '}
+        <a class="font-semibold text-fire" href={leis.base.url} target="_blank" rel="noopener">
+          {leis.base.rotulo}
+        </a>, alterada pela{' '}
+        <a class="font-semibold text-fire" href={leis.alteracao.url} target="_blank" rel="noopener">
+          {leis.alteracao.rotulo}
+        </a>.
+      </p>
+
+      <div class="mt-11 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-xl border border-line bg-white p-7 shadow-card">
+          <h3 class="text-cartao-lg text-ink">O AVCB da Paraíba vale 1 ano</h3>
+          <p class="mt-3 text-ink-soft">
+            É anual, e não de três a cinco anos (art. 3º-A, § 1º). O que se repete no intervalo
+            mais longo é a <strong class="font-bold text-ink">vistoria completa</strong>, cujo
+            prazo depende do risco da edificação (art. 15-A, I):
           </p>
-          <p>
-            Por isso esta página não repete número de outro estado. O prazo e o valor que valem
-            para a sua edificação são os da legislação aplicável na Paraíba e ao seu tipo de
-            ocupação — e é isso que a Bradotec levanta no início do processo, antes de qualquer
-            orçamento.
-          </p>
-          <p class="font-semibold text-ink">
-            Se alguém te apresentar um prazo ou um valor sem antes olhar a sua edificação,
-            desconfie.
+
+          <dl class="mt-5 divide-y divide-line-soft border-y border-line-soft">
+            {
+              (['baixo', 'medio', 'alto'] as const).map((risco) => (
+                <div class="flex items-baseline justify-between gap-4 py-3">
+                  <dt class="text-corpo text-ink-soft">Edificação de {rotuloDoRisco[risco]}</dt>
+                  <dd class="text-cartao font-bold text-ink" data-numerico>
+                    {validadeDaInspecaoEmAnos[risco]}
+                    {validadeDaInspecaoEmAnos[risco] === 1 ? ' ano' : ' anos'}
+                  </dd>
+                </div>
+              ))
+            }
+          </dl>
+
+          <p class="mt-5 text-corpo text-ink-soft">
+            Entre uma vistoria e outra, a renovação anual do documento é feita pela
+            <strong class="font-bold text-ink"> RAS — Renovação Anual Simplificada</strong>, nas
+            edificações de baixo e médio risco. Ela é declarada pelo proprietário, com firma
+            reconhecida, assumindo responsabilidade pela manutenção dos sistemas.
           </p>
         </div>
+
+        <div class="rounded-xl border border-line bg-white p-7 shadow-card">
+          <h3 class="text-cartao-lg text-ink">A multa é medida em UFR-PB</h3>
+          <p class="mt-3 text-ink-soft">
+            O art. 25, § 6º fixa a multa por nível de risco. O § 7º acrescenta
+            <strong class="font-bold text-ink"> 0,05 UFR-PB por metro quadrado</strong> acima de
+            {' '}{areaBaseM2} m² — é isso que faz a multa de um prédio ser muito maior que a de
+            uma sala comercial.
+          </p>
+
+          <table class="mt-5 w-full border-collapse text-corpo">
+            <caption class="sr-only">
+              Multa por nível de risco, em UFR-PB e em reais
+            </caption>
+            <thead>
+              <tr class="border-b border-line text-left text-rotulo uppercase tracking-[0.06em] text-steel-500">
+                <th class="py-2 font-bold" scope="col">Risco</th>
+                <th class="py-2 text-right font-bold" scope="col">UFR-PB</th>
+                <th class="py-2 text-right font-bold" scope="col">Equivalente</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                (['baixo', 'medio', 'alto'] as const).map((risco) => (
+                  <tr class="border-b border-line-soft">
+                    <th class="py-3 text-left font-normal text-ink-soft" scope="row">
+                      {rotuloDoRisco[risco]}
+                    </th>
+                    <td class="py-3 text-right font-bold text-ink" data-numerico>
+                      {multaEmUfr[risco]}
+                    </td>
+                    <td class="py-3 text-right text-ink" data-numerico>
+                      {emReais(multaEmUfr[risco] * ufrPb.valor)}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+
+          <p class="mt-4 text-apoio text-steel-500">
+            Valores de base, para até {areaBaseM2} m². Equivalência calculada pela UFR-PB de {
+              ufrPb.mes
+            }, de {emReais(ufrPb.valor)} — o índice é corrigido todo mês pelo IPCA, então o valor
+            em reais muda; o valor em UFR-PB, não.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-xl border-l-4 border-l-fire border-y border-r border-line bg-white p-7 shadow-card">
+        <h3 class="text-cartao font-bold text-ink">Onde a conta cresce</h3>
+        <p class="mt-3 max-w-[76ch] text-ink-soft">
+          Um condomínio de {exemplo.area.toLocaleString('pt-BR')} m² classificado como
+          {' '}{rotuloDoRisco[exemplo.risco]} não paga as {multaEmUfr[exemplo.risco]} UFR-PB de
+          base: paga {multaEmUfrPara(exemplo.risco, exemplo.area).toLocaleString('pt-BR')} UFR-PB,
+          porque {(exemplo.area - areaBaseM2).toLocaleString('pt-BR')} m² excedem a faixa base —
+          cerca de {emReais(multaEmReaisPara(exemplo.risco, exemplo.area))} pela UFR-PB de {
+            ufrPb.mes
+          }. E a multa é a consequência mais barata: interdição, embargo e recusa de seguro não
+          têm teto.
+        </p>
       </div>
     </div>
   </section>

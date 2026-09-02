@@ -3,7 +3,7 @@
     "id": "risco-multa",
     "grupo": "risco",
     "titulo": "Notificação, prazo e multa",
-    "descricao": "Em uma ação de fiscalização, a edificação sem AVCB ou com o documento vencido recebe notificação com prazo para corrigir as não conformidades. O valor da multa e o prazo são definidos pela legislação estadual — não é o mesmo número em todo o país.",
+    "descricao": "Em uma ação de fiscalização, a edificação sem AVCB ou com o documento vencido recebe notificação com prazo para corrigir as não conformidades. Na Paraíba a multa é medida em UFR-PB e cresce com a área construída — a Lei nº 9.625/2011 traz os valores, e esta página mostra a conta.",
     "ordem": 1
   },
   {
@@ -41,7 +41,6 @@
     "descricao": "Irregularidade não envelhece parada. A norma muda, o equipamento vence, o laudo perde validade e o que seria um ajuste vira obra. O custo de regularizar hoje é quase sempre menor do que o de regularizar depois da notificação.",
     "ordem": 6
   },
-
   {
     "id": "item-brigada",
     "grupo": "item",
@@ -105,7 +104,6 @@
     "descricao": "É a base de tudo: define o que a edificação precisa ter. Sem ele, não há o que vistoriar — e é justamente o documento que mais se perde com o tempo.",
     "ordem": 9
   },
-
   {
     "id": "cotacao-tempo",
     "grupo": "cotacao",
