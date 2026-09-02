@@ -44,6 +44,7 @@ export const navegacaoRodape = [
     itens: [
       { href: '/sobre', rotulo: 'A Bradotec' },
       { href: '/solucoes', rotulo: 'Todas as soluções' },
+      { href: '/diagnostico', rotulo: 'Diagnóstico de Regularização' },
       { href: '/contato', rotulo: 'Contato' },
       { href: '/#faq', rotulo: 'Perguntas frequentes' },
     ],
