@@ -4,7 +4,6 @@ import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CartaoDivisao from '@/components/CartaoDivisao.astro'
 import Faq from '@/components/Faq.astro'
-import Kicker from '@/components/Kicker.astro'
 import PainelVencimentos from '@/components/PainelVencimentos.astro'
 import { site } from '@/config/site'
 import BaseLayout from '@/layouts/BaseLayout.astro'
@@ -130,8 +129,7 @@ const diferenciais = [
 
   <section class="bg-canvas py-16" aria-labelledby="caminhos">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <Kicker>Comece por aqui</Kicker>
-      <h2 id="caminhos" class="mt-2 text-secao text-ink">O que você precisa resolver?</h2>
+      <h2 id="caminhos" class="text-secao text-ink">O que você precisa resolver?</h2>
       <p class="mt-3 max-w-[64ch] text-ink-soft">
         Escolha a situação mais parecida com a sua. Cada caminho leva direto à solução
         correspondente.
@@ -159,8 +157,7 @@ const diferenciais = [
 
   <section class="py-16" aria-labelledby="divisoes">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <Kicker>Três divisões, uma só empresa</Kicker>
-      <h2 id="divisoes" class="mt-2 text-secao text-ink">Uma central de soluções documentais</h2>
+      <h2 id="divisoes" class="text-secao text-ink">Três divisões, uma só empresa</h2>
       <p class="mt-3 max-w-[68ch] text-ink-soft">
         A {site.nome} organiza o que costuma estar espalhado entre contador, síndico, engenheiro e
         despachante. Você trata com uma equipe só — e ela coordena o resto.
