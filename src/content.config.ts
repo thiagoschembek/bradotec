@@ -45,4 +45,54 @@ const faq = defineCollection({
   }),
 })
 
-export const collections = { faq }
+/** As tres divisoes comerciais. Aparecem em /solucoes e no rodape das paginas. */
+export const idsDivisao = ['fire', 'documentos', 'auto'] as const
+export type IdDivisao = (typeof idsDivisao)[number]
+
+/**
+ * Cores por divisao. Sao chaves, nao classes: o componente traduz para uma
+ * classe literal, porque o Tailwind nao enxerga nome de classe montado em
+ * tempo de execucao.
+ */
+const coresDivisao = ['fire', 'doc', 'auto'] as const
+
+const divisoes = defineCollection({
+  loader: file('src/content/divisoes.json'),
+  schema: z.object({
+    /** Nome comercial, ex.: "Bradotec Fire". */
+    marca: z.string().min(3),
+    titulo: z.string().min(10),
+    resumo: z.string().min(30).max(240),
+    href: z.string().startsWith('/'),
+    cor: z.enum(coresDivisao),
+    /** Chave de mensagem em src/config/whatsapp.ts. */
+    origemWhatsapp: z.string().min(3),
+    ordem: z.number().int().positive(),
+  }),
+})
+
+/**
+ * Servicos de cada divisao, escritos UMA vez. A pagina da divisao mostra
+ * titulo e descricao; /solucoes mostra so os titulos. Sem copia entre paginas.
+ */
+const servicos = defineCollection({
+  loader: file('src/content/servicos.json'),
+  schema: z.object({
+    divisao: z.enum(idsDivisao),
+    titulo: z.string().min(5),
+    descricao: z.string().min(40).max(400),
+    ordem: z.number().int().positive(),
+  }),
+})
+
+/** Publicos atendidos, exibidos em /empresas. */
+const segmentos = defineCollection({
+  loader: file('src/content/segmentos.json'),
+  schema: z.object({
+    titulo: z.string().min(5),
+    descricao: z.string().min(40).max(400),
+    ordem: z.number().int().positive(),
+  }),
+})
+
+export const collections = { faq, divisoes, servicos, segmentos }
