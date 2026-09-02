@@ -87,3 +87,24 @@ test.describe('Página 404', () => {
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow')
   })
 })
+
+test.describe('Botão flutuante do WhatsApp', () => {
+  test('não cobre o conteúdo do rodapé', async ({ page }) => {
+    await page.goto('/')
+    await page.locator('footer').scrollIntoViewIfNeeded()
+
+    const botao = await page.locator('.fixed[aria-label="Falar no WhatsApp"]').boundingBox()
+    const ultimoItem = await page.locator('footer li').last().boundingBox()
+
+    expect(botao, 'o botão flutuante precisa existir').not.toBeNull()
+    expect(ultimoItem, 'o rodapé precisa ter itens').not.toBeNull()
+    if (!botao || !ultimoItem) return
+
+    // O último item do rodapé precisa terminar acima de onde o botão começa,
+    // senão fica escondido atrás dele — problema encontrado na revisão visual.
+    const sobrepoe =
+      ultimoItem.y + ultimoItem.height > botao.y && ultimoItem.x + ultimoItem.width > botao.x
+
+    expect(sobrepoe, 'o botão flutuante está cobrindo o rodapé').toBe(false)
+  })
+})
