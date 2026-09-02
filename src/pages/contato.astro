@@ -1,0 +1,30 @@
+---
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Contato', href: '/contato' },
+] as const
+---
+
+<BaseLayout
+  titulo="Contato — Bradotec em João Pessoa (PB)"
+  descricao="Fale com a Bradotec em João Pessoa/PB por WhatsApp, telefone, e-mail ou formulário. Atendimento para empresas, condomínios, instituições e proprietários de veículos."
+  trilha={trilha}
+>
+  <CabecalhoPagina
+    titulo="Falar com a Bradotec"
+    subtitulo="Escolha o canal com que você se sente mais confortável. Todos chegam na mesma equipe."
+    trilha={trilha}
+  />
+
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <p class="text-ink-soft">
+        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
+        Conteúdo em migração a partir da versão anterior do site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

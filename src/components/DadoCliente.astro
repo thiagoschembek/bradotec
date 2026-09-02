@@ -1,0 +1,27 @@
+---
+import { ehPlaceholder } from '@/config/site'
+
+/**
+ * Mostra um dado do cliente. Se ainda for placeholder, exibe marcado como
+ * pendente em vez de fingir que existe — assim ninguem publica sem perceber.
+ */
+interface Props {
+  valor: string
+  class?: string
+}
+const { valor, class: classe } = Astro.props
+const pendente = ehPlaceholder(valor)
+---
+
+{
+  pendente ? (
+    <span
+      class:list={['rounded border border-dashed border-[#e9c877] bg-[#fff8e9] px-1.5 text-warn', classe]}
+      title="Dado ainda não informado pelo cliente"
+    >
+      {valor}
+    </span>
+  ) : (
+    <span class={classe}>{valor}</span>
+  )
+}

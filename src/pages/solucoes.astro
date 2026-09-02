@@ -1,0 +1,30 @@
+---
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Soluções', href: '/solucoes' },
+] as const
+---
+
+<BaseLayout
+  titulo="Soluções documentais em João Pessoa (PB) — incêndio, licenças e veicular | Bradotec"
+  descricao="Todas as soluções da Bradotec em João Pessoa/PB: segurança contra incêndio e pânico, regularização e licenças, documentação veicular e gestão documental recorrente para empresas e condomínios."
+  trilha={trilha}
+>
+  <CabecalhoPagina
+    titulo="Todas as soluções"
+    subtitulo="Três divisões que funcionam como uma central única de soluções documentais para quem tem empresa, imóvel, condomínio ou frota em João Pessoa."
+    trilha={trilha}
+  />
+
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <p class="text-ink-soft">
+        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
+        Conteúdo em migração a partir da versão anterior do site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

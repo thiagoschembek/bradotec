@@ -1,0 +1,21 @@
+# Cabecalhos aplicados pela Cloudflare Pages.
+# Sintaxe: um padrao de caminho, e abaixo os cabecalhos indentados.
+
+/*
+  # Impede que o site seja embutido em iframe de terceiro (clickjacking).
+  X-Frame-Options: SAMEORIGIN
+  # Impede o navegador de "adivinhar" o tipo do arquivo e executar algo indevido.
+  X-Content-Type-Options: nosniff
+  # Nao vaza a URL completa ao sair do site.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Desliga APIs que este site nao usa.
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+
+# Arquivos com hash no nome nunca mudam de conteudo: cache de 1 ano.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fontes tambem tem hash no nome.
+/_astro/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *

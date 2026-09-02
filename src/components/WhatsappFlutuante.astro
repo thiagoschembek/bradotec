@@ -1,0 +1,17 @@
+---
+import IconeWhatsapp from '@/components/IconeWhatsapp.astro'
+import { linkWhatsapp } from '@/config/whatsapp'
+
+const href = linkWhatsapp('padrao')
+---
+
+<a
+  class="fixed bottom-4 right-4 z-90 inline-flex items-center gap-2.5 rounded-full bg-[#128c4a] py-3 pl-4 pr-[18px] text-[0.95rem] font-bold text-white no-underline shadow-float hover:bg-[#0e7539]"
+  href={href ?? '/contato'}
+  {...href ? { target: '_blank', rel: 'noopener' } : {}}
+  aria-label="Falar no WhatsApp"
+  data-wa="padrao"
+>
+  <IconeWhatsapp tamanho={22} />
+  <span class="hidden sm:inline">Falar no WhatsApp</span>
+</a>

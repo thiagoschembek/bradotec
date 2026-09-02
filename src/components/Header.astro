@@ -1,0 +1,124 @@
+---
+import { Image } from 'astro:assets'
+import logo from '@/assets/logo-small.png'
+import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
+import { navegacaoPrincipal } from '@/config/navegacao'
+import { site } from '@/config/site'
+
+const atual = Astro.url.pathname.replace(/\/$/, '') || '/'
+const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
+---
+
+<header class="sticky top-0 z-100 border-b border-white/10 bg-navy-900">
+  <div class="mx-auto w-full max-w-wrap px-5">
+    <div class="flex min-h-[74px] items-center gap-4">
+      <a class="mr-auto flex items-center gap-3 no-underline" href="/" aria-label={`${site.nome} — página inicial`}>
+        <Image src={logo} alt="" width={49} height={42} loading="eager" class="h-[42px] w-auto" />
+        <span class="flex flex-col leading-[1.05]">
+          <b class="text-[1.14rem] font-extrabold tracking-[0.01em] text-white">
+            {site.nome.toUpperCase()}
+          </b>
+          <span class="text-[0.7rem] font-semibold tracking-[0.02em] text-[#93a7bc]">
+            {site.descritivo}
+          </span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:block" aria-label="Principal">
+        <ul class="flex items-center gap-1">
+          {
+            navegacaoPrincipal.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={estaAtiva(item.href) ? 'page' : undefined}
+                  class:list={[
+                    'block whitespace-nowrap rounded-lg px-3 py-2 text-[0.95rem] font-semibold no-underline transition-colors',
+                    estaAtiva(item.href)
+                      ? 'bg-white/10 text-white'
+                      : 'text-[#c9d6e4] hover:bg-white/10 hover:text-white',
+                  ]}
+                >
+                  {item.curto}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <BotaoWhatsapp origem="orcamento" pequeno class="hidden whitespace-nowrap lg:inline-flex">
+        Solicitar orçamento
+      </BotaoWhatsapp>
+
+      <button
+        type="button"
+        class="inline-flex h-[46px] w-[46px] flex-col items-stretch justify-center gap-[5px] rounded-[10px] border-0 bg-white/10 px-[11px] lg:hidden"
+        aria-expanded="false"
+        aria-controls="menu-mobile"
+        aria-label="Abrir menu"
+        data-burger
+      >
+        <span class="block h-0.5 rounded-sm bg-white transition-transform"></span>
+        <span class="block h-0.5 rounded-sm bg-white transition-opacity"></span>
+        <span class="block h-0.5 rounded-sm bg-white transition-transform"></span>
+      </button>
+    </div>
+
+    <nav
+      class="hidden border-t border-white/10 pb-6 pt-2 lg:!hidden"
+      id="menu-mobile"
+      aria-label="Menu"
+      data-menu-mobile
+    >
+      {
+        navegacaoPrincipal.map((item) => (
+          <a
+            href={item.href}
+            aria-current={estaAtiva(item.href) ? 'page' : undefined}
+            class="block border-b border-white/5 px-1 py-3.5 font-semibold text-[#d8e3ee] no-underline"
+          >
+            {item.completo}
+          </a>
+        ))
+      }
+      <BotaoWhatsapp origem="orcamento" larguraTotal class="mt-4">
+        Solicitar orçamento
+      </BotaoWhatsapp>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Menu do celular em JavaScript puro (~20 linhas). Poderia ser um componente
+  // React, mas isso obrigaria o visitante a baixar a biblioteca inteira so
+  // para abrir um menu. Aqui a home nao carrega nenhum JS de framework.
+  const burger = document.querySelector<HTMLButtonElement>('[data-burger]')
+  const menu = document.querySelector<HTMLElement>('[data-menu-mobile]')
+
+  if (burger && menu) {
+    const definirEstado = (aberto: boolean) => {
+      burger.setAttribute('aria-expanded', String(aberto))
+      burger.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu')
+      menu.classList.toggle('hidden', !aberto)
+      menu.classList.toggle('block', aberto)
+    }
+
+    burger.addEventListener('click', () => {
+      definirEstado(burger.getAttribute('aria-expanded') !== 'true')
+    })
+
+    // Fecha ao navegar, para o menu nao ficar aberto na proxima pagina.
+    for (const link of menu.querySelectorAll('a')) {
+      link.addEventListener('click', () => definirEstado(false))
+    }
+
+    // Esc fecha e devolve o foco ao botao — exigencia de acessibilidade.
+    document.addEventListener('keydown', (evento) => {
+      if (evento.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+        definirEstado(false)
+        burger.focus()
+      }
+    })
+  }
+</script>

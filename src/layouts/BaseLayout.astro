@@ -1,0 +1,122 @@
+---
+import { Font } from 'astro:assets'
+import Footer from '@/components/Footer.astro'
+import Header from '@/components/Header.astro'
+import WhatsappFlutuante from '@/components/WhatsappFlutuante.astro'
+import { site } from '@/config/site'
+import { jsonLdBreadcrumb, jsonLdNegocioLocal } from '@/lib/seo'
+import '@/styles/global.css'
+
+interface Props {
+  /** Titulo da aba e do resultado no Google. Unico por pagina. */
+  titulo: string
+  /** Resumo de 1 frase que aparece abaixo do titulo no Google. */
+  descricao?: string
+  /** Imagem de compartilhamento. Cai na padrao da marca se omitida. */
+  imagem?: string
+  /** Tira a pagina do indice do Google (usado na 404). */
+  naoIndexar?: boolean
+  /** Trilha de navegacao — vira breadcrumb no resultado de busca. */
+  trilha?: readonly { nome: string; href: string }[]
+  /** JSON-LD extra da pagina (FAQ, servico...). */
+  schemasExtras?: readonly unknown[]
+}
+
+const {
+  titulo,
+  descricao = site.descricao,
+  imagem = '/og-bradotec.jpg',
+  naoIndexar = false,
+  trilha,
+  schemasExtras = [],
+} = Astro.props
+
+// Astro.site vem do campo `site` em astro.config.mjs.
+const siteUrl = Astro.site?.href ?? 'https://dominio-do-cliente.example/'
+const canonical = new URL(Astro.url.pathname, siteUrl).href
+const imagemAbsoluta = new URL(imagem, siteUrl).href
+
+const schemas: unknown[] = [jsonLdNegocioLocal(siteUrl), ...schemasExtras]
+if (trilha?.length) schemas.push(jsonLdBreadcrumb(trilha, siteUrl))
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{titulo}</title>
+    <meta name="description" content={descricao} />
+    <link rel="canonical" href={canonical} />
+    <meta
+      name="robots"
+      content={naoIndexar
+        ? 'noindex, follow'
+        : 'index, follow, max-snippet:-1, max-image-preview:large'}
+    />
+
+    {/* Sinaliza ao Google a regiao atendida — ajuda na busca local. */}
+    <meta name="geo.region" content={`BR-${site.estado}`} />
+    <meta name="geo.placename" content={site.cidade} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={site.nome} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imagemAbsoluta} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    {/* Injeta a fonte ja hospedada por nos, com preload do arquivo. */}
+    <Font cssVariable="--font-plus-jakarta" preload />
+
+    <meta name="generator" content={Astro.generator} />
+
+    {
+      schemas.map((schema) => (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(schema)}
+        />
+      ))
+    }
+
+    {
+      /* Analytics sem cookie e sem banner de consentimento.
+         Sem token configurado, nenhum script de terceiro e carregado. */
+      site.cloudflareAnalyticsToken && (
+        <script
+          defer
+          is:inline
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token": "${site.cloudflareAnalyticsToken}"}`}
+        />
+      )
+    }
+  </head>
+
+  <body class="bg-white text-ink antialiased">
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[200] focus:rounded-xl focus:bg-white focus:px-5 focus:py-3 focus:font-bold focus:text-navy-900"
+    >
+      Ir para o conteúdo
+    </a>
+
+    <Header />
+
+    <main id="conteudo">
+      <slot />
+    </main>
+
+    <Footer />
+    <WhatsappFlutuante />
+  </body>
+</html>

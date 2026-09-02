@@ -1,0 +1,15 @@
+# Redirecionamentos da Cloudflare Pages.
+#
+# O site anterior usava enderecos terminados em .html. Se algum deles ja foi
+# indexado pelo Google ou esta salvo no favorito de alguem, precisa continuar
+# funcionando. O 301 avisa ao Google que o endereco mudou em definitivo e
+# transfere a reputacao do link antigo para o novo.
+
+/index.html                      /                              301
+/solucoes.html                   /solucoes                      301
+/seguranca-contra-incendio.html  /seguranca-contra-incendio     301
+/regularizacoes.html             /regularizacoes                301
+/documentacao-veicular.html      /documentacao-veicular         301
+/empresas.html                   /empresas                      301
+/sobre.html                      /sobre                         301
+/contato.html                    /contato                       301

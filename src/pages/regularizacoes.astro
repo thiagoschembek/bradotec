@@ -1,0 +1,30 @@
+---
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Regularizações', href: '/regularizacoes' },
+] as const
+---
+
+<BaseLayout
+  titulo="Regularização de empresas e imóveis em João Pessoa (PB) | Bradotec"
+  descricao="Licenças, certidões, protocolos e regularização de empresas, comércios e imóveis em João Pessoa/PB. Acompanhamento de exigências e controle de vencimentos com a Bradotec Documentos."
+  trilha={trilha}
+>
+  <CabecalhoPagina
+    titulo="Regularizações, licenças e gestão documental"
+    subtitulo="Licenças, certidões, protocolos e regularização de empresas e imóveis em João Pessoa — com o processo acompanhado até a conclusão."
+    trilha={trilha}
+  />
+
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <p class="text-ink-soft">
+        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
+        Conteúdo em migração a partir da versão anterior do site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

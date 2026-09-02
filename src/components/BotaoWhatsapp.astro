@@ -1,0 +1,55 @@
+---
+import IconeWhatsapp from '@/components/IconeWhatsapp.astro'
+import { linkWhatsapp, type OrigemWhatsapp } from '@/config/whatsapp'
+import { cn } from '@/lib/utils'
+
+interface Props {
+  /** Define a mensagem que ja vai escrita na conversa. */
+  origem?: OrigemWhatsapp
+  variante?: 'primario' | 'escuro' | 'sobreEscuro' | 'contorno'
+  larguraTotal?: boolean
+  pequeno?: boolean
+  class?: string
+}
+
+const {
+  origem = 'padrao',
+  variante = 'primario',
+  larguraTotal = false,
+  pequeno = false,
+  class: classe,
+} = Astro.props
+
+const href = linkWhatsapp(origem)
+
+const variantes = {
+  primario: 'bg-fire text-white hover:bg-fire-dark',
+  escuro: 'bg-navy-900 text-white hover:bg-navy-700',
+  sobreEscuro: 'bg-white/10 text-white border-white/30 hover:bg-white/20',
+  contorno: 'border-[#c6d2e0] text-navy-900 hover:border-navy-900 hover:bg-line-soft',
+} as const
+
+const classes = cn(
+  'inline-flex items-center justify-center gap-2 rounded-[11px] border border-transparent font-bold no-underline transition-colors',
+  pequeno ? 'min-h-[42px] px-4 py-2.5 text-[0.94rem]' : 'min-h-[50px] px-6 py-3.5 text-base',
+  larguraTotal && 'w-full',
+  variantes[variante],
+  classe
+)
+---
+
+{
+  href ? (
+    <a class={classes} href={href} target="_blank" rel="noopener" data-wa={origem}>
+      <IconeWhatsapp />
+      <slot />
+    </a>
+  ) : (
+    /* Numero ainda nao configurado: leva ao formulario em vez de abrir uma
+       conversa com numero inexistente. */
+    <a class={classes} href="/contato" data-wa-pendente={origem}>
+      <IconeWhatsapp />
+      <slot />
+    </a>
+  )
+}

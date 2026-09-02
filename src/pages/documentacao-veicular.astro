@@ -1,0 +1,30 @@
+---
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Documentação veicular', href: '/documentacao-veicular' },
+] as const
+---
+
+<BaseLayout
+  titulo="Documentação veicular e gestão de frotas em João Pessoa (PB) | Bradotec Auto"
+  descricao="Transferência, emplacamento, primeiro registro, segunda via e regularização de pendências veiculares em João Pessoa/PB. Gestão de documentação de frotas para empresas."
+  trilha={trilha}
+>
+  <CabecalhoPagina
+    titulo="Documentação veicular e frotas"
+    subtitulo="Pendências do veículo resolvidas e a frota da empresa com a documentação sob controle, em João Pessoa e região."
+    trilha={trilha}
+  />
+
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <p class="text-ink-soft">
+        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
+        Conteúdo em migração a partir da versão anterior do site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

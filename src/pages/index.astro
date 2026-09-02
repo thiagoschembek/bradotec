@@ -1,17 +1,94 @@
 ---
+import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
+import PainelVencimentos from '@/components/PainelVencimentos.astro'
+import { site } from '@/config/site'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
+const titulo = `${site.nome} — Regularização, licenças e segurança contra incêndio em ${site.cidade} (${site.estado})`
+
+const provas = [
+  'Segurança contra incêndio e pânico',
+  'Empresas, condomínios e instituições',
+  'Acompanhamento de processo do início ao fim',
+] as const
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout titulo={titulo}>
+  <section
+    class="overflow-hidden bg-navy-900 bg-[radial-gradient(900px_480px_at_85%_-10%,rgba(210,43,38,0.2),transparent_62%)] py-16 text-white lg:py-24"
+  >
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="grid items-center gap-11 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
+        <div>
+          <span
+            class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 py-2 pl-3 pr-4 text-[0.9rem] font-semibold text-[#dce7f2]"
+          >
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"></path>
+              <circle cx="12" cy="10" r="2.6"></circle>
+            </svg>
+            {site.regiaoAtendida}
+          </span>
+
+          <h1 class="mb-5 text-[clamp(2rem,5.2vw,3.35rem)] tracking-[-0.03em] text-white">
+            Regularização, licenças e documentação sem complicação.
+          </h1>
+
+          <p class="max-w-[56ch] text-[1.12rem] text-[#b9c9da]">
+            Em {site.cidade} e região, a {site.nome} cuida dos processos documentais da sua empresa,
+            condomínio, imóvel e veículo — reunindo gestão, acompanhamento e profissionais
+            especializados para você ter mais segurança e menos burocracia.
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <BotaoWhatsapp origem="orcamento">Solicitar orçamento</BotaoWhatsapp>
+            <a
+              class="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-[11px] border border-white/30 bg-white/10 px-6 py-3.5 font-bold text-white no-underline transition-colors hover:bg-white/20"
+              href="/contato"
+            >
+              Falar com um especialista
+            </a>
+          </div>
+
+          <ul
+            class="mt-8 flex flex-wrap gap-x-7 gap-y-2.5 border-t border-white/15 pt-6 text-[0.93rem] text-[#a7bacd]"
+          >
+            {
+              provas.map((prova) => (
+                <li class="flex items-center gap-2">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    class="shrink-0 text-[#7fd1a6]"
+                  >
+                    <path d="m4 12.5 5 5L20 6.5" />
+                  </svg>
+                  {prova}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <PainelVencimentos />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

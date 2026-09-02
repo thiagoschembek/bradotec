@@ -1,0 +1,30 @@
+---
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'A Bradotec', href: '/sobre' },
+] as const
+---
+
+<BaseLayout
+  titulo="A Bradotec — despachadoria e soluções documentais em João Pessoa (PB)"
+  descricao="Conheça a Bradotec: empresa de gestão documental, regularização, licenciamento e segurança contra incêndio em João Pessoa/PB, atuando como central de soluções para empresas, condomínios e frotas."
+  trilha={trilha}
+>
+  <CabecalhoPagina
+    titulo="A Bradotec"
+    subtitulo="Uma central de soluções documentais em João Pessoa: gestão, regularização, licenciamento e segurança contra incêndio reunidos em um só interlocutor."
+    trilha={trilha}
+  />
+
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <p class="text-ink-soft">
+        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
+        Conteúdo em migração a partir da versão anterior do site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

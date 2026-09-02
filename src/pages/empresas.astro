@@ -1,0 +1,30 @@
+---
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Empresas e condomínios', href: '/empresas' },
+] as const
+---
+
+<BaseLayout
+  titulo="Gestão documental para empresas e condomínios em João Pessoa (PB) | Bradotec"
+  descricao="Gestão documental recorrente para empresas, condomínios e instituições em João Pessoa/PB: controle de vencimentos, organização documental e acompanhamento de processos."
+  trilha={trilha}
+>
+  <CabecalhoPagina
+    titulo="Empresas e condomínios"
+    subtitulo="Sua empresa regularizada e seus documentos sob controle, com acompanhamento contínuo em vez de correria quando o prazo estoura."
+    trilha={trilha}
+  />
+
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <p class="text-ink-soft">
+        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
+        Conteúdo em migração a partir da versão anterior do site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

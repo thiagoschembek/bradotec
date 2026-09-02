@@ -1,0 +1,30 @@
+---
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Segurança contra incêndio', href: '/seguranca-contra-incendio' },
+] as const
+---
+
+<BaseLayout
+  titulo="Segurança contra incêndio e pânico em João Pessoa (PB) | Bradotec Fire"
+  descricao="Regularização contra incêndio em João Pessoa/PB: organização documental, AVCB e documentos equivalentes conforme aplicabilidade, vistorias, exigências, brigada e treinamentos. Projetos e laudos com profissionais habilitados."
+  trilha={trilha}
+>
+  <CabecalhoPagina
+    titulo="Segurança contra incêndio e pânico"
+    subtitulo="A regularização que trava alvará, obra e funcionamento — conduzida do levantamento inicial até a conclusão do processo, em João Pessoa e região."
+    trilha={trilha}
+  />
+
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <p class="text-ink-soft">
+        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
+        Conteúdo em migração a partir da versão anterior do site.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
