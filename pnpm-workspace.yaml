@@ -1,0 +1,10 @@
+# Pacotes autorizados a rodar scripts de instalacao (compilam ou baixam binarios
+# nativos). O pnpm 11 bloqueia isso por padrao, por seguranca: um pacote malicioso
+# poderia executar codigo na sua maquina durante o "install". Liberamos so os que
+# a stack realmente precisa.
+allowBuilds:
+  esbuild: true
+  '@biomejs/biome': true
+  '@tailwindcss/oxide': true
+  sharp: true
+  lefthook: true

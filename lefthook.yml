@@ -1,0 +1,12 @@
+# Roda antes de cada commit. Se algo falhar, o commit e bloqueado —
+# assim codigo quebrado nao entra no historico.
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{js,ts,jsx,tsx,astro,json,css}'
+      run: pnpm biome check --write --no-errors-on-unmatched {staged_files}
+      stage_fixed: true
+    typecheck:
+      glob: '*.{ts,tsx,astro}'
+      run: pnpm typecheck
