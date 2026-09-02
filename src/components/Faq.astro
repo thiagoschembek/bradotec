@@ -28,14 +28,14 @@ const perguntas = (await getCollection('faq', ({ data }) => data.paginas.include
 
 {
   perguntas.length > 0 && (
-    <section class="bg-canvas py-16" id="faq">
+    <section class="bg-canvas py-20 lg:py-24" id="faq">
       <div class="mx-auto w-full max-w-wrap px-5">
         <div class="mb-9 max-w-[760px]">
           <span class="mb-3 inline-flex items-center gap-2 text-apoio font-bold text-fire">
             <span class="h-0.5 w-[22px] rounded-sm bg-fire" aria-hidden="true" />
             Dúvidas
           </span>
-          <h2 class="text-[clamp(1.6rem,3.6vw,2.35rem)]">{titulo}</h2>
+          <h2 class="text-secao">{titulo}</h2>
           {descricao && <p class="mt-2 text-ink-soft">{descricao}</p>}
         </div>
 

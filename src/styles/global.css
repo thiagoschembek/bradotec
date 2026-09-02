@@ -73,8 +73,24 @@
   --text-cartao--line-height: 1.35;
   --text-cartao-lg: 1.35rem;
   --text-cartao-lg--line-height: 1.25;
-  --text-secao: 1.6rem;
-  --text-secao--line-height: 1.2;
+  /* Fluido de proposito. Fixo em 1.6rem, o titulo de secao ficava a 25px
+     contra 17px do corpo: perto demais para abrir hierarquia, e longe demais
+     do h1 (53px) para haver um degrau entre os dois. A pagina inteira lia
+     como um bloco de um tom so. Aqui vai de 1.6rem no celular a 2.5rem no
+     desktop, onde ha largura para o titulo ocupar. */
+  --text-secao: clamp(1.6rem, 1.12rem + 1.9vw, 2.5rem);
+  --text-secao--line-height: 1.15;
+  /* Titulo de pagina (h1 das paginas internas) e titulo do hero da home.
+     Os dois estavam escritos como clamp avulso dentro da pagina — o valor
+     inventado que esta escala existe para impedir. Pior: as curvas se
+     cruzavam. Em 768px o h1 dava 34px contra 33px do titulo de secao, e no
+     tablet a pagina ficava sem topo de hierarquia.
+     Agora --text-pagina fica um degrau acima de --text-secao em toda largura,
+     de 390px a 1920px, e --text-hero um degrau acima dele. */
+  --text-pagina: clamp(1.95rem, 1.3rem + 2.7vw, 3.1rem);
+  --text-pagina--line-height: 1.08;
+  --text-hero: clamp(2rem, 1.3rem + 2.9vw, 3.35rem);
+  --text-hero--line-height: 1.06;
 
   /* --- Raios de borda --- */
   --radius-sm: 8px;

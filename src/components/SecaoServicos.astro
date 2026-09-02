@@ -17,12 +17,12 @@ const servicos = (await getCollection('servicos', ({ data }) => data.divisao ===
 )
 ---
 
-<section class="bg-canvas py-16" aria-labelledby={id}>
+<section class="bg-canvas py-20 lg:py-24" aria-labelledby={id}>
   <div class="mx-auto w-full max-w-wrap px-5">
     <h2 id={id} class="text-secao text-ink">{titulo}</h2>
-    {descricao && <p class="mt-3 max-w-[68ch] text-ink-soft">{descricao}</p>}
+    {descricao && <p class="mt-4 max-w-[66ch] text-guia text-ink-soft">{descricao}</p>}
 
-    <ul class="mt-8 grid list-none gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <ul class="mt-11 grid list-none gap-5 md:grid-cols-2 lg:grid-cols-3">
       {
         servicos.map((servico) => (
           <li class="rounded-xl border border-line bg-white p-6 shadow-card">
