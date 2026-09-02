@@ -1,5 +1,8 @@
 ---
+import { getCollection } from 'astro:content'
+import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import CartaoDivisao from '@/components/CartaoDivisao.astro'
 import Faq from '@/components/Faq.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { schemaFaqDaPagina } from '@/lib/faq'
@@ -10,6 +13,16 @@ const trilha = [
 ] as const
 
 const schemaFaq = await schemaFaqDaPagina('solucoes')
+
+const divisoes = (await getCollection('divisoes')).sort((a, b) => a.data.ordem - b.data.ordem)
+const servicos = (await getCollection('servicos')).sort((a, b) => a.data.ordem - b.data.ordem)
+
+/**
+ * Titulos dos servicos de cada divisao. Sai da MESMA colecao que a pagina da
+ * divisao usa para mostrar as descricoes — por construcao nao podem divergir.
+ */
+const titulosDaDivisao = (idDivisao: string) =>
+  servicos.filter(({ data }) => data.divisao === idDivisao).map(({ data }) => data.titulo)
 ---
 
 <BaseLayout
@@ -22,15 +35,82 @@ const schemaFaq = await schemaFaqDaPagina('solucoes')
     titulo="Todas as soluções"
     subtitulo="Três divisões que funcionam como uma central única de soluções documentais para quem tem empresa, imóvel, condomínio ou frota em João Pessoa."
     trilha={trilha}
-  />
+  >
+    <div class="mt-6 flex flex-wrap gap-3">
+      <BotaoWhatsapp origem="orcamento">Solicitar orçamento</BotaoWhatsapp>
+      <a
+        class="inline-flex min-h-[50px] items-center justify-center rounded-[11px] border border-white/30 bg-white/10 px-6 py-3.5 font-bold text-white no-underline transition-colors hover:bg-white/20"
+        href="/contato"
+      >
+        Falar com um especialista
+      </a>
+    </div>
+  </CabecalhoPagina>
 
-  <section class="py-16">
+  <section class="bg-canvas py-16" aria-labelledby="divisoes">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <p class="text-ink-soft">
-        {/* Conteudo desta pagina entra no proximo bloco, vindo das Content Collections. */}
-        Conteúdo em migração a partir da versão anterior do site.
-      </p>
+      <h2 id="divisoes" class="sr-only">As três divisões da Bradotec</h2>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          divisoes.map((divisao) => (
+            <CartaoDivisao
+              marca={divisao.data.marca}
+              titulo={divisao.data.titulo}
+              resumo={divisao.data.resumo}
+              href={divisao.data.href}
+              cor={divisao.data.cor}
+              origemWhatsapp={divisao.data.origemWhatsapp}
+              servicos={titulosDaDivisao(divisao.id)}
+            />
+          ))
+        }
+      </div>
     </div>
   </section>
+
+  <section class="py-16" aria-labelledby="diagnostico">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="grid gap-8 rounded-xl border border-line bg-white p-8 shadow-card lg:grid-cols-[1.15fr_0.85fr] lg:p-10">
+        <div>
+          <p class="text-[0.82rem] font-bold uppercase tracking-[0.08em] text-fire">
+            Ponto de partida
+          </p>
+          <h2 id="diagnostico" class="mt-2 text-[1.6rem] text-ink">
+            Diagnóstico de Regularização
+          </h2>
+          <p class="mt-3 max-w-[62ch] text-ink-soft">
+            Se você não sabe qual divisão resolve o seu caso, comece por aqui. Identificamos
+            pendências, documentos necessários e próximos passos antes de qualquer contratação.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <BotaoWhatsapp origem="diagnostico">Solicitar diagnóstico</BotaoWhatsapp>
+            <a
+              class="inline-flex min-h-[50px] items-center justify-center rounded-[11px] border border-[#c6d2e0] px-6 py-3.5 font-bold text-navy-900 no-underline transition-colors hover:border-navy-900 hover:bg-line-soft"
+              href="/contato"
+            >
+              Falar com um especialista
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-line-soft bg-canvas p-6">
+          <p class="text-[0.82rem] font-bold uppercase tracking-[0.08em] text-steel-500">
+            Gestão documental recorrente
+          </p>
+          <p class="mt-3 text-[0.97rem] text-ink-soft">
+            Para empresas e condomínios que preferem manter a documentação acompanhada o ano
+            inteiro, em vez de correr atrás quando o prazo estoura.
+          </p>
+          <a
+            class="mt-5 inline-flex font-bold text-navy-900 underline underline-offset-4 hover:text-fire"
+            href="/empresas"
+          >
+            Ver soluções para empresas
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <Faq pagina="solucoes" />
 </BaseLayout>

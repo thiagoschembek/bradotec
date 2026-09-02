@@ -1,0 +1,69 @@
+---
+import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
+import type { OrigemWhatsapp } from '@/config/whatsapp'
+
+interface Props {
+  marca: string
+  titulo: string
+  resumo: string
+  href: string
+  cor: 'fire' | 'doc' | 'auto'
+  origemWhatsapp: string
+  /** Titulos dos servicos da divisao, vindos da colecao `servicos`. */
+  servicos: readonly string[]
+}
+
+const { marca, titulo, resumo, href, cor, origemWhatsapp, servicos } = Astro.props
+
+/**
+ * Classes literais por divisao. Nao montar com template string: o Tailwind
+ * varre o codigo como texto e nao enxerga nome de classe construido em
+ * tempo de execucao — a cor sairia do CSS final.
+ */
+const estilos = {
+  fire: { texto: 'text-div-fire', marcador: 'bg-div-fire', topo: 'before:bg-div-fire' },
+  doc: { texto: 'text-div-doc', marcador: 'bg-div-doc', topo: 'before:bg-div-doc' },
+  auto: { texto: 'text-div-auto', marcador: 'bg-div-auto', topo: 'before:bg-div-auto' },
+} as const
+
+const estilo = estilos[cor]
+---
+
+<article
+  class:list={[
+    'relative flex flex-col overflow-hidden rounded-xl border border-line bg-white p-7 shadow-card',
+    "before:absolute before:inset-x-0 before:top-0 before:h-1 before:content-['']",
+    estilo.topo,
+  ]}
+>
+  <p class:list={['text-[0.82rem] font-bold uppercase tracking-[0.08em]', estilo.texto]}>
+    {marca}
+  </p>
+
+  <h2 class="mt-2 text-[1.35rem] text-ink">{titulo}</h2>
+  <p class="mt-2 text-ink-soft">{resumo}</p>
+
+  <ul class="mt-5 flex flex-col gap-2.5 border-t border-line-soft pt-5 text-[0.95rem] text-ink-soft">
+    {
+      servicos.map((servico) => (
+        <li class="flex items-start gap-2.5">
+          <span
+            class:list={['mt-[0.5em] size-1.5 shrink-0 rounded-full', estilo.marcador]}
+            aria-hidden="true"
+          />
+          {servico}
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-6 flex flex-wrap gap-2.5 pt-1">
+    <a
+      class="inline-flex min-h-[42px] items-center justify-center rounded-[11px] border border-[#c6d2e0] px-4 py-2.5 text-[0.94rem] font-bold text-navy-900 no-underline transition-colors hover:border-navy-900 hover:bg-line-soft"
+      href={href}
+    >
+      Ver a divisão
+    </a>
+    <BotaoWhatsapp origem={origemWhatsapp as OrigemWhatsapp} pequeno>Falar agora</BotaoWhatsapp>
+  </div>
+</article>
