@@ -42,17 +42,24 @@
     "ordem": 6
   },
   {
+    "id": "avcb",
+    "titulo": "Preciso de AVCB ou ele venceu",
+    "descricao": "Vistoria do Corpo de Bombeiros, projeto e o que a edificação precisa ter.",
+    "href": "/avcb",
+    "ordem": 7
+  },
+  {
     "id": "vencimento",
     "titulo": "Tenho documentos vencendo",
     "descricao": "Controle de prazos para não perder renovação nem operar irregular.",
     "href": "/empresas",
-    "ordem": 7
+    "ordem": 8
   },
   {
     "id": "nao-sei",
     "titulo": "Não sei por onde começar",
     "descricao": "O diagnóstico mostra o que falta e em que ordem resolver.",
     "href": "/diagnostico",
-    "ordem": 8
+    "ordem": 9
   }
 ]

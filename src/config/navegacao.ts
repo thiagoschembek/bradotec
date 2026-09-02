@@ -37,6 +37,7 @@ export const navegacaoRodape = [
       { href: '/regularizacoes', rotulo: 'Regularizações e licenças' },
       { href: '/documentacao-veicular', rotulo: 'Documentação veicular' },
       { href: '/empresas', rotulo: 'Gestão documental recorrente' },
+      { href: '/avcb', rotulo: 'AVCB: o que é e o que exige' },
     ],
   },
   {

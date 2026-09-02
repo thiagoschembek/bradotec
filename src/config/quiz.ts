@@ -33,6 +33,7 @@ export const perguntas = [
       { id: 'condominio', rotulo: 'Um condomínio ou edifício' },
       { id: 'imovel', rotulo: 'Um imóvel ou edificação' },
       { id: 'instituicao', rotulo: 'Uma igreja, escola ou instituição' },
+      { id: 'posto', rotulo: 'Um posto de combustível' },
       { id: 'veiculo', rotulo: 'Um veículo ou uma frota' },
     ],
   },

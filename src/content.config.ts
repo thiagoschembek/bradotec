@@ -27,6 +27,7 @@ export const paginasComFaq = [
   'seguranca-contra-incendio',
   'documentacao-veicular',
   'empresas',
+  'avcb',
 ] as const
 
 export type PaginaComFaq = (typeof paginasComFaq)[number]
@@ -112,4 +113,27 @@ const caminhos = defineCollection({
   }),
 })
 
-export const collections = { faq, divisoes, servicos, segmentos, caminhos }
+/**
+ * Conteudo da pagina de AVCB, em tres grupos dentro do mesmo arquivo:
+ *
+ *   risco   -> o que esta em jogo quando o documento vence
+ *   item    -> o que costuma ser exigido para obter o AVCB
+ *   cotacao -> o que perguntar a um fornecedor antes de contratar
+ *
+ * Fica em colecao, e nao escrito na pagina, pelo mesmo motivo do resto: e
+ * conteudo editorial que o cliente vai querer revisar, e o schema impede
+ * que um item entre sem descricao ou com um grupo que a pagina nao exibe.
+ */
+const gruposAvcb = ['risco', 'item', 'cotacao'] as const
+
+const avcb = defineCollection({
+  loader: file('src/content/avcb.json'),
+  schema: z.object({
+    grupo: z.enum(gruposAvcb),
+    titulo: z.string().min(5),
+    descricao: z.string().min(30).max(500),
+    ordem: z.number().int().positive(),
+  }),
+})
+
+export const collections = { faq, divisoes, servicos, segmentos, caminhos, avcb }

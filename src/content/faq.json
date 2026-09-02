@@ -64,5 +64,41 @@
     "pergunta": "Vocês atendem fora de João Pessoa?",
     "resposta": "A base de atuação é João Pessoa e região metropolitana, na Paraíba. Para outras localidades, a viabilidade é avaliada caso a caso — vale consultar pelo WhatsApp.",
     "paginas": ["home", "documentacao-veicular"]
+  },
+  {
+    "id": "o-que-e-avcb",
+    "pergunta": "O que é o AVCB?",
+    "resposta": "AVCB é o Auto de Vistoria do Corpo de Bombeiros: o documento emitido pela corporação atestando que a edificação está em conformidade com as normas de segurança, prevenção e combate a incêndios. Ele é emitido após vistoria, que pode acontecer a pedido do condomínio ou da empresa, por denúncia ou como fiscalização sem aviso. Em alguns tipos de edificação o documento equivalente tem outro nome e outro rito, conforme a ocupação, a área e o risco.",
+    "paginas": ["avcb", "seguranca-contra-incendio"]
+  },
+  {
+    "id": "renovacao-avcb",
+    "pergunta": "De quanto em quanto tempo o AVCB precisa ser renovado?",
+    "resposta": "A validade é definida pela legislação estadual e varia entre os estados, além de depender do tipo de ocupação da edificação. Por isso não repetimos aqui o prazo de outro estado: o que vale para a sua edificação é a norma aplicável na Paraíba e ao seu tipo de imóvel. Esse levantamento é a primeira coisa que a Bradotec faz, antes de qualquer orçamento.",
+    "paginas": ["avcb", "seguranca-contra-incendio"]
+  },
+  {
+    "id": "multa-sem-avcb",
+    "pergunta": "O condomínio pode ser multado por estar sem AVCB?",
+    "resposta": "Sim. Em uma ação de fiscalização, a edificação sem AVCB ou com o documento vencido recebe notificação com prazo para corrigir as não conformidades, e a multa é uma das consequências previstas. O valor é definido pela legislação estadual. Além da multa, a irregularidade costuma travar alvará de funcionamento e renovações, e pode ser motivo para a seguradora recusar o pagamento em caso de sinistro.",
+    "paginas": ["avcb", "seguranca-contra-incendio", "empresas"]
+  },
+  {
+    "id": "sindico-responde",
+    "pergunta": "O síndico responde pessoalmente pela falta de AVCB?",
+    "resposta": "O síndico representa o condomínio e responde por sua administração, conforme o art. 1.348 do Código Civil. Em uma ocorrência grave, uma irregularidade conhecida e não tratada pesa contra ele nas esferas cível e criminal. A análise do caso concreto é de advogado, não nossa — mas a exposição existe independentemente dessa análise, e é uma das razões pelas quais a regularização costuma ser tratada como prioridade em assembleia.",
+    "paginas": ["avcb", "empresas"]
+  },
+  {
+    "id": "projeto-perdido",
+    "pergunta": "Perdemos o projeto de incêndio do prédio. Ainda dá para regularizar?",
+    "resposta": "Dá, e é uma situação comum: o projeto costuma ser elaborado na construção e se perde nas trocas de síndico, administradora e responsável. Sem projeto não há o que vistoriar, então o primeiro passo não é marcar vistoria — é levantar o que a edificação possui hoje e elaborar o projeto, por profissional legalmente habilitado para assiná-lo. É por aí que a Bradotec começa nesses casos.",
+    "paginas": ["avcb", "seguranca-contra-incendio"]
+  },
+  {
+    "id": "posto-combustivel",
+    "pergunta": "Vocês atendem posto de combustível?",
+    "resposta": "Sim. Posto de combustível reúne, no mesmo endereço, exigências de segurança contra incêndio, licenciamento ambiental, alvará de funcionamento e documentação de tanques e equipamentos — processos que costumam correr em órgãos diferentes e com prazos que não conversam entre si. A Bradotec organiza a documentação, conduz os protocolos e acompanha as exigências dentro de um único processo.",
+    "paginas": ["avcb", "empresas", "solucoes"]
   }
 ]

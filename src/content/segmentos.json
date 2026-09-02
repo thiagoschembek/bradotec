@@ -34,5 +34,11 @@
     "titulo": "Empresas com frota",
     "descricao": "Documentação dos veículos gerida junto com a da empresa, em um controle só.",
     "ordem": 6
+  },
+  {
+    "id": "postos",
+    "titulo": "Postos de combustível",
+    "descricao": "Segurança contra incêndio, licenciamento ambiental, alvará e documentação de tanques e equipamentos — exigências que correm em órgãos diferentes, com prazos que não conversam entre si, conduzidas dentro de um único processo.",
+    "ordem": 7
   }
 ]

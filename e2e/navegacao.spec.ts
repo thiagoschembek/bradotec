@@ -89,22 +89,61 @@ test.describe('Página 404', () => {
 })
 
 test.describe('Botão flutuante do WhatsApp', () => {
+  const seletor = '.fixed[aria-label="Falar no WhatsApp"]'
+
+  /**
+   * Opacidade real, e nao toBeVisible(): para o Playwright um elemento com
+   * opacity 0 continua "visivel", porque ele olha display, visibility e
+   * caixa — nao opacidade.
+   */
+  const estaAparecendo = (page: import('@playwright/test').Page) =>
+    page.locator(seletor).evaluate((elemento) => {
+      const estilo = getComputedStyle(elemento)
+      return Number.parseFloat(estilo.opacity) > 0.05 && estilo.pointerEvents !== 'none'
+    })
+
+  test('aparece durante a leitura da página', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator(seletor)).toBeAttached()
+    expect(await estaAparecendo(page), 'o atalho precisa existir antes do rodapé').toBe(true)
+  })
+
   test('não cobre o conteúdo do rodapé', async ({ page }) => {
     await page.goto('/')
     await page.locator('footer').scrollIntoViewIfNeeded()
 
-    const botao = await page.locator('.fixed[aria-label="Falar no WhatsApp"]').boundingBox()
+    const botao = await page.locator(seletor).boundingBox()
     const ultimoItem = await page.locator('footer li').last().boundingBox()
 
     expect(botao, 'o botão flutuante precisa existir').not.toBeNull()
     expect(ultimoItem, 'o rodapé precisa ter itens').not.toBeNull()
     if (!botao || !ultimoItem) return
 
-    // O último item do rodapé precisa terminar acima de onde o botão começa,
-    // senão fica escondido atrás dele — problema encontrado na revisão visual.
     const sobrepoe =
       ultimoItem.y + ultimoItem.height > botao.y && ultimoItem.x + ultimoItem.width > botao.x
 
-    expect(sobrepoe, 'o botão flutuante está cobrindo o rodapé').toBe(false)
+    // O que importa e nao cobrir, e ha dois jeitos legitimos de cumprir isso:
+    // ou o botao nao passa por cima do rodape, ou ele se recolhe quando o
+    // rodape entra na tela. A versao antiga deste teste so media geometria e
+    // exigia a primeira solucao — na pratica, exigia calibrar o padding do
+    // rodape de novo a cada link acrescentado.
+    if (sobrepoe) {
+      expect(
+        await estaAparecendo(page),
+        'o botão passa por cima do rodapé e continua aparecendo'
+      ).toBe(false)
+    }
+  })
+
+  test('sai da ordem de tabulação quando se recolhe', async ({ page }) => {
+    await page.goto('/')
+    await page.locator('footer').scrollIntoViewIfNeeded()
+
+    // Alvo invisivel que ainda recebe foco e uma armadilha para quem navega
+    // por teclado: o foco some da tela sem explicacao.
+    const recolhido = !(await estaAparecendo(page))
+    if (recolhido) {
+      await expect(page.locator(seletor)).toHaveAttribute('inert', '')
+    }
   })
 })
