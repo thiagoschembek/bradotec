@@ -159,10 +159,8 @@ Resultado: a home hoje não baixa **nenhum** arquivo de framework.
 | Depoimentos e nota do Google reais | `src/config/site.ts` | Cliente |
 | Domínio definitivo | variável `SITE_URL` no deploy | Cliente |
 | Histórico e fundação da empresa | página `sobre` | Cliente |
-| Conteúdo das 7 páginas internas | Content Collections | Desenvolvimento |
 | Quiz de 4 perguntas | ilha React | Desenvolvimento |
-| Formulário de contato | ilha React + React Hook Form | Desenvolvimento |
-| Envio do formulário por e-mail | back-end (ver `specs/backend/`) | Desenvolvimento |
+| Envio do formulário para quem não usa WhatsApp | back-end (ver `specs/backend/`) | Desenvolvimento |
 
 A análise do que um back-end resolveria está em
 [`specs/backend/00-ANALISE-CAMADAS.md`](specs/backend/00-ANALISE-CAMADAS.md).
