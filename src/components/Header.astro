@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import logo from '@/assets/logo-small.png'
-import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
+import BotaoLink from '@/components/BotaoLink.astro'
 import { navegacaoPrincipal } from '@/config/navegacao'
 import { site } from '@/config/site'
 
@@ -47,9 +47,9 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
         </ul>
       </nav>
 
-      <BotaoWhatsapp origem="orcamento" pequeno class="hidden whitespace-nowrap lg:inline-flex">
+      <BotaoLink href="/contato" pequeno class="hidden whitespace-nowrap lg:inline-flex">
         Solicitar orçamento
-      </BotaoWhatsapp>
+      </BotaoLink>
 
       <button
         type="button"
@@ -82,9 +82,9 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
           </a>
         ))
       }
-      <BotaoWhatsapp origem="orcamento" larguraTotal class="mt-4">
+      <BotaoLink href="/contato" larguraTotal class="mt-4">
         Solicitar orçamento
-      </BotaoWhatsapp>
+      </BotaoLink>
     </nav>
   </div>
 </header>

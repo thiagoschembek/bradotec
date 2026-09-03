@@ -40,12 +40,12 @@ const gestaoContinua = [
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoWhatsapp origem="empresas">Solicitar orçamento</BotaoWhatsapp>
+      <BotaoLink href="/contato">Solicitar orçamento</BotaoLink>
       <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
     </div>
   </CabecalhoPagina>
 
-  <section class="bg-canvas py-20 lg:py-24" aria-labelledby="quem-atendemos">
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="quem-atendemos">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="quem-atendemos" class="text-secao text-ink">Soluções por tipo de operação</h2>
 
@@ -62,7 +62,7 @@ const gestaoContinua = [
     </div>
   </section>
 
-  <section class="py-20 lg:py-24" aria-labelledby="gestao-continua">
+  <section class="py-16 lg:py-20" aria-labelledby="gestao-continua">
     <div class="mx-auto w-full max-w-wrap px-5">
       <div class="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
@@ -92,9 +92,7 @@ const gestaoContinua = [
 
           <div class="mt-7 flex flex-wrap gap-3">
             <BotaoWhatsapp origem="recorrente">Conhecer a gestão documental</BotaoWhatsapp>
-            <BotaoWhatsapp origem="vencimento" variante="contorno">
-              Tenho documentos vencendo
-            </BotaoWhatsapp>
+            <BotaoLink href="/diagnostico" variante="contorno">Tenho documentos vencendo</BotaoLink>
           </div>
         </div>
 

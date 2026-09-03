@@ -65,8 +65,8 @@ const etapas = [
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoWhatsapp origem="incendio">Falar sobre incêndio</BotaoWhatsapp>
-      <BotaoLink href="/diagnostico" variante="sobreEscuro">Solicitar diagnóstico</BotaoLink>
+      <BotaoLink href="/diagnostico">Solicitar diagnóstico</BotaoLink>
+      <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
     </div>
   </CabecalhoPagina>
 
@@ -112,7 +112,7 @@ const etapas = [
     descricao="Da organização do que já existe até o acompanhamento da vistoria, dentro de um único processo."
   />
 
-  <section class="bg-graphite-900 py-20 text-white lg:py-24" aria-labelledby="em-jogo">
+  <section class="bg-graphite-900 py-16 text-white lg:py-20" aria-labelledby="em-jogo">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="em-jogo" class="max-w-[26ch] text-secao text-white">
         Documentação de incêndio pendente não fica parada. Ela cobra.
@@ -135,14 +135,12 @@ const etapas = [
 
       <div class="mt-8 flex flex-wrap gap-3">
         <BotaoWhatsapp origem="incendio">Quero regularizar contra incêndio</BotaoWhatsapp>
-        <BotaoWhatsapp origem="diagnostico" variante="sobreEscuro">
-          Solicitar diagnóstico
-        </BotaoWhatsapp>
+        <BotaoLink href="/diagnostico" variante="sobreEscuro">Solicitar diagnóstico</BotaoLink>
       </div>
     </div>
   </section>
 
-  <section class="py-20 lg:py-24" aria-labelledby="como-conduzimos">
+  <section class="py-16 lg:py-20" aria-labelledby="como-conduzimos">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="como-conduzimos" class="text-secao text-ink">Como conduzimos o processo</h2>
 

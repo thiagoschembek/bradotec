@@ -1,7 +1,5 @@
 ---
 import BotaoLink from '@/components/BotaoLink.astro'
-import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
-import type { OrigemWhatsapp } from '@/config/whatsapp'
 
 interface Props {
   marca: string
@@ -9,12 +7,20 @@ interface Props {
   resumo: string
   href: string
   cor: 'fire' | 'doc' | 'auto'
-  origemWhatsapp: string
   /** Titulos dos servicos da divisao, vindos da colecao `servicos`. */
   servicos: readonly string[]
+  /**
+   * Quantos servicos mostrar. Sem limite, os tres cartoes somavam 21 linhas
+   * de texto miudo na home, que e onde a pessoa so esta escolhendo por onde
+   * comecar. A lista inteira fica em /solucoes e na pagina da divisao.
+   */
+  limite?: number
 }
 
-const { marca, titulo, resumo, href, cor, origemWhatsapp, servicos } = Astro.props
+const { marca, titulo, resumo, href, cor, servicos, limite } = Astro.props
+
+const mostrados = limite ? servicos.slice(0, limite) : servicos
+const restantes = servicos.length - mostrados.length
 
 /**
  * Classes literais por divisao. Nao montar com template string: o Tailwind
@@ -46,7 +52,7 @@ const estilo = estilos[cor]
 
   <ul class="mt-5 flex flex-col gap-2.5 border-t border-line-soft pt-5 text-corpo text-ink-soft">
     {
-      servicos.map((servico) => (
+      mostrados.map((servico) => (
         <li class="flex items-start gap-2.5">
           <span
             class:list={['mt-[0.5em] size-1.5 shrink-0 rounded-full', estilo.marcador]}
@@ -56,10 +62,12 @@ const estilo = estilos[cor]
         </li>
       ))
     }
+    {restantes > 0 && (
+      <li class="text-ash-500">e mais {restantes} {restantes === 1 ? 'serviço' : 'serviços'}</li>
+    )}
   </ul>
 
-  <div class="mt-auto flex flex-wrap gap-2.5 pt-7">
+  <div class="mt-auto pt-7">
     <BotaoLink href={href} pequeno>Ver a divisão</BotaoLink>
-    <BotaoWhatsapp origem={origemWhatsapp as OrigemWhatsapp} pequeno>Falar agora</BotaoWhatsapp>
   </div>
 </article>

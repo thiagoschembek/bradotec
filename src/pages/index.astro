@@ -54,7 +54,7 @@ const diferenciais = [
 
 <BaseLayout titulo={titulo} schemasExtras={schemaFaq ? [schemaFaq] : []}>
   <section
-    class="overflow-hidden bg-graphite-900 bg-[radial-gradient(900px_480px_at_85%_-10%,rgba(142,28,33,0.30),transparent_62%)] py-20 text-white lg:py-28"
+    class="overflow-hidden bg-graphite-900 bg-[radial-gradient(900px_480px_at_85%_-10%,rgba(142,28,33,0.30),transparent_62%)] py-20 text-white lg:py-24"
   >
     <FundoIlustrado cena="fachada" />
 
@@ -130,7 +130,7 @@ const diferenciais = [
     </div>
   </section>
 
-  <section class="bg-canvas py-20 lg:py-24" aria-labelledby="caminhos">
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="caminhos">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="caminhos" class="max-w-[18ch] text-secao text-ink">O que você precisa resolver?</h2>
       <p class="mt-4 max-w-[62ch] text-guia text-ink-soft">
@@ -179,7 +179,7 @@ const diferenciais = [
     </div>
   </section>
 
-  <section class="py-20 lg:py-24" aria-labelledby="divisoes">
+  <section class="py-16 lg:py-20" aria-labelledby="divisoes">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="divisoes" class="max-w-[18ch] text-secao text-ink">Três divisões, uma só empresa</h2>
       <p class="mt-4 max-w-[64ch] text-guia text-ink-soft">
@@ -196,8 +196,8 @@ const diferenciais = [
               resumo={divisao.data.resumo}
               href={divisao.data.href}
               cor={divisao.data.cor}
-              origemWhatsapp={divisao.data.origemWhatsapp}
               servicos={titulosDaDivisao(divisao.id)}
+              limite={4}
             />
           ))
         }
@@ -217,7 +217,7 @@ const diferenciais = [
     e decorativo (aria-hidden), por isso pode usar o vermelho da marca sem
     responder por contraste de texto.
   */}
-  <section class="bg-graphite-900 py-20 text-white lg:py-28" aria-labelledby="como-atuamos">
+  <section class="bg-graphite-900 py-20 text-white lg:py-24" aria-labelledby="como-atuamos">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="como-atuamos" class="max-w-[20ch] text-secao text-white">
         O que você pode esperar da Bradotec

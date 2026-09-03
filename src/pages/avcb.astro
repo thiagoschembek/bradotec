@@ -62,12 +62,12 @@ const cotacao = doGrupo('cotacao')
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoWhatsapp origem="avcb">Falar sobre o AVCB</BotaoWhatsapp>
-      <BotaoLink href="/diagnostico" variante="sobreEscuro">Solicitar diagnóstico</BotaoLink>
+      <BotaoLink href="/diagnostico">Solicitar diagnóstico</BotaoLink>
+      <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
     </div>
   </CabecalhoPagina>
 
-  <section class="py-20 lg:py-24" aria-labelledby="o-que-e">
+  <section class="py-16 lg:py-20" aria-labelledby="o-que-e">
     <div class="mx-auto w-full max-w-wrap px-5">
       <Kicker>Bradotec Fire</Kicker>
       <h2 id="o-que-e" class="mt-2 max-w-[20ch] text-secao text-ink">O que é o AVCB</h2>
@@ -81,20 +81,18 @@ const cotacao = doGrupo('cotacao')
           incêndios.
         </p>
         <p>
-          Ele é emitido depois de uma vistoria feita pela corporação. A vistoria pode acontecer a
-          pedido do próprio condomínio ou da empresa, por denúncia, ou como fiscalização sem aviso
-          prévio. Em algumas situações e tipos de edificação, o documento equivalente tem outro
-          nome e outro rito. O que se aplica ao seu caso depende da ocupação, da área e do risco.
+          A vistoria pode acontecer a pedido do próprio condomínio ou da empresa, por denúncia, ou
+          como fiscalização sem aviso. Em alguns tipos de edificação o documento equivalente tem
+          outro nome e outro rito, conforme a ocupação, a área e o risco.
         </p>
         <p>
-          O AVCB é obrigatório. Não é um selo de qualidade nem um diferencial: é a condição para a
-          edificação estar regular.
+          Não é selo de qualidade nem diferencial: é a condição para a edificação estar regular.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="bg-graphite-900 py-20 text-white lg:py-28" aria-labelledby="em-jogo">
+  <section class="bg-graphite-900 py-20 text-white lg:py-24" aria-labelledby="em-jogo">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="em-jogo" class="max-w-[24ch] text-secao text-white">
         O que está em jogo quando o AVCB vence
@@ -128,7 +126,7 @@ const cotacao = doGrupo('cotacao')
     </div>
   </section>
 
-  <section class="bg-canvas py-20 lg:py-24" aria-labelledby="exigido">
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="exigido">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="exigido" class="max-w-[22ch] text-secao text-ink">O que costuma ser exigido</h2>
       <p class="mt-4 max-w-[66ch] text-guia text-ink-soft">
@@ -137,12 +135,27 @@ const cotacao = doGrupo('cotacao')
         exigir para aquele tipo de imóvel.
       </p>
 
-      <ul class="mt-11 grid list-none gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {/*
+        Lista, e nao nove cartoes.
+
+        Cartao da a cada item peso de bloco proprio, com borda, sombra e
+        respiro em volta. Nove deles viravam nove coisas disputando atencao
+        no meio de uma pagina que ja tinha 26 blocos. Mas isto aqui e uma
+        lista de conferencia: a pessoa quer PERCORRER, nao contemplar item
+        por item. Em lista ocupa menos da metade da altura e le mais rapido.
+      */}
+      <ul class="mt-9 grid list-none gap-x-10 gap-y-5 border-t border-line pt-8 md:grid-cols-2">
         {
           itens.map((item) => (
-            <li class="rounded-xl border border-line bg-white p-5 shadow-card">
-              <p class="text-cartao font-bold text-ink">{item.data.titulo}</p>
-              <p class="mt-2 text-corpo text-ink-soft">{item.data.descricao}</p>
+            <li class="flex items-start gap-3.5">
+              <span
+                class="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-div-fire"
+                aria-hidden="true"
+              />
+              <span>
+                <strong class="font-bold text-ink">{item.data.titulo}</strong>
+                <span class="text-ink-soft"> {item.data.descricao}</span>
+              </span>
             </li>
           ))
         }
@@ -159,7 +172,7 @@ const cotacao = doGrupo('cotacao')
     em reais com o mes de referencia ao lado — a UFR-PB e corrigida todo mes
     pelo IPCA, entao valor em real sem data envelhece em semanas.
   */}
-  <section class="py-20 lg:py-24" aria-labelledby="prazo-multa">
+  <section class="py-16 lg:py-20" aria-labelledby="prazo-multa">
     <div class="mx-auto w-full max-w-wrap px-5">
       <Kicker>Base legal na Paraíba</Kicker>
       <h2 id="prazo-multa" class="mt-2 max-w-[24ch] text-secao text-ink">
@@ -272,14 +285,14 @@ const cotacao = doGrupo('cotacao')
     </div>
   </section>
 
-  <section class="bg-canvas py-20 lg:py-24" aria-labelledby="cotacao">
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="cotacao">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="cotacao" class="max-w-[26ch] text-secao text-ink">
         O que perguntar antes de contratar
       </h2>
       <p class="mt-4 max-w-[68ch] text-guia text-ink-soft">
-        Seis perguntas que separam orçamento comparável de orçamento que só parece mais barato. Use
-        com qualquer fornecedor, inclusive conosco.
+        Quatro perguntas que separam orçamento comparável de orçamento que só parece mais barato.
+        Use com qualquer fornecedor, inclusive conosco.
       </p>
 
       <ol class="mt-11 grid list-none gap-4 md:grid-cols-2">
@@ -303,41 +316,20 @@ const cotacao = doGrupo('cotacao')
     </div>
   </section>
 
-  <section class="py-20 lg:py-24" aria-labelledby="sem-projeto">
+  <section class="py-16" aria-labelledby="nao-sei">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 id="sem-projeto" class="max-w-[24ch] text-secao text-ink">
-            E se o projeto de incêndio se perdeu?
+          <h2 id="nao-sei" class="text-cartao-lg text-ink">
+            Não sabe em que estágio o seu caso está?
           </h2>
-          <div class="mt-6 max-w-[62ch] space-y-4 text-ink-soft">
-            <p>
-              É mais comum do que parece. O projeto costuma ser elaborado quando a edificação é
-              construída e se perde com as trocas de síndico, de administradora e de responsável ao
-              longo dos anos. Muitas vezes ninguém sabe que ele existia.
-            </p>
-            <p>
-              Sem projeto não há o que vistoriar. O primeiro passo, então, não é marcar vistoria: é
-              levantar o que a edificação de fato possui hoje e elaborar o projeto, por profissional
-              legalmente habilitado para assiná-lo.
-            </p>
-            <p>
-              É por aí que a Bradotec começa quando o caso chega nesse estado, organizando o que
-              existe antes de tocar em qualquer protocolo.
-            </p>
-          </div>
-        </div>
-
-        <div class="rounded-xl border border-line bg-canvas p-7">
-          <p class="text-cartao-lg text-ink">Não sabe em que estágio o seu caso está?</p>
-          <p class="mt-3 text-ink-soft">
-            O Diagnóstico de Regularização são quatro perguntas. Ele não substitui a análise
-            documental. Organiza a conversa e mostra por onde começa.
+          <p class="mt-2 max-w-[58ch] text-ink-soft">
+            O Diagnóstico de Regularização são quatro perguntas. Não substitui a análise
+            documental: mostra por onde começa.
           </p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <BotaoLink href="/diagnostico">Responder as 4 perguntas</BotaoLink>
-            <BotaoWhatsapp origem="avcb" pequeno>Falar agora</BotaoWhatsapp>
-          </div>
+        </div>
+        <div class="shrink-0">
+          <BotaoLink href="/diagnostico">Responder as 4 perguntas</BotaoLink>
         </div>
       </div>
     </div>

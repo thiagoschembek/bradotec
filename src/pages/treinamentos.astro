@@ -64,12 +64,11 @@ const motivos = [
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoWhatsapp origem="treinamento">Solicitar proposta</BotaoWhatsapp>
-      <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
+      <BotaoLink href="/contato">Solicitar proposta</BotaoLink>
     </div>
   </CabecalhoPagina>
 
-  <section class="py-20 lg:py-24" aria-labelledby="por-que">
+  <section class="py-16 lg:py-20" aria-labelledby="por-que">
     <div class="mx-auto w-full max-w-wrap px-5">
       <Kicker>Bradotec Fire</Kicker>
       <h2 id="por-que" class="mt-2 max-w-[22ch] text-secao text-ink">
@@ -105,7 +104,7 @@ const motivos = [
     </div>
   </section>
 
-  <section class="bg-canvas py-20 lg:py-24" aria-labelledby="cursos">
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="cursos">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="cursos" class="max-w-[20ch] text-secao text-ink">Os dois treinamentos</h2>
       <p class="mt-4 max-w-[68ch] text-guia text-ink-soft">
@@ -116,7 +115,7 @@ const motivos = [
       <div class="mt-11 grid gap-6 lg:grid-cols-2">
         {
           cursos.map((curso) => (
-            <article class="flex flex-col rounded-xl border border-line bg-white p-7 shadow-card">
+            <article class="rounded-xl border border-line bg-white p-7 shadow-card">
               <h3 class="text-cartao-lg text-ink">{curso.data.titulo}</h3>
               <p class="mt-1 text-cartao text-wine">{curso.data.chamada}</p>
               <p class="mt-4 text-ink-soft">{curso.data.resumo}</p>
@@ -140,11 +139,6 @@ const motivos = [
                 Conteúdo orientado por {curso.data.normas}.
               </p>
 
-              <div class="mt-auto flex flex-wrap gap-2.5 pt-6">
-                <BotaoWhatsapp origem="treinamento" pequeno>
-                  Solicitar proposta
-                </BotaoWhatsapp>
-              </div>
             </article>
           ))
         }
@@ -152,7 +146,7 @@ const motivos = [
     </div>
   </section>
 
-  <section class="py-20 lg:py-24" aria-labelledby="para-quem">
+  <section class="py-16 lg:py-20" aria-labelledby="para-quem">
     <div class="mx-auto w-full max-w-wrap px-5">
       <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div>
@@ -190,7 +184,7 @@ const motivos = [
     </div>
   </section>
 
-  <section class="bg-graphite-900 py-20 text-white lg:py-24" aria-labelledby="proposta">
+  <section class="bg-graphite-900 py-16 text-white lg:py-20" aria-labelledby="proposta">
     <div class="mx-auto w-full max-w-wrap px-5">
       <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
         <div>

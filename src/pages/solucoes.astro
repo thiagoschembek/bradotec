@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
 import BotaoLink from '@/components/BotaoLink.astro'
-import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
 import CartaoDivisao from '@/components/CartaoDivisao.astro'
 import Faq from '@/components/Faq.astro'
@@ -39,12 +38,12 @@ const titulosDaDivisao = (idDivisao: string) =>
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoWhatsapp origem="orcamento">Solicitar orçamento</BotaoWhatsapp>
+      <BotaoLink href="/contato">Solicitar orçamento</BotaoLink>
       <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
     </div>
   </CabecalhoPagina>
 
-  <section class="bg-canvas py-20 lg:py-24" aria-labelledby="divisoes">
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="divisoes">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="divisoes" class="sr-only">As três divisões da Bradotec</h2>
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -56,7 +55,6 @@ const titulosDaDivisao = (idDivisao: string) =>
               resumo={divisao.data.resumo}
               href={divisao.data.href}
               cor={divisao.data.cor}
-              origemWhatsapp={divisao.data.origemWhatsapp}
               servicos={titulosDaDivisao(divisao.id)}
             />
           ))
@@ -65,7 +63,7 @@ const titulosDaDivisao = (idDivisao: string) =>
     </div>
   </section>
 
-  <section class="py-20 lg:py-24" aria-labelledby="diagnostico">
+  <section class="py-16 lg:py-20" aria-labelledby="diagnostico">
     <div class="mx-auto w-full max-w-wrap px-5">
       <div class="grid gap-8 rounded-xl border border-line bg-white p-8 shadow-card lg:grid-cols-[1.15fr_0.85fr] lg:p-10">
         <div>
@@ -78,7 +76,6 @@ const titulosDaDivisao = (idDivisao: string) =>
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             <BotaoLink href="/diagnostico" variante="escuro">Responder as 4 perguntas</BotaoLink>
-            <BotaoWhatsapp origem="diagnostico" variante="contorno">Solicitar diagnóstico</BotaoWhatsapp>
           </div>
         </div>
 

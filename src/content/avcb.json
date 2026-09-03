@@ -28,20 +28,6 @@
     "ordem": 4
   },
   {
-    "id": "risco-vidas",
-    "grupo": "risco",
-    "titulo": "É sobre evacuar o prédio",
-    "descricao": "Com o sistema em dia, uma ocorrência encontra o que precisa para evacuar rapidamente, controlar a situação e extinguir o fogo. É a razão pela qual a exigência existe. O documento é a consequência de o sistema funcionar, não o objetivo.",
-    "ordem": 5
-  },
-  {
-    "id": "risco-retrabalho",
-    "grupo": "risco",
-    "titulo": "Quanto mais antigo, mais caro",
-    "descricao": "Irregularidade não envelhece parada. A norma muda, o equipamento vence, o laudo perde validade e o que seria um ajuste vira obra. O custo de regularizar hoje é quase sempre menor do que o de regularizar depois da notificação.",
-    "ordem": 6
-  },
-  {
     "id": "item-brigada",
     "grupo": "item",
     "titulo": "Atestado de brigada de incêndio",
@@ -105,45 +91,31 @@
     "ordem": 9
   },
   {
-    "id": "cotacao-tempo",
-    "grupo": "cotacao",
-    "titulo": "Há quanto tempo a empresa atua e em quantos casos como o seu?",
-    "descricao": "Condomínio residencial, comércio, indústria e posto de combustível têm exigências diferentes. Experiência genérica não substitui experiência no seu tipo de edificação.",
-    "ordem": 1
-  },
-  {
     "id": "cotacao-habilitacao",
     "grupo": "cotacao",
     "titulo": "Quem assina o projeto e o laudo, e com qual habilitação?",
     "descricao": "Projeto e laudo técnico só têm validade se assinados por profissional legalmente habilitado. Peça o nome e o registro antes de fechar, não depois.",
-    "ordem": 2
+    "ordem": 1
   },
   {
     "id": "cotacao-escopo",
     "grupo": "cotacao",
     "titulo": "O escopo vem por escrito, com as normas que serão atendidas?",
     "descricao": "Peça o descritivo do serviço citando as normas, leis e decretos aplicáveis. Escopo verbal é onde nasce a maior parte das discussões depois.",
-    "ordem": 3
+    "ordem": 2
   },
   {
     "id": "cotacao-prazo",
     "grupo": "cotacao",
     "titulo": "Qual prazo é do fornecedor e qual depende do órgão?",
     "descricao": "São coisas diferentes e devem ser ditas separadas. Fornecedor que promete prazo total, incluindo a parte que está com o Corpo de Bombeiros, está prometendo o que não controla.",
-    "ordem": 4
-  },
-  {
-    "id": "cotacao-pagamento",
-    "grupo": "cotacao",
-    "titulo": "Como é o pagamento e o que acontece se surgir exigência depois?",
-    "descricao": "Exigência complementar é comum e não é sinal de erro. O que precisa estar claro desde o início é se responder a ela está incluído ou vira cobrança nova.",
-    "ordem": 5
+    "ordem": 3
   },
   {
     "id": "cotacao-referencias",
     "grupo": "cotacao",
     "titulo": "Dá para falar com três clientes atendidos nos últimos seis meses?",
     "descricao": "Referência com contato, não depoimento em site. Síndico que passou pelo processo recentemente conta o que o orçamento não mostra, inclusive como foi quando algo deu errado.",
-    "ordem": 6
+    "ordem": 4
   }
 ]
