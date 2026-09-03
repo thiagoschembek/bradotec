@@ -1,15 +1,24 @@
 ---
+import FundoIlustrado from '@/components/FundoIlustrado.astro'
+import type { Cena } from '@/lib/cenas'
+
 interface Props {
   titulo: string
   subtitulo?: string
   trilha: readonly { nome: string; href: string }[]
+  /** Cena de fundo. Sem ela o cabecalho fica so com o grafite chapado. */
+  cena?: Cena
 }
-const { titulo, subtitulo, trilha } = Astro.props
+const { titulo, subtitulo, trilha, cena } = Astro.props
 const atual = trilha[trilha.length - 1]
 ---
 
-<section class="bg-gradient-to-b from-graphite-900 to-graphite-800 py-12 text-white">
-  <div class="mx-auto w-full max-w-[820px] px-5">
+<section
+  class="relative overflow-hidden bg-gradient-to-b from-graphite-900 to-graphite-800 py-12 text-white"
+>
+  {cena && <FundoIlustrado cena={cena} />}
+
+  <div class="relative mx-auto w-full max-w-[820px] px-5">
     <nav class="mb-4 text-rotulo text-[#a8a0a2]" aria-label="Você está em">
       {
         trilha.slice(0, -1).map((item) => (
