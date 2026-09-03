@@ -2,17 +2,33 @@
 import { Image } from 'astro:assets'
 import logo from '@/assets/logo-small.png'
 import BotaoLink from '@/components/BotaoLink.astro'
-import { navegacaoPrincipal } from '@/config/navegacao'
+import { navegacaoPrincipal, paiNoMenu } from '@/config/navegacao'
 import { site } from '@/config/site'
 
 const atual = Astro.url.pathname.replace(/\/$/, '') || '/'
-const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
+
+/**
+ * Marca o item do menu correspondente a pagina aberta.
+ *
+ * Uma pagina que nao esta no menu, como /avcb ou /solucoes, acende o item de
+ * que ela descende. Antes o menu ficava inteiramente apagado nessas paginas,
+ * e o visitante perdia a nocao de onde estava dentro do site.
+ */
+const referencia = paiNoMenu[atual] ?? atual
+const estaAtiva = (href: string) => referencia === href.replace(/\/$/, '')
 ---
 
 <header class="sticky top-0 z-100 border-b border-white/10 bg-graphite-900">
-  <div class="mx-auto w-full max-w-wrap px-5">
+  {/*
+    A barra do topo e larga de proposito, enquanto o conteudo das paginas
+    fica em 1180px. Presa no mesmo max-w-wrap, a logo ficava a 150px da
+    borda num monitor de 1440 e parecia solta no meio da tela. Aqui ela
+    encosta perto da borda em qualquer largura, e a navegacao ganha espaco
+    para os sete itens.
+  */}
+  <div class="mx-auto w-full px-5 lg:px-8">
     <div class="flex min-h-[74px] items-center gap-4">
-      <a class="mr-auto flex items-center gap-3 no-underline" href="/" aria-label={`${site.nome}, página inicial`}>
+      <a class="mr-auto flex min-h-[44px] items-center gap-3 no-underline" href="/" aria-label={`${site.nome}, página inicial`}>
         <Image src={logo} alt="" width={49} height={42} loading="eager" class="h-[42px] w-auto" />
         <span class="flex flex-col leading-[1.05]">
           <b class="text-guia font-extrabold tracking-[0.01em] text-white">
@@ -53,15 +69,27 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
 
       <button
         type="button"
-        class="inline-flex h-[46px] w-[46px] flex-col items-stretch justify-center gap-[5px] rounded-[10px] border-0 bg-white/10 px-[11px] lg:hidden"
+        class="group inline-flex h-[46px] w-[46px] flex-col items-stretch justify-center gap-[5px] rounded-[10px] border-0 bg-white/10 px-[11px] transition-colors hover:bg-white/20 lg:hidden"
         aria-expanded="false"
         aria-controls="menu-mobile"
         aria-label="Abrir menu"
         data-burger
       >
-        <span class="block h-0.5 rounded-sm bg-white transition-transform"></span>
-        <span class="block h-0.5 rounded-sm bg-white transition-opacity"></span>
-        <span class="block h-0.5 rounded-sm bg-white transition-transform"></span>
+        {/*
+          Os tres tracos viram um X quando o menu abre. As classes de
+          transicao ja estavam aqui desde a primeira versao, mas nada mudava
+          de estado: a animacao estava escrita pela metade.
+
+          O estado aberto vai no <style> abaixo, e nao em variante do
+          Tailwind: a variante `group-aria-expanded:` compilava no CSS e
+          mesmo assim nao casava com o elemento no navegador. Aqui o
+          seletor e simples e verificavel, e continua saindo do
+          aria-expanded, entao o desenho segue o estado acessivel em vez de
+          uma classe paralela que pode dessincronizar.
+        */}
+        <span class="block h-0.5 origin-center rounded-sm bg-white"></span>
+        <span class="block h-0.5 rounded-sm bg-white"></span>
+        <span class="block h-0.5 origin-center rounded-sm bg-white"></span>
       </button>
     </div>
 
@@ -89,6 +117,32 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
   </div>
 </header>
 
+<style>
+  /* Os tres tracos do menu viram um X quando ele abre.
+     O gap entre eles e 5px e cada um tem 2px, entao 7px leva o de cima ao
+     centro e o de baixo de volta. */
+  [data-burger] span {
+    transition:
+      rotate 0.2s ease,
+      translate 0.2s ease,
+      opacity 0.15s ease;
+  }
+
+  [data-burger][aria-expanded='true'] span:first-child {
+    translate: 0 7px;
+    rotate: 45deg;
+  }
+
+  [data-burger][aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  [data-burger][aria-expanded='true'] span:last-child {
+    translate: 0 -7px;
+    rotate: -45deg;
+  }
+</style>
+
 <script>
   // Menu do celular em JavaScript puro (~20 linhas). Poderia ser um componente
   // React, mas isso obrigaria o visitante a baixar a biblioteca inteira so
@@ -104,8 +158,12 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
       menu.classList.toggle('block', aberto)
     }
 
-    burger.addEventListener('click', () => {
-      definirEstado(burger.getAttribute('aria-expanded') !== 'true')
+    const estaAberto = () => burger.getAttribute('aria-expanded') === 'true'
+
+    burger.addEventListener('click', (evento) => {
+      // Impede que este mesmo clique chegue ao document e feche na sequencia.
+      evento.stopPropagation()
+      definirEstado(!estaAberto())
     })
 
     // Fecha ao navegar, para o menu nao ficar aberto na proxima pagina.
@@ -113,12 +171,39 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
       link.addEventListener('click', () => definirEstado(false))
     }
 
-    // Esc fecha e devolve o foco ao botao — exigencia de acessibilidade.
+    // Clique fora fecha. Sem isto o menu so fechava pelo proprio botao, e
+    // quem tocasse na pagina atras dele ficava com a navegacao por cima do
+    // conteudo sem entender como sair.
+    document.addEventListener('click', (evento) => {
+      if (!estaAberto()) return
+      const alvo = evento.target as Node
+      if (menu.contains(alvo) || burger.contains(alvo)) return
+      definirEstado(false)
+    })
+
+    // Toque fora tambem. No iOS um toque em area sem elemento clicavel nao
+    // gera evento de clique; touchstart cobre esse caso.
+    document.addEventListener('touchstart', (evento) => {
+      if (!estaAberto()) return
+      const alvo = evento.target as Node
+      if (menu.contains(alvo) || burger.contains(alvo)) return
+      definirEstado(false)
+    })
+
+    // Esc fecha e devolve o foco ao botao, exigencia de acessibilidade.
     document.addEventListener('keydown', (evento) => {
-      if (evento.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+      if (evento.key === 'Escape' && estaAberto()) {
         definirEstado(false)
         burger.focus()
       }
+    })
+
+    // Ao passar para a largura de desktop o menu some por CSS, mas o
+    // aria-expanded continuava dizendo "aberto" para o leitor de tela, e ao
+    // voltar para o celular ele reaparecia sozinho.
+    const larguraDesktop = window.matchMedia('(min-width: 1024px)')
+    larguraDesktop.addEventListener('change', (evento) => {
+      if (evento.matches && estaAberto()) definirEstado(false)
     })
   }
 </script>

@@ -78,6 +78,86 @@ test.describe('Menu do celular', () => {
     await expect(page.getByRole('navigation', { name: 'Menu' })).toBeHidden()
     await expect(botao).toBeFocused()
   })
+
+  test('fecha ao tocar fora dele', async ({ page }) => {
+    await page.goto('/')
+    const menu = page.getByRole('navigation', { name: 'Menu' })
+
+    await page.getByRole('button', { name: 'Abrir menu' }).click()
+    await expect(menu).toBeVisible()
+
+    // Antes so o proprio botao fechava. Quem tocava na pagina atras ficava
+    // com a navegacao por cima do conteudo sem entender como sair.
+    await page.locator('main h1').click({ position: { x: 5, y: 5 } })
+    await expect(menu).toBeHidden()
+  })
+
+  test('um toque dentro do menu nao fecha o menu', async ({ page }) => {
+    await page.goto('/')
+    const menu = page.getByRole('navigation', { name: 'Menu' })
+
+    await page.getByRole('button', { name: 'Abrir menu' }).click()
+    await menu.click({ position: { x: 5, y: 2 } })
+    await expect(menu).toBeVisible()
+  })
+
+  test('o botao continua alternando depois de aberto', async ({ page }) => {
+    await page.goto('/')
+    const menu = page.getByRole('navigation', { name: 'Menu' })
+
+    // O stopPropagation do proprio botao poderia quebrar isto: sem ele, o
+    // clique que abre chega ao document e fecha na sequencia.
+    await page.getByRole('button', { name: 'Abrir menu' }).click()
+    await expect(menu).toBeVisible()
+    await page.getByRole('button', { name: 'Fechar menu' }).click()
+    await expect(menu).toBeHidden()
+  })
+
+  test('os tres tracos viram um X quando abre', async ({ page }) => {
+    await page.goto('/')
+    const tracos = page.locator('[data-burger] span')
+
+    await expect(tracos.first()).toHaveCSS('rotate', 'none')
+
+    await page.getByRole('button', { name: 'Abrir menu' }).click()
+
+    // As classes de transicao existiam desde a primeira versao, mas nada
+    // mudava de estado: a animacao estava escrita pela metade.
+    await expect(tracos.first()).toHaveCSS('rotate', '45deg')
+    await expect(tracos.nth(1)).toHaveCSS('opacity', '0')
+    await expect(tracos.last()).toHaveCSS('rotate', '-45deg')
+  })
+})
+
+test.describe('Cabeçalho no desktop', () => {
+  test.skip(({ isMobile }) => isMobile, 'Só faz sentido em tela larga')
+
+  test('a logo e o botão encostam nas bordas, e o menu cabe em uma linha', async ({ page }) => {
+    await page.goto('/')
+
+    const cabecalho = page.locator('header')
+    const logo = page.locator('header a[href="/"]').first()
+
+    const caixaCabecalho = await cabecalho.boundingBox()
+    const caixaLogo = await logo.boundingBox()
+    expect(caixaCabecalho).not.toBeNull()
+    expect(caixaLogo).not.toBeNull()
+    if (!caixaCabecalho || !caixaLogo) return
+
+    // Presa no mesmo max-w-wrap do conteudo, a logo ficava a 150px da borda
+    // num monitor de 1440 e parecia solta no meio da tela.
+    expect(
+      caixaLogo.x - caixaCabecalho.x,
+      'a logo se afastou da borda esquerda'
+    ).toBeLessThanOrEqual(40)
+
+    const linhas = new Set(
+      await page
+        .locator('header nav[aria-label="Principal"] li')
+        .evaluateAll((itens) => itens.map((li) => Math.round(li.getBoundingClientRect().top)))
+    )
+    expect(linhas.size, 'o menu do topo quebrou em mais de uma linha').toBe(1)
+  })
 })
 
 test.describe('Página 404', () => {

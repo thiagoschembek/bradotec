@@ -30,9 +30,18 @@ const hrefEmail = ehPlaceholder(site.email) ? '/contato' : `mailto:${site.email}
           <div>
             <h4 class="mb-3.5 text-corpo font-bold text-white">{coluna.titulo}</h4>
             <ul>
+              {/*
+                O link ocupa a linha inteira e tem 44px de altura no celular.
+                Medido antes: cada um era um alvo de 19px, abaixo do minimo
+                de toque, e alvos vizinhos a 19px de distancia sao o motivo
+                classico de abrir o link errado com o polegar.
+              */}
               {coluna.itens.map((item) => (
-                <li class="py-1">
-                  <a class="text-[#b8b1b3] no-underline hover:text-white hover:underline" href={item.href}>
+                <li>
+                  <a
+                    class="flex min-h-[44px] items-center text-[#b8b1b3] no-underline hover:text-white hover:underline sm:min-h-0 sm:py-1"
+                    href={item.href}
+                  >
                     {item.rotulo}
                   </a>
                 </li>
@@ -45,22 +54,22 @@ const hrefEmail = ehPlaceholder(site.email) ? '/contato' : `mailto:${site.email}
       <div>
         <h4 class="mb-3.5 text-corpo font-bold text-white">Atendimento</h4>
         <ul>
-          <li class="py-1">
+          <li>
             <a
-              class="text-[#b8b1b3] no-underline hover:text-white hover:underline"
+              class="flex min-h-[44px] items-center text-[#b8b1b3] no-underline hover:text-white hover:underline sm:min-h-0 sm:py-1"
               href={hrefWhatsapp ?? '/contato'}
               {...hrefWhatsapp ? { target: '_blank', rel: 'noopener' } : {}}
             >
               WhatsApp comercial
             </a>
           </li>
-          <li class="py-1">
-            <a class="text-[#b8b1b3] no-underline hover:text-white hover:underline" href={hrefTelefone}>
+          <li>
+            <a class="flex min-h-[44px] items-center text-[#b8b1b3] no-underline hover:text-white hover:underline sm:min-h-0 sm:py-1" href={hrefTelefone}>
               <DadoCliente valor={site.telefone} />
             </a>
           </li>
-          <li class="py-1">
-            <a class="text-[#b8b1b3] no-underline hover:text-white hover:underline" href={hrefEmail}>
+          <li>
+            <a class="flex min-h-[44px] items-center text-[#b8b1b3] no-underline hover:text-white hover:underline sm:min-h-0 sm:py-1" href={hrefEmail}>
               <DadoCliente valor={site.email} />
             </a>
           </li>

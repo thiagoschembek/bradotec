@@ -15,6 +15,18 @@ export type ItemNavegacao = {
   completo: string
 }
 
+/**
+ * Paginas que nao estao no menu mas pertencem a um item dele.
+ *
+ * Sem isto, quem abria /avcb ou /solucoes via o menu inteiro apagado e
+ * perdia a nocao de onde estava dentro do site.
+ */
+export const paiNoMenu: Readonly<Record<string, string>> = {
+  '/avcb': '/seguranca-contra-incendio',
+  '/solucoes': '/empresas',
+  '/diagnostico': '/contato',
+}
+
 export const navegacaoPrincipal: readonly ItemNavegacao[] = [
   {
     href: '/seguranca-contra-incendio',
