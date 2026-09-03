@@ -148,7 +148,7 @@ const diferenciais = [
           caminhos.map((caminho) => (
             <li>
               <a
-                class="group flex h-full flex-col rounded-xl border border-line bg-white p-5 no-underline shadow-card transition duration-200 hover:-translate-y-0.5 hover:border-graphite-900 hover:shadow-float"
+                class="group flex h-full flex-col rounded-xl border border-line bg-white p-5 no-underline shadow-card transition-[translate,box-shadow,border-color] duration-200 ease-saida hover:-translate-y-0.5 hover:border-graphite-900 hover:shadow-float"
                 href={caminho.data.href}
               >
                 <span class="text-cartao font-bold text-ink transition-colors group-hover:text-wine">
@@ -166,7 +166,7 @@ const diferenciais = [
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     aria-hidden="true"
-                    class="transition-transform duration-200 group-hover:translate-x-1"
+                    class="transition-transform duration-200 ease-saida group-hover:translate-x-1"
                   >
                     <path d="M5 12h13m-5-6 6 6-6 6" />
                   </svg>

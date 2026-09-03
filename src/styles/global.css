@@ -104,6 +104,16 @@
   --text-hero: clamp(2rem, 1.3rem + 2.9vw, 3.35rem);
   --text-hero--line-height: 1.06;
 
+  /* --- Curvas de movimento.
+         A curva padrao do Tailwind e cubic-bezier(0.4, 0, 0.2, 1): comeca
+         devagar, e e justamente no comeco que a pessoa esta olhando. Estas
+         duas saem rapido e desaceleram no fim, que e o que faz um movimento
+         de 200ms PARECER mais rapido que outro de 200ms.
+         `saida` para o que entra e sai; `dentro` para o que se move na tela
+         sem aparecer nem desaparecer. --- */
+  --ease-saida: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-dentro: cubic-bezier(0.77, 0, 0.175, 1);
+
   /* --- Raios de borda --- */
   --radius-sm: 8px;
   --radius-md: 11px;
@@ -235,14 +245,29 @@
       scroll-behavior: auto;
     }
 
-    /* O !important aqui e proposital e recomendado: precisa vencer qualquer
-       animacao declarada em componente. Nao remover — e acessibilidade. */
-    /* biome-ignore-start lint/complexity/noImportantStyles: anula animacao para quem pediu movimento reduzido */
+    /* Movimento reduzido nao e "sem transicao nenhuma".
+
+       Antes este bloco zerava TODA transicao, inclusive as de cor. Quem
+       ativa a preferencia perdia tambem o retorno visual de passar o mouse
+       num botao ou de focar um campo, e a interface ficava sem resposta.
+       O incomodo dessas pessoas e com MOVIMENTO, nao com cor.
+
+       Agora a lista de transicoes e restrita ao que nao se desloca. Efeito
+       pratico: deslocamento, rotacao e escala passam a acontecer de uma
+       vez, sem animar, enquanto cor e opacidade seguem suaves.
+
+       Nao se anula `transform` nem `rotate` aqui: a seta do FAQ e um
+       quadrado girado 45 graus em repouso, e zera-la quebraria o desenho.
+       Restringir a transicao ja tira o movimento sem tocar no estado. */
+    /* biome-ignore-start lint/complexity/noImportantStyles: anula movimento para quem pediu movimento reduzido */
     *,
     *::before,
     *::after {
       animation-duration: 0.001ms !important;
-      transition-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-property:
+        opacity, color, background-color, border-color, outline-color, box-shadow, fill, stroke !important;
+      transition-duration: 150ms !important;
     }
     /* biome-ignore-end lint/complexity/noImportantStyles: fim da excecao */
   }

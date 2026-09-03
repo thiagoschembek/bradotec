@@ -42,7 +42,7 @@ const numeroWhatsapp = ehPlaceholder(site.whatsapp) ? '' : site.whatsapp.replace
     data-barra
   >
     <div
-      class="h-full w-0 rounded-full bg-wine transition-[width] duration-300 motion-reduce:transition-none"
+      class="h-full w-full origin-left scale-x-0 rounded-full bg-wine transition-transform duration-200 ease-saida"
       data-barra-preenchida
     >
     </div>
@@ -210,7 +210,7 @@ const numeroWhatsapp = ehPlaceholder(site.whatsapp) ? '' : site.whatsapp.replace
 
     const atualizarBarra = (indice: number) => {
       barra?.setAttribute('aria-valuenow', String(progresso(indice)))
-      if (preenchida) preenchida.style.width = `${progresso(indice)}%`
+      if (preenchida) preenchida.style.scale = `${progresso(indice) / 100} 1`
     }
 
     const mostrarPasso = (indice: number) => {
