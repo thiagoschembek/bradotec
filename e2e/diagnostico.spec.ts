@@ -35,7 +35,7 @@ test.describe('Diagnóstico de Regularização', () => {
 
     await responder(page, 'Um veículo ou uma frota')
     await responder(page, 'Preciso regularizar segurança contra incêndio')
-    await responder(page, 'Imediata — há prazo correndo ou risco de multa')
+    await responder(page, 'Imediata: há prazo correndo ou risco de multa')
     await responder(page, 'Pessoa física', true)
 
     await expect(page.getByText('Sua situação começa pela Bradotec Auto')).toBeVisible()
@@ -92,7 +92,7 @@ test.describe('Diagnóstico de Regularização', () => {
 
     await responder(page, 'Uma igreja, escola ou instituição')
     await responder(page, 'Recebi uma exigência ou notificação')
-    await responder(page, 'Imediata — há prazo correndo ou risco de multa')
+    await responder(page, 'Imediata: há prazo correndo ou risco de multa')
     await responder(page, 'Empresa / condomínio / instituição', true)
 
     const texto = (await page.locator('main').innerText()).toLowerCase()

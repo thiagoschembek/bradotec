@@ -92,7 +92,7 @@ export const site = siteSchema.parse({
   cnpj: '[CNPJ]',
   horario: '[HORÁRIO DE ATENDIMENTO]',
   instagram: '[LINK DO INSTAGRAM]',
-  regiaoAtendida: 'João Pessoa e região metropolitana — Paraíba',
+  regiaoAtendida: 'João Pessoa e região metropolitana, na Paraíba',
 
   provaSocial: {
     clientes: '[Nº]',

@@ -248,7 +248,7 @@ const numeroWhatsapp = ehPlaceholder(site.whatsapp) ? '' : site.whatsapp.replace
 
             const valor = document.createElement('dd')
             valor.className = 'mt-0.5 text-ink-soft'
-            valor.textContent = rotuloDaResposta(pergunta.id, respostas) ?? '—'
+            valor.textContent = rotuloDaResposta(pergunta.id, respostas) ?? '...'
 
             item.append(titulo, valor)
             return item

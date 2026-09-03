@@ -51,13 +51,13 @@ const cotacao = doGrupo('cotacao')
 
 <BaseLayout
   titulo="AVCB: o que é, para que serve e o que é exigido | Bradotec João Pessoa"
-  descricao="O que é o AVCB, por que ele é obrigatório, o que costuma ser exigido para obtê-lo e o que está em jogo quando vence — para condomínios, comércios, indústrias e postos de combustível em João Pessoa e região."
+  descricao="O que é o AVCB, por que ele é obrigatório, o que costuma ser exigido para obtê-lo e o que está em jogo quando vence, para condomínios, comércios, indústrias e postos de combustível em João Pessoa e região."
   trilha={trilha}
   schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
     titulo="AVCB: o que é, para que serve e o que costuma ser exigido"
-    subtitulo="O documento que atesta que a edificação está em conformidade com as normas de segurança contra incêndio — e o que acontece quando ele vence."
+    subtitulo="O documento que atesta que a edificação está em conformidade com as normas de segurança contra incêndio, e o que acontece quando ele vence."
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
@@ -83,7 +83,7 @@ const cotacao = doGrupo('cotacao')
           Ele é emitido depois de uma vistoria feita pela corporação. A vistoria pode acontecer a
           pedido do próprio condomínio ou da empresa, por denúncia, ou como fiscalização sem aviso
           prévio. Em algumas situações e tipos de edificação, o documento equivalente tem outro
-          nome e outro rito — o que se aplica ao seu caso depende da ocupação, da área e do risco.
+          nome e outro rito. O que se aplica ao seu caso depende da ocupação, da área e do risco.
         </p>
         <p>
           O AVCB é obrigatório. Não é um selo de qualidade nem um diferencial: é a condição para a
@@ -100,7 +100,7 @@ const cotacao = doGrupo('cotacao')
       </h2>
       <p class="mt-4 max-w-[66ch] text-guia text-[#b9c9da]">
         A multa costuma ser a primeira coisa que vem à cabeça, e é a menor delas. O que pesa mais
-        aparece depois — e quase sempre no pior momento.
+        aparece depois, e quase sempre no pior momento.
       </p>
 
       <dl class="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
@@ -132,7 +132,7 @@ const cotacao = doGrupo('cotacao')
       <h2 id="exigido" class="max-w-[22ch] text-secao text-ink">O que costuma ser exigido</h2>
       <p class="mt-4 max-w-[66ch] text-guia text-ink-soft">
         A lista abaixo é o que aparece com mais frequência. A lista definitiva do seu caso sai da
-        análise da edificação — depende da ocupação, da área, do risco e do que o órgão competente
+        análise da edificação. Depende da ocupação, da área, do risco e do que o órgão competente
         exigir para aquele tipo de imóvel.
       </p>
 
@@ -149,7 +149,7 @@ const cotacao = doGrupo('cotacao')
     </div>
   </section>
 
-  <!--
+  {/*
     Os numeros desta secao saem de src/config/avcb.ts, travados por teste.
     Sao dado de lei estadual publicado para sindico e dono de comercio ler:
     errar aqui nao e defeito de layout, e informar errado sobre multa e prazo.
@@ -157,7 +157,7 @@ const cotacao = doGrupo('cotacao')
     A multa aparece primeiro em UFR-PB, que a lei fixa e nao muda, e so depois
     em reais com o mes de referencia ao lado — a UFR-PB e corrigida todo mes
     pelo IPCA, entao valor em real sem data envelhece em semanas.
-  -->
+  */}
   <section class="py-20 lg:py-24" aria-labelledby="prazo-multa">
     <div class="mx-auto w-full max-w-wrap px-5">
       <Kicker>Base legal na Paraíba</Kicker>
@@ -201,7 +201,7 @@ const cotacao = doGrupo('cotacao')
 
           <p class="mt-5 text-corpo text-ink-soft">
             Entre uma vistoria e outra, a renovação anual do documento é feita pela
-            <strong class="font-bold text-ink"> RAS — Renovação Anual Simplificada</strong>, nas
+            <strong class="font-bold text-ink"> RAS, a Renovação Anual Simplificada</strong>, nas
             edificações de baixo e médio risco. Ela é declarada pelo proprietário, com firma
             reconhecida, assumindo responsabilidade pela manutenção dos sistemas.
           </p>
@@ -212,7 +212,7 @@ const cotacao = doGrupo('cotacao')
           <p class="mt-3 text-ink-soft">
             O art. 25, § 6º fixa a multa por nível de risco. O § 7º acrescenta
             <strong class="font-bold text-ink"> 0,05 UFR-PB por metro quadrado</strong> acima de
-            {' '}{areaBaseM2} m² — é isso que faz a multa de um prédio ser muito maior que a de
+            {' '}{areaBaseM2} m². É isso que faz a multa de um prédio ser muito maior que a de
             uma sala comercial.
           </p>
 
@@ -249,7 +249,7 @@ const cotacao = doGrupo('cotacao')
           <p class="mt-4 text-apoio text-steel-500">
             Valores de base, para até {areaBaseM2} m². Equivalência calculada pela UFR-PB de {
               ufrPb.mes
-            }, de {emReais(ufrPb.valor)} — o índice é corrigido todo mês pelo IPCA, então o valor
+            }, de {emReais(ufrPb.valor)}. O índice é corrigido todo mês pelo IPCA, então o valor
             em reais muda; o valor em UFR-PB, não.
           </p>
         </div>
@@ -261,7 +261,7 @@ const cotacao = doGrupo('cotacao')
           Um condomínio de {exemplo.area.toLocaleString('pt-BR')} m² classificado como
           {' '}{rotuloDoRisco[exemplo.risco]} não paga as {multaEmUfr[exemplo.risco]} UFR-PB de
           base: paga {multaEmUfrPara(exemplo.risco, exemplo.area).toLocaleString('pt-BR')} UFR-PB,
-          porque {(exemplo.area - areaBaseM2).toLocaleString('pt-BR')} m² excedem a faixa base —
+          porque {(exemplo.area - areaBaseM2).toLocaleString('pt-BR')} m² excedem a faixa base,
           cerca de {emReais(multaEmReaisPara(exemplo.risco, exemplo.area))} pela UFR-PB de {
             ufrPb.mes
           }. E a multa é a consequência mais barata: interdição, embargo e recusa de seguro não
@@ -278,7 +278,7 @@ const cotacao = doGrupo('cotacao')
       </h2>
       <p class="mt-4 max-w-[68ch] text-guia text-ink-soft">
         Seis perguntas que separam orçamento comparável de orçamento que só parece mais barato. Use
-        com qualquer fornecedor — inclusive conosco.
+        com qualquer fornecedor, inclusive conosco.
       </p>
 
       <ol class="mt-11 grid list-none gap-4 md:grid-cols-2">
@@ -321,7 +321,7 @@ const cotacao = doGrupo('cotacao')
               legalmente habilitado para assiná-lo.
             </p>
             <p>
-              É por aí que a Bradotec começa quando o caso chega nesse estado — organizando o que
+              É por aí que a Bradotec começa quando o caso chega nesse estado, organizando o que
               existe antes de tocar em qualquer protocolo.
             </p>
           </div>
@@ -331,7 +331,7 @@ const cotacao = doGrupo('cotacao')
           <p class="text-cartao-lg text-ink">Não sabe em que estágio o seu caso está?</p>
           <p class="mt-3 text-ink-soft">
             O Diagnóstico de Regularização são quatro perguntas. Ele não substitui a análise
-            documental — organiza a conversa e mostra por onde começa.
+            documental. Organiza a conversa e mostra por onde começa.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
             <BotaoLink href="/diagnostico">Responder as 4 perguntas</BotaoLink>

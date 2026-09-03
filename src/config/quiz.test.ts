@@ -115,10 +115,17 @@ describe('montarMensagemDoQuiz', () => {
     expect(mensagem).toContain('Falta licença, alvará ou documento')
   })
 
-  it('marca com travessao o que ficou sem resposta, sem quebrar', () => {
+  it('marca o que ficou sem resposta, sem quebrar a mensagem', () => {
     const mensagem = montarMensagemDoQuiz({ objeto: 'empresa' })
     expect(mensagem).toContain('Uma empresa ou comércio')
-    expect(mensagem).toContain('—')
+    expect(mensagem).toContain('...')
+  })
+
+  it('nao usa travessao em lugar nenhum', () => {
+    // O travessao foi removido de todo o texto do site a pedido do cliente:
+    // e uma das marcas mais reconheciveis de texto gerado por IA.
+    expect(montarMensagemDoQuiz(completas)).not.toContain('—')
+    expect(montarMensagemDoQuiz({ objeto: 'empresa' })).not.toContain('—')
   })
 
   it('nao promete prazo, aprovacao nem resultado', () => {

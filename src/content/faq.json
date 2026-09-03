@@ -8,7 +8,7 @@
   {
     "id": "documentos-necessarios",
     "pergunta": "Quais documentos eu preciso separar antes de falar com vocês?",
-    "resposta": "Não é preciso ter tudo pronto para iniciar a conversa. Costuma ajudar ter em mãos os dados da empresa ou do imóvel, documentos anteriores (licenças, alvarás, certificados) e qualquer exigência ou notificação recebida. A lista definitiva depende do tipo de atividade, da edificação e do órgão envolvido — isso é definido na análise inicial.",
+    "resposta": "Não é preciso ter tudo pronto para iniciar a conversa. Costuma ajudar ter em mãos os dados da empresa ou do imóvel, documentos anteriores (licenças, alvarás, certificados) e qualquer exigência ou notificação recebida. A lista definitiva depende do tipo de atividade, da edificação e do órgão envolvido. Isso é definido na análise inicial.",
     "paginas": ["home", "solucoes", "regularizacoes"]
   },
   {
@@ -62,7 +62,7 @@
   {
     "id": "fora-de-joao-pessoa",
     "pergunta": "Vocês atendem fora de João Pessoa?",
-    "resposta": "A base de atuação é João Pessoa e região metropolitana, na Paraíba. Para outras localidades, a viabilidade é avaliada caso a caso — vale consultar pelo WhatsApp.",
+    "resposta": "A base de atuação é João Pessoa e região metropolitana, na Paraíba. Para outras localidades, a viabilidade é avaliada caso a caso. Vale consultar pelo WhatsApp.",
     "paginas": ["home", "documentacao-veicular"]
   },
   {
@@ -74,7 +74,7 @@
   {
     "id": "renovacao-avcb",
     "pergunta": "De quanto em quanto tempo o AVCB precisa ser renovado na Paraíba?",
-    "resposta": "Na Paraíba o AVCB vale 1 ano (Lei nº 9.625/2011, art. 3º-A, § 1º). O prazo de três a cinco anos que circula na internet é de outros estados e não se aplica aqui. O que se repete em intervalo maior é a vistoria completa: até 5 anos para baixo risco, 2 anos para médio e 1 ano para alto risco. Entre uma vistoria e outra, a renovação é feita pela RAS — Renovação Anual Simplificada, declarada pelo proprietário com firma reconhecida, nas edificações de baixo e médio risco.",
+    "resposta": "Na Paraíba o AVCB vale 1 ano (Lei nº 9.625/2011, art. 3º-A, § 1º). O prazo de três a cinco anos que circula na internet é de outros estados e não se aplica aqui. O que se repete em intervalo maior é a vistoria completa: até 5 anos para baixo risco, 2 anos para médio e 1 ano para alto risco. Entre uma vistoria e outra, a renovação é feita pela RAS (Renovação Anual Simplificada), declarada pelo proprietário com firma reconhecida, nas edificações de baixo e médio risco.",
     "paginas": ["avcb", "seguranca-contra-incendio"]
   },
   {
@@ -86,19 +86,19 @@
   {
     "id": "sindico-responde",
     "pergunta": "O síndico responde pessoalmente pela falta de AVCB?",
-    "resposta": "O síndico representa o condomínio e responde por sua administração, conforme o art. 1.348 do Código Civil. Em uma ocorrência grave, uma irregularidade conhecida e não tratada pesa contra ele nas esferas cível e criminal. A análise do caso concreto é de advogado, não nossa — mas a exposição existe independentemente dessa análise, e é uma das razões pelas quais a regularização costuma ser tratada como prioridade em assembleia.",
+    "resposta": "O síndico representa o condomínio e responde por sua administração, conforme o art. 1.348 do Código Civil. Em uma ocorrência grave, uma irregularidade conhecida e não tratada pesa contra ele nas esferas cível e criminal. A análise do caso concreto é de advogado, não nossa. Mas a exposição existe independentemente dessa análise, e é uma das razões pelas quais a regularização costuma ser tratada como prioridade em assembleia.",
     "paginas": ["avcb", "empresas"]
   },
   {
     "id": "projeto-perdido",
     "pergunta": "Perdemos o projeto de incêndio do prédio. Ainda dá para regularizar?",
-    "resposta": "Dá, e é uma situação comum: o projeto costuma ser elaborado na construção e se perde nas trocas de síndico, administradora e responsável. Sem projeto não há o que vistoriar, então o primeiro passo não é marcar vistoria — é levantar o que a edificação possui hoje e elaborar o projeto, por profissional legalmente habilitado para assiná-lo. É por aí que a Bradotec começa nesses casos.",
+    "resposta": "Dá, e é uma situação comum: o projeto costuma ser elaborado na construção e se perde nas trocas de síndico, administradora e responsável. Sem projeto não há o que vistoriar, então o primeiro passo não é marcar vistoria, e sim levantar o que a edificação possui hoje e elaborar o projeto, por profissional legalmente habilitado para assiná-lo. É por aí que a Bradotec começa nesses casos.",
     "paginas": ["avcb", "seguranca-contra-incendio"]
   },
   {
     "id": "posto-combustivel",
     "pergunta": "Vocês atendem posto de combustível?",
-    "resposta": "Sim. Posto de combustível reúne, no mesmo endereço, exigências de segurança contra incêndio, licenciamento ambiental, alvará de funcionamento e documentação de tanques e equipamentos — processos que costumam correr em órgãos diferentes e com prazos que não conversam entre si. A Bradotec organiza a documentação, conduz os protocolos e acompanha as exigências dentro de um único processo.",
+    "resposta": "Sim. Posto de combustível reúne, no mesmo endereço, exigências de segurança contra incêndio, licenciamento ambiental, alvará de funcionamento e documentação de tanques e equipamentos. São processos que costumam correr em órgãos diferentes e com prazos que não conversam entre si. A Bradotec organiza a documentação, conduz os protocolos e acompanha as exigências dentro de um único processo.",
     "paginas": ["avcb", "empresas", "solucoes"]
   },
   {
@@ -110,7 +110,7 @@
   {
     "id": "brigada-obrigatoria",
     "pergunta": "A brigada de incêndio é obrigatória?",
-    "resposta": "O atestado de brigada de incêndio está entre os documentos exigidos no processo do AVCB, e a formação segue a ABNT NBR 14276 e a NR-23. O tamanho da brigada e a exigência exata dependem da ocupação, da população fixa e do risco da edificação — quem define isso é a análise do caso, conforme as normas técnicas do Corpo de Bombeiros. Na prática, edificação que precisa de AVCB precisa da brigada formada.",
+    "resposta": "O atestado de brigada de incêndio está entre os documentos exigidos no processo do AVCB, e a formação segue a ABNT NBR 14276 e a NR-23. O tamanho da brigada e a exigência exata dependem da ocupação, da população fixa e do risco da edificação. Quem define isso é a análise do caso, conforme as normas técnicas do Corpo de Bombeiros. Na prática, edificação que precisa de AVCB precisa da brigada formada.",
     "paginas": ["treinamentos", "avcb", "seguranca-contra-incendio"]
   },
   {

@@ -2,7 +2,7 @@
   {
     "id": "condominios",
     "titulo": "Condomínios",
-    "descricao": "Segurança contra incêndio, documentação do empreendimento e controle de vencimentos — com relatório que o síndico consegue levar para a assembleia.",
+    "descricao": "Segurança contra incêndio, documentação do empreendimento e controle de vencimentos, com relatório que o síndico consegue levar para a assembleia.",
     "ordem": 1
   },
   {
@@ -38,7 +38,7 @@
   {
     "id": "postos",
     "titulo": "Postos de combustível",
-    "descricao": "Segurança contra incêndio, licenciamento ambiental, alvará e documentação de tanques e equipamentos — exigências que correm em órgãos diferentes, com prazos que não conversam entre si, conduzidas dentro de um único processo.",
+    "descricao": "Segurança contra incêndio, licenciamento ambiental, alvará e documentação de tanques e equipamentos. São exigências que correm em órgãos diferentes, com prazos que não conversam entre si, conduzidas dentro de um único processo.",
     "ordem": 7
   }
 ]

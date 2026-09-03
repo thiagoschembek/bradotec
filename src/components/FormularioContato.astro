@@ -42,7 +42,7 @@ const ASSUNTOS = [
 ] as const
 
 const URGENCIAS = [
-  'Imediata — há prazo correndo',
+  'Imediata, há prazo correndo',
   'Nas próximas semanas',
   'Estou planejando',
 ] as const
@@ -70,14 +70,14 @@ const campo =
       />
     </div>
 
-    <!--
+    {/*
       Os parenteses do `pattern` PRECISAM de escape. O navegador compila o
       pattern com a flag `v`, onde ( ) [ ] { } / - \ | sao reservados dentro
       da classe de caracteres. Sem escape a expressao nem compila, e um
       pattern que nao compila e descartado em silencio: o campo volta a
       aceitar qualquer coisa. Foi assim que "nao tenho" passou como telefone
       valido ate um teste de navegador pegar.
-    -->
+    */}
     <div>
       <label class={rotulo} for="telefone">
         WhatsApp ou telefone <span class="text-fire">*</span>

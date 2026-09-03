@@ -52,7 +52,7 @@ export const perguntas = [
     id: 'urgencia',
     titulo: 'Qual é o nível de urgência?',
     opcoes: [
-      { id: 'imediata', rotulo: 'Imediata — há prazo correndo ou risco de multa' },
+      { id: 'imediata', rotulo: 'Imediata: há prazo correndo ou risco de multa' },
       { id: 'semanas', rotulo: 'Nas próximas semanas' },
       { id: 'planejando', rotulo: 'Estou apenas planejando' },
     ],
@@ -151,7 +151,7 @@ export function rotuloDaResposta(idPergunta: IdPergunta, respostas: Respostas): 
 /** Monta a mensagem de WhatsApp com as respostas, uma por linha. */
 export function montarMensagemDoQuiz(respostas: Respostas): string {
   const linhas = perguntas.map((pergunta) => {
-    const rotulo = rotuloDaResposta(pergunta.id, respostas) ?? '—'
+    const rotulo = rotuloDaResposta(pergunta.id, respostas) ?? '...'
     return `• ${pergunta.titulo}\n  ${rotulo}`
   })
 

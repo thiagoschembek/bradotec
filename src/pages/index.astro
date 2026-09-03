@@ -9,7 +9,7 @@ import { site } from '@/config/site'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { schemaFaqDaPagina } from '@/lib/faq'
 
-const titulo = `${site.nome} — Regularização, licenças e segurança contra incêndio em ${site.cidade} (${site.estado})`
+const titulo = `${site.nome}: regularização, licenças e segurança contra incêndio em ${site.cidade} (${site.estado})`
 
 const schemaFaq = await schemaFaqDaPagina('home')
 
@@ -84,7 +84,7 @@ const diferenciais = [
 
           <p class="max-w-[56ch] text-guia text-[#b9c9da]">
             Em {site.cidade} e região, a {site.nome} cuida dos processos documentais da sua empresa,
-            condomínio, imóvel e veículo — reunindo gestão, acompanhamento e profissionais
+            condomínio, imóvel e veículo, reunindo gestão, acompanhamento e profissionais
             especializados para você ter mais segurança e menos burocracia.
           </p>
 
@@ -135,11 +135,11 @@ const diferenciais = [
         correspondente.
       </p>
 
-      <!--
+      {/*
         Sem numeracao nos cartoes: sao oito situacoes paralelas, nao uma
         sequencia. Numerar sugeriria uma ordem que nao existe.
         A seta e o unico enfeite, e existe para dizer que o cartao navega.
-      -->
+      */}
       <ul class="mt-11 grid list-none gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           caminhos.map((caminho) => (
@@ -181,7 +181,7 @@ const diferenciais = [
       <h2 id="divisoes" class="max-w-[18ch] text-secao text-ink">Três divisões, uma só empresa</h2>
       <p class="mt-4 max-w-[64ch] text-guia text-ink-soft">
         A {site.nome} organiza o que costuma estar espalhado entre contador, síndico, engenheiro e
-        despachante. Você trata com uma equipe só — e ela coordena o resto.
+        despachante. Você trata com uma equipe só, e ela coordena o resto.
       </p>
 
       <div class="mt-11 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -207,13 +207,13 @@ const diferenciais = [
     </div>
   </section>
 
-  <!--
+  {/*
     Secao de autoridade. E a que mais precisa de presenca na pagina, e era a
     mais apagada: quatro colunas de texto miudo sob um fio de 1px.
     Ganha respiro, titulo maior e um risco de acento sobre o fio — o acento
     e decorativo (aria-hidden), por isso pode usar o vermelho da marca sem
     responder por contraste de texto.
-  -->
+  */}
   <section class="bg-navy-900 py-20 text-white lg:py-28" aria-labelledby="como-atuamos">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="como-atuamos" class="max-w-[20ch] text-secao text-white">

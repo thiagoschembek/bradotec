@@ -22,7 +22,7 @@ export function jsonLdNegocioLocal(siteUrl: string) {
   return semVazios({
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: `${site.nome} — ${site.descritivo}`,
+    name: `${site.nome}: ${site.descritivo}`,
     description: site.descricao,
     url: siteUrl,
     image: new URL('/og-bradotec.jpg', siteUrl).href,

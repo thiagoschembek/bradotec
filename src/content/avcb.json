@@ -3,21 +3,21 @@
     "id": "risco-multa",
     "grupo": "risco",
     "titulo": "Notificação, prazo e multa",
-    "descricao": "Em uma ação de fiscalização, a edificação sem AVCB ou com o documento vencido recebe notificação com prazo para corrigir as não conformidades. Na Paraíba a multa é medida em UFR-PB e cresce com a área construída — a Lei nº 9.625/2011 traz os valores, e esta página mostra a conta.",
+    "descricao": "Em uma ação de fiscalização, a edificação sem AVCB ou com o documento vencido recebe notificação com prazo para corrigir as não conformidades. Na Paraíba a multa é medida em UFR-PB e cresce com a área construída. A Lei nº 9.625/2011 traz os valores, e esta página mostra a conta.",
     "ordem": 1
   },
   {
     "id": "risco-seguro",
     "grupo": "risco",
     "titulo": "O seguro pode ser recusado",
-    "descricao": "Apólices costumam condicionar a cobertura à regularidade da edificação. Sem AVCB, a seguradora pode negar o pagamento em caso de incêndio — e o prejuízo que o seguro existia para cobrir fica inteiro com o condomínio. A regra vale o que está escrito na apólice: vale ler a sua.",
+    "descricao": "Apólices costumam condicionar a cobertura à regularidade da edificação. Sem AVCB, a seguradora pode negar o pagamento em caso de incêndio, e o prejuízo que o seguro existia para cobrir fica inteiro com o condomínio. A regra vale o que está escrito na apólice: vale ler a sua.",
     "ordem": 2
   },
   {
     "id": "risco-sindico",
     "grupo": "risco",
     "titulo": "O síndico responde pela administração",
-    "descricao": "O síndico representa o condomínio e responde por sua administração (Código Civil, art. 1.348). Em uma ocorrência grave, uma irregularidade conhecida e não tratada pesa contra ele nas esferas cível e criminal. Quem analisa o caso concreto é advogado — mas a exposição existe antes de qualquer análise.",
+    "descricao": "O síndico representa o condomínio e responde por sua administração (Código Civil, art. 1.348). Em uma ocorrência grave, uma irregularidade conhecida e não tratada pesa contra ele nas esferas cível e criminal. Quem analisa o caso concreto é advogado, mas a exposição existe antes de qualquer análise.",
     "ordem": 3
   },
   {
@@ -73,13 +73,13 @@
     "id": "item-combate",
     "grupo": "item",
     "titulo": "Atestado dos sistemas de combate a incêndio",
-    "descricao": "Hidrantes, extintores, sinalização e iluminação de emergência, portas corta-fogo, corrimãos e guarda-corpos — o conjunto, não item por item.",
+    "descricao": "Hidrantes, extintores, sinalização e iluminação de emergência, portas corta-fogo, corrimãos e guarda-corpos. O que se avalia é o conjunto, não item por item.",
     "ordem": 5
   },
   {
     "id": "item-cmar",
     "grupo": "item",
-    "titulo": "CMAR — Controle de Materiais de Acabamento e Revestimento",
+    "titulo": "CMAR (Controle de Materiais de Acabamento e Revestimento)",
     "descricao": "Atesta que carpetes, tintas, forros e revestimentos usados na edificação atendem à exigência de reação ao fogo.",
     "ordem": 6
   },
@@ -101,7 +101,7 @@
     "id": "item-projeto",
     "grupo": "item",
     "titulo": "Projeto técnico aprovado",
-    "descricao": "É a base de tudo: define o que a edificação precisa ter. Sem ele, não há o que vistoriar — e é justamente o documento que mais se perde com o tempo.",
+    "descricao": "É a base de tudo: define o que a edificação precisa ter. Sem ele, não há o que vistoriar, e é justamente o documento que mais se perde com o tempo.",
     "ordem": 9
   },
   {
@@ -143,7 +143,7 @@
     "id": "cotacao-referencias",
     "grupo": "cotacao",
     "titulo": "Dá para falar com três clientes atendidos nos últimos seis meses?",
-    "descricao": "Referência com contato, não depoimento em site. Síndico que passou pelo processo recentemente conta o que o orçamento não mostra — inclusive como foi quando algo deu errado.",
+    "descricao": "Referência com contato, não depoimento em site. Síndico que passou pelo processo recentemente conta o que o orçamento não mostra, inclusive como foi quando algo deu errado.",
     "ordem": 6
   }
 ]
