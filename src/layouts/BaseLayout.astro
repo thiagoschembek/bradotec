@@ -34,6 +34,20 @@ const {
 // Astro.site vem do campo `site` em astro.config.mjs.
 const siteUrl = Astro.site?.href ?? 'https://dominio-do-cliente.example/'
 const canonical = new URL(Astro.url.pathname, siteUrl).href
+
+/**
+ * Trava de indexacao enquanto o dominio real nao foi definido.
+ *
+ * O robots.txt do projeto diz "Allow: /". Sem esta trava, qualquer link de
+ * previa — tunel temporario, deploy de teste, subdominio provisorio — entra
+ * no Google com os dados do cliente ainda em [COLCHETES]. Tirar pagina
+ * indexada do ar depois da trabalho e leva tempo.
+ *
+ * Assim que SITE_URL apontar para o dominio de verdade, a indexacao volta
+ * sozinha. Ninguem precisa lembrar de destravar.
+ */
+const semDominioDefinido = siteUrl.includes('dominio-do-cliente.example')
+const bloquearIndexacao = naoIndexar || semDominioDefinido
 const imagemAbsoluta = new URL(imagem, siteUrl).href
 
 const schemas: unknown[] = [jsonLdNegocioLocal(siteUrl), ...schemasExtras]
@@ -51,8 +65,8 @@ if (trilha?.length) schemas.push(jsonLdBreadcrumb(trilha, siteUrl))
     <link rel="canonical" href={canonical} />
     <meta
       name="robots"
-      content={naoIndexar
-        ? 'noindex, follow'
+      content={bloquearIndexacao
+        ? 'noindex, nofollow'
         : 'index, follow, max-snippet:-1, max-image-preview:large'}
     />
 

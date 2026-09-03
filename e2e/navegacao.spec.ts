@@ -84,7 +84,39 @@ test.describe('Página 404', () => {
   test('responde com noindex para nao entrar no Google', async ({ page }) => {
     await page.goto('/404')
 
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow')
+    // Interessa o noindex. O segundo termo muda de propósito: em produção a
+    // 404 usa "follow", para o robô continuar seguindo os links de saída;
+    // enquanto o site está em prévia, a trava global impõe "nofollow".
+    const conteudo = await page.locator('meta[name="robots"]').getAttribute('content')
+    expect(conteudo, 'a 404 precisa ser noindex').toContain('noindex')
+  })
+})
+
+test.describe('Trava de indexação', () => {
+  /**
+   * O robots.txt e a meta robots precisam contar a mesma história.
+   *
+   * Enquanto SITE_URL for o placeholder, o site está em prévia e tudo é
+   * fechado — senão um link de teste entra no Google com os dados do cliente
+   * ainda em colchetes. Quando o domínio real for configurado, os dois lados
+   * abrem juntos.
+   *
+   * O teste não fixa qual dos dois estados é o certo: cobra que os dois
+   * concordem. Assim continua valendo depois da publicação.
+   */
+  test('robots.txt e meta robots dizem a mesma coisa', async ({ page, request }) => {
+    const robots = await (await request.get('/robots.txt')).text()
+    const emPrevia = robots.includes('Disallow: /')
+
+    await page.goto('/')
+    const meta = (await page.locator('meta[name="robots"]').getAttribute('content')) ?? ''
+
+    if (emPrevia) {
+      expect(meta, 'robots.txt fecha o site, mas a home se diz indexável').toContain('noindex')
+    } else {
+      expect(meta, 'robots.txt abre o site, mas a home se diz noindex').not.toContain('noindex')
+      expect(robots, 'site aberto precisa apontar o sitemap').toContain('Sitemap:')
+    }
   })
 })
 

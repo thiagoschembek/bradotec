@@ -28,6 +28,7 @@ export const paginasComFaq = [
   'documentacao-veicular',
   'empresas',
   'avcb',
+  'treinamentos',
 ] as const
 
 export type PaginaComFaq = (typeof paginasComFaq)[number]
@@ -136,4 +137,37 @@ const avcb = defineCollection({
   }),
 })
 
-export const collections = { faq, divisoes, servicos, segmentos, caminhos, avcb }
+/**
+ * Cursos oferecidos pela divisao Fire.
+ *
+ * `conteudo` e o programa do curso. Fica em colecao, e nao escrito na
+ * pagina, porque e a parte que o cliente vai querer revisar e ajustar — e o
+ * schema garante que nenhum curso entre sem programa, que e justamente o que
+ * a pessoa quer ler antes de contratar.
+ *
+ * Nao ha campo de carga horaria, preco nem certificado: sao dados
+ * operacionais que so o cliente pode informar, e a regra do projeto proibe
+ * inventar. Entram quando ele mandar.
+ */
+const treinamentos = defineCollection({
+  loader: file('src/content/treinamentos.json'),
+  schema: z.object({
+    titulo: z.string().min(5),
+    chamada: z.string().min(20).max(120),
+    resumo: z.string().min(80).max(600),
+    /** Norma tecnica que orienta o conteudo, exibida como referencia. */
+    normas: z.string().min(4),
+    conteudo: z.array(z.string().min(10)).min(4),
+    ordem: z.number().int().positive(),
+  }),
+})
+
+export const collections = {
+  faq,
+  divisoes,
+  servicos,
+  segmentos,
+  caminhos,
+  avcb,
+  treinamentos,
+}

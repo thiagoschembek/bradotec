@@ -24,6 +24,7 @@ export const navegacaoPrincipal: readonly ItemNavegacao[] = [
   { href: '/regularizacoes', curto: 'Regularizações', completo: 'Regularizações e licenças' },
   { href: '/documentacao-veicular', curto: 'Veicular', completo: 'Documentação veicular' },
   { href: '/empresas', curto: 'Empresas', completo: 'Empresas e condomínios' },
+  { href: '/treinamentos', curto: 'Treinamentos', completo: 'Brigada e primeiros socorros' },
   { href: '/sobre', curto: 'A Bradotec', completo: 'A Bradotec' },
   { href: '/contato', curto: 'Contato', completo: 'Contato' },
 ] as const
@@ -38,6 +39,7 @@ export const navegacaoRodape = [
       { href: '/documentacao-veicular', rotulo: 'Documentação veicular' },
       { href: '/empresas', rotulo: 'Gestão documental recorrente' },
       { href: '/avcb', rotulo: 'AVCB: o que é e o que exige' },
+      { href: '/treinamentos', rotulo: 'Brigada e primeiros socorros' },
     ],
   },
   {

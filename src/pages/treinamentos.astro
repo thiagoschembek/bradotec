@@ -1,0 +1,228 @@
+---
+import { getCollection } from 'astro:content'
+import AvisoEscopo from '@/components/AvisoEscopo.astro'
+import BotaoLink from '@/components/BotaoLink.astro'
+import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import Faq from '@/components/Faq.astro'
+import Kicker from '@/components/Kicker.astro'
+import { site } from '@/config/site'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { schemaFaqDaPagina } from '@/lib/faq'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Segurança contra incêndio', href: '/seguranca-contra-incendio' },
+  { nome: 'Treinamentos', href: '/treinamentos' },
+] as const
+
+const schemaFaq = await schemaFaqDaPagina('treinamentos')
+
+const cursos = (await getCollection('treinamentos')).sort((a, b) => a.data.ordem - b.data.ordem)
+
+/** Quem costuma contratar. Sao os mesmos publicos ja atendidos pela empresa. */
+const publicos = [
+  'Condomínios residenciais e comerciais',
+  'Empresas, indústrias e comércios',
+  'Igrejas, escolas e instituições',
+  'Clínicas, academias e consultórios',
+  'Postos de combustível',
+  'Administradoras e equipes de portaria',
+] as const
+
+const motivos = [
+  {
+    titulo: 'É item do AVCB',
+    descricao:
+      'O atestado de brigada de incêndio está entre os documentos exigidos na regularização junto ao Corpo de Bombeiros. Sem a equipe formada, o processo trava nesse ponto.',
+    href: '/avcb',
+    rotuloDoLink: 'Ver o que o AVCB exige',
+  },
+  {
+    titulo: 'A emergência não avisa',
+    descricao:
+      'Entre o acidente e a chegada do socorro existem alguns minutos em que só quem está no local pode agir. O que acontece nesses minutos costuma decidir o resto.',
+  },
+  {
+    titulo: 'Reduz a exposição de quem administra',
+    descricao:
+      'Síndico e responsável legal respondem pela administração. Equipe treinada e treinamento registrado mudam a posição de quem administra diante de uma ocorrência.',
+  },
+] as const
+---
+
+<BaseLayout
+  titulo={`Curso de brigada de incêndio e primeiros socorros em ${site.cidade} (${site.estado}) | ${site.nome}`}
+  descricao="Treinamento de brigada de incêndio e de primeiros socorros para condomínios, empresas, escolas e instituições em João Pessoa e região, conduzido dentro do processo de regularização."
+  trilha={trilha}
+  schemasExtras={schemaFaq ? [schemaFaq] : []}
+>
+  <CabecalhoPagina
+    titulo="Treinamento de brigada de incêndio e primeiros socorros"
+    subtitulo="Para a equipe saber o que fazer nos primeiros minutos — e para a edificação cumprir o que o Corpo de Bombeiros exige."
+    trilha={trilha}
+  >
+    <div class="mt-6 flex flex-wrap gap-3">
+      <BotaoWhatsapp origem="treinamento">Solicitar proposta</BotaoWhatsapp>
+      <BotaoLink href="/contato" variante="sobreEscuro">Falar com um especialista</BotaoLink>
+    </div>
+  </CabecalhoPagina>
+
+  <section class="py-20 lg:py-24" aria-labelledby="por-que">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <Kicker>Bradotec Fire</Kicker>
+      <h2 id="por-que" class="mt-2 max-w-[22ch] text-secao text-ink">
+        Por que treinar a equipe
+      </h2>
+      <p class="mt-4 max-w-[68ch] text-guia text-ink-soft">
+        O treinamento entra no mesmo processo do resto da regularização. Quem já cuida da
+        documentação da edificação forma a brigada dela — sem contratar dois fornecedores para o
+        mesmo assunto.
+      </p>
+
+      <dl class="mt-11 grid gap-6 md:grid-cols-3">
+        {
+          motivos.map((motivo) => (
+            <div class="relative rounded-xl border border-line bg-white p-7 shadow-card">
+              <span
+                class="absolute left-7 top-0 h-[3px] w-9 rounded-full bg-fire"
+                aria-hidden="true"
+              />
+              <dt class="text-cartao-lg text-ink">{motivo.titulo}</dt>
+              <dd class="mt-3 text-corpo text-ink-soft">
+                {motivo.descricao}
+                {'href' in motivo && (
+                  <a class="mt-3 block font-bold text-fire" href={motivo.href}>
+                    {motivo.rotuloDoLink} →
+                  </a>
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="bg-canvas py-20 lg:py-24" aria-labelledby="cursos">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <h2 id="cursos" class="max-w-[20ch] text-secao text-ink">Os dois treinamentos</h2>
+      <p class="mt-4 max-w-[68ch] text-guia text-ink-soft">
+        Podem ser contratados juntos ou separados, e são adaptados ao tipo de edificação e ao
+        perfil da equipe. O conteúdo abaixo é o programa de referência.
+      </p>
+
+      <div class="mt-11 grid gap-6 lg:grid-cols-2">
+        {
+          cursos.map((curso) => (
+            <article class="flex flex-col rounded-xl border border-line bg-white p-7 shadow-card">
+              <h3 class="text-cartao-lg text-ink">{curso.data.titulo}</h3>
+              <p class="mt-1 text-cartao text-fire">{curso.data.chamada}</p>
+              <p class="mt-4 text-ink-soft">{curso.data.resumo}</p>
+
+              <p class="mt-5 text-rotulo font-bold uppercase tracking-[0.08em] text-steel-500">
+                Programa
+              </p>
+              <ul class="mt-3 flex flex-col gap-2.5 border-t border-line-soft pt-4 text-corpo text-ink-soft">
+                {curso.data.conteudo.map((topico) => (
+                  <li class="flex items-start gap-2.5">
+                    <span
+                      class="mt-[0.5em] size-1.5 shrink-0 rounded-full bg-div-fire"
+                      aria-hidden="true"
+                    />
+                    {topico}
+                  </li>
+                ))}
+              </ul>
+
+              <p class="mt-5 border-t border-line-soft pt-4 text-apoio text-steel-500">
+                Conteúdo orientado por {curso.data.normas}.
+              </p>
+
+              <div class="mt-auto flex flex-wrap gap-2.5 pt-6">
+                <BotaoWhatsapp origem="treinamento" pequeno>
+                  Solicitar proposta
+                </BotaoWhatsapp>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 lg:py-24" aria-labelledby="para-quem">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div>
+          <h2 id="para-quem" class="max-w-[18ch] text-secao text-ink">Para quem é</h2>
+          <p class="mt-4 max-w-[52ch] text-guia text-ink-soft">
+            O treinamento é realizado na própria edificação, com a equipe que de fato estará lá no
+            dia da ocorrência — porteiro, zelador, funcionário, morador voluntário.
+          </p>
+        </div>
+
+        <ul class="grid list-none gap-3 sm:grid-cols-2">
+          {
+            publicos.map((publico) => (
+              <li class="flex items-start gap-3 rounded-xl border border-line bg-white p-4 text-corpo text-ink shadow-card">
+                <svg
+                  width="19"
+                  height="19"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  class="mt-0.5 shrink-0 text-div-fire"
+                >
+                  <path d="m4 12.5 5 5L20 6.5" />
+                </svg>
+                {publico}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy-900 py-20 text-white lg:py-24" aria-labelledby="proposta">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+        <div>
+          <h2 id="proposta" class="max-w-[24ch] text-secao text-white">
+            A proposta sai depois de olhar a sua edificação
+          </h2>
+          <p class="mt-4 max-w-[62ch] text-guia text-[#b9c9da]">
+            Carga horária, tamanho da brigada e formato dependem da ocupação, da população fixa e
+            do risco — não existe pacote único que sirva para condomínio de doze apartamentos e
+            para indústria. Por isso não publicamos tabela de preço: o número sairia errado para
+            quase todo mundo.
+          </p>
+          <p class="mt-4 max-w-[62ch] text-[#b9c9da]">
+            Diga quantas pessoas participariam e que tipo de edificação é, e a proposta volta com o
+            dimensionamento já feito.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <BotaoWhatsapp origem="treinamento">Solicitar proposta</BotaoWhatsapp>
+          <BotaoLink href="/contato" variante="sobreEscuro">Enviar pelo formulário</BotaoLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <AvisoEscopo titulo="O que a Bradotec faz e o que é feito por terceiros">
+    A Bradotec organiza e conduz o treinamento dentro do processo de regularização, com instrutores
+    e empresas legalmente habilitados para a formação de brigada. Projetos, laudos e a instalação
+    de sistemas preventivos seguem sendo executados por profissionais com a habilitação exigida
+    para cada caso. A aprovação da documentação junto ao Corpo de Bombeiros depende do órgão
+    competente.
+  </AvisoEscopo>
+
+  <Faq pagina="treinamentos" titulo="Perguntas frequentes sobre os treinamentos" />
+</BaseLayout>

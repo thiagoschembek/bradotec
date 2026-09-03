@@ -23,6 +23,8 @@ export const mensagensWhatsapp = {
   empresas: 'Olá! Gostaria de conhecer as soluções da Bradotec para empresas.',
   avcb: 'Olá! Preciso resolver o AVCB da minha edificação. Pode me orientar sobre o processo?',
   posto: 'Olá! Tenho um posto de combustível e preciso regularizar a documentação.',
+  treinamento:
+    'Olá! Gostaria de uma proposta de treinamento de brigada de incêndio e/ou primeiros socorros.',
 } as const
 
 /** Chaves validas para o atributo data-wa / prop `origem`. */

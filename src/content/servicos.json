@@ -30,8 +30,8 @@
   {
     "id": "fire-brigada",
     "divisao": "fire",
-    "titulo": "Brigada e treinamentos",
-    "descricao": "Organização da brigada de incêndio e dos treinamentos aplicáveis à edificação.",
+    "titulo": "Brigada de incêndio e treinamentos",
+    "descricao": "Formação e reciclagem da brigada conforme a ABNT NBR 14276 e a NR-23, com simulado de abandono na própria edificação. O atestado de brigada é um dos itens exigidos no processo do AVCB.",
     "ordem": 5
   },
   {
@@ -131,5 +131,12 @@
     "titulo": "Gestão de frotas",
     "descricao": "Todos os veículos com situação e vencimentos acompanhados no mesmo controle.",
     "ordem": 6
+  },
+  {
+    "id": "fire-primeiros-socorros",
+    "divisao": "fire",
+    "titulo": "Curso de primeiros socorros",
+    "descricao": "Suporte básico de vida para equipes sem formação em saúde: parada cardiorrespiratória, engasgo, hemorragia, queimadura e imobilização, com prática em manequim.",
+    "ordem": 8
   }
 ]

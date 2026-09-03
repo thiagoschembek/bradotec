@@ -36,5 +36,18 @@ export default defineConfig({
     },
   ],
 
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+
+    // O Vite recusa requisicao vinda de um dominio que ele nao conhece — e
+    // uma protecao real contra DNS rebinding, nao um capricho. Liberamos so
+    // os tuneis de previa da Cloudflare, usados para mostrar o site a quem
+    // esta longe antes de existir dominio proprio.
+    //
+    // Vale exclusivamente para os servidores locais (`astro dev` e
+    // `astro preview`). O site publicado e HTML estatico servido pela
+    // Cloudflare Pages: nao passa por aqui.
+    server: { allowedHosts: ['.trycloudflare.com'] },
+    preview: { allowedHosts: ['.trycloudflare.com'] },
+  },
 })

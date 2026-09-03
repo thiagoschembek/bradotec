@@ -100,5 +100,23 @@
     "pergunta": "Vocês atendem posto de combustível?",
     "resposta": "Sim. Posto de combustível reúne, no mesmo endereço, exigências de segurança contra incêndio, licenciamento ambiental, alvará de funcionamento e documentação de tanques e equipamentos — processos que costumam correr em órgãos diferentes e com prazos que não conversam entre si. A Bradotec organiza a documentação, conduz os protocolos e acompanha as exigências dentro de um único processo.",
     "paginas": ["avcb", "empresas", "solucoes"]
+  },
+  {
+    "id": "cursos-oferecidos",
+    "pergunta": "Vocês dão curso de brigada de incêndio e de primeiros socorros?",
+    "resposta": "Sim. São dois treinamentos, contratados juntos ou separados. O de brigada de incêndio segue a ABNT NBR 14276 e a NR-23, com prática de extintor, hidrante e simulado de abandono. O de primeiros socorros cobre suporte básico de vida para quem não tem formação em saúde: parada cardiorrespiratória, engasgo, hemorragia, queimadura e imobilização, com prática em manequim. Os dois são realizados na própria edificação, com a equipe que estará lá no dia da ocorrência.",
+    "paginas": ["treinamentos", "seguranca-contra-incendio", "solucoes", "empresas"]
+  },
+  {
+    "id": "brigada-obrigatoria",
+    "pergunta": "A brigada de incêndio é obrigatória?",
+    "resposta": "O atestado de brigada de incêndio está entre os documentos exigidos no processo do AVCB, e a formação segue a ABNT NBR 14276 e a NR-23. O tamanho da brigada e a exigência exata dependem da ocupação, da população fixa e do risco da edificação — quem define isso é a análise do caso, conforme as normas técnicas do Corpo de Bombeiros. Na prática, edificação que precisa de AVCB precisa da brigada formada.",
+    "paginas": ["treinamentos", "avcb", "seguranca-contra-incendio"]
+  },
+  {
+    "id": "preco-treinamento",
+    "pergunta": "Quanto custa o treinamento?",
+    "resposta": "Não publicamos tabela porque o número sairia errado para quase todo mundo: carga horária, tamanho da brigada e formato dependem da ocupação, da população fixa e do risco da edificação. Não existe pacote único que sirva para um condomínio de doze apartamentos e para uma indústria. Diga quantas pessoas participariam e que tipo de edificação é, e a proposta volta com o dimensionamento já feito.",
+    "paginas": ["treinamentos"]
   }
 ]

@@ -45,7 +45,7 @@
     "id": "item-brigada",
     "grupo": "item",
     "titulo": "Atestado de brigada de incêndio",
-    "descricao": "Comprova a formação e a atualização da brigada, com os treinamentos aplicáveis ao tipo de edificação.",
+    "descricao": "Comprova a formação e a atualização da brigada, conforme a ABNT NBR 14276 e a NR-23. É o único item desta lista que a Bradotec executa diretamente, pelos treinamentos.",
     "ordem": 1
   },
   {
