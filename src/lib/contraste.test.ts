@@ -9,51 +9,61 @@ import { MINIMO_AA, razaoDeContraste, type TamanhoDeTexto } from '@/lib/contrast
  * exatamente a intencao: a paleta so muda com o contraste conferido.
  */
 
-const NAVY_950 = '#08131f'
-const NAVY_900 = '#0b1b2e'
-const NAVY_800 = '#13293f'
+const GRAFITE_950 = '#171415'
+const GRAFITE_900 = '#201c1e'
+const GRAFITE_800 = '#2c2729'
 const BRANCO = '#ffffff'
-const CANVAS = '#f6f8fb'
-const AMARELO_PENDENTE = '#fff8e9'
+const CANVAS = '#f7f5f5'
+const AMARELO_PENDENTE = '#fdf6ec'
 
 const pares: { frente: string; fundo: string; tamanho: TamanhoDeTexto; onde: string }[] = [
   // --- Texto claro sobre fundo escuro ---
-  { frente: '#8fa3b8', fundo: NAVY_900, tamanho: 'pequeno', onde: 'trilha do CabecalhoPagina' },
-  { frente: '#8fa3b8', fundo: NAVY_800, tamanho: 'pequeno', onde: 'trilha, fim do gradiente' },
-  { frente: '#71889f', fundo: NAVY_950, tamanho: 'pequeno', onde: 'rodape, texto menor' },
-  { frente: '#8298af', fundo: NAVY_950, tamanho: 'pequeno', onde: 'rodape, texto' },
-  { frente: '#93a7bc', fundo: NAVY_950, tamanho: 'pequeno', onde: 'rodape, links' },
-  { frente: '#a9bccf', fundo: NAVY_950, tamanho: 'pequeno', onde: 'rodape, links destacados' },
-  { frente: '#b9c9da', fundo: NAVY_900, tamanho: 'grande', onde: 'subtitulo sobre navy' },
-  { frente: '#a7bacd', fundo: NAVY_900, tamanho: 'pequeno', onde: 'lista de provas da home' },
-  { frente: '#dce7f2', fundo: NAVY_900, tamanho: 'pequeno', onde: 'selo da home' },
-  { frente: '#e8a5a2', fundo: NAVY_900, tamanho: 'pequeno', onde: 'kicker "O que esta em jogo"' },
-  { frente: '#8fd4da', fundo: NAVY_900, tamanho: 'pequeno', onde: 'kicker "Para empresas"' },
-  { frente: '#7fd1a6', fundo: NAVY_900, tamanho: 'interface', onde: 'check da home' },
+  { frente: '#a8a0a2', fundo: GRAFITE_900, tamanho: 'pequeno', onde: 'trilha do CabecalhoPagina' },
+  { frente: '#a8a0a2', fundo: GRAFITE_800, tamanho: 'pequeno', onde: 'trilha, fim do gradiente' },
+  { frente: '#8f8789', fundo: GRAFITE_950, tamanho: 'pequeno', onde: 'rodape, texto menor' },
+  { frente: '#948c8f', fundo: GRAFITE_950, tamanho: 'pequeno', onde: 'rodape, texto' },
+  { frente: '#a19a9c', fundo: GRAFITE_950, tamanho: 'pequeno', onde: 'rodape, links' },
+  { frente: '#b8b1b3', fundo: GRAFITE_950, tamanho: 'pequeno', onde: 'rodape, links destacados' },
+  { frente: '#c9c2c4', fundo: GRAFITE_900, tamanho: 'grande', onde: 'subtitulo sobre navy' },
+  { frente: '#b3acae', fundo: GRAFITE_900, tamanho: 'pequeno', onde: 'lista de provas da home' },
+  { frente: '#e6e1e2', fundo: GRAFITE_900, tamanho: 'pequeno', onde: 'selo da home' },
+  {
+    frente: '#e8b0ac',
+    fundo: GRAFITE_900,
+    tamanho: 'pequeno',
+    onde: 'kicker "O que esta em jogo"',
+  },
+  { frente: '#9fd0c8', fundo: GRAFITE_900, tamanho: 'pequeno', onde: 'kicker "Para empresas"' },
+  { frente: '#8fd0ac', fundo: GRAFITE_900, tamanho: 'interface', onde: 'check da home' },
 
   // --- Chips do painel de vencimentos ---
-  { frente: '#ff9c97', fundo: NAVY_900, tamanho: 'pequeno', onde: 'chip "Exigencia aberta"' },
-  { frente: '#f0be6a', fundo: NAVY_900, tamanho: 'pequeno', onde: 'chip "Vence em 30 dias"' },
-  { frente: '#79d6a8', fundo: NAVY_900, tamanho: 'pequeno', onde: 'chip "Regular"' },
+  { frente: '#f1a3a0', fundo: GRAFITE_900, tamanho: 'pequeno', onde: 'chip "Exigencia aberta"' },
+  { frente: '#e8bb7c', fundo: GRAFITE_900, tamanho: 'pequeno', onde: 'chip "Vence em 30 dias"' },
+  { frente: '#8fd0ac', fundo: GRAFITE_900, tamanho: 'pequeno', onde: 'chip "Regular"' },
 
   // --- Texto escuro sobre fundo claro ---
-  { frente: '#0f2033', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-ink' },
-  { frente: '#42576d', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-ink-soft sobre branco' },
-  { frente: '#42576d', fundo: CANVAS, tamanho: 'pequeno', onde: '--color-ink-soft sobre canvas' },
-  { frente: '#5c6e85', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-steel-500 sobre branco' },
-  { frente: '#5c6e85', fundo: CANVAS, tamanho: 'pequeno', onde: '--color-steel-500 sobre canvas' },
-  { frente: '#667482', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-steel-400 sobre branco' },
-  { frente: '#667482', fundo: CANVAS, tamanho: 'pequeno', onde: '--color-steel-400 sobre canvas' },
-  { frente: '#d22b26', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-fire como texto' },
-  { frente: '#1d4e89', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-div-doc como texto' },
-  { frente: '#0e7c86', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-div-auto como texto' },
-  { frente: '#a0650b', fundo: AMARELO_PENDENTE, tamanho: 'pequeno', onde: '--color-warn' },
+  { frente: '#1f1b1d', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-ink' },
+  { frente: '#554e51', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-ink-soft sobre branco' },
+  { frente: '#554e51', fundo: CANVAS, tamanho: 'pequeno', onde: '--color-ink-soft sobre canvas' },
+  { frente: '#6e6668', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-ash-500 sobre branco' },
+  { frente: '#6e6668', fundo: CANVAS, tamanho: 'pequeno', onde: '--color-ash-500 sobre canvas' },
+  { frente: '#6b6365', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-ash-400 sobre branco' },
+  { frente: '#6b6365', fundo: CANVAS, tamanho: 'pequeno', onde: '--color-ash-400 sobre canvas' },
+  { frente: '#8e1c21', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-wine como texto' },
+  { frente: '#3f5468', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-div-doc como texto' },
+  { frente: '#2f6259', fundo: BRANCO, tamanho: 'pequeno', onde: '--color-div-auto como texto' },
+  { frente: '#8a5a0a', fundo: AMARELO_PENDENTE, tamanho: 'pequeno', onde: '--color-warn' },
 
   // --- Texto branco sobre fundo colorido ---
   { frente: BRANCO, fundo: '#118848', tamanho: 'pequeno', onde: 'botao flutuante do WhatsApp' },
   { frente: BRANCO, fundo: '#0e7539', tamanho: 'pequeno', onde: 'botao flutuante, hover' },
-  { frente: BRANCO, fundo: '#d22b26', tamanho: 'pequeno', onde: 'botao primario --color-fire' },
-  { frente: BRANCO, fundo: '#0b1b2e', tamanho: 'pequeno', onde: 'botao escuro --color-navy-900' },
+  { frente: BRANCO, fundo: '#8e1c21', tamanho: 'pequeno', onde: 'botao primario --color-wine' },
+  {
+    frente: BRANCO,
+    fundo: '#201c1e',
+    tamanho: 'pequeno',
+    onde: 'botao escuro --color-graphite-900',
+  },
 ]
 
 describe('contraste da paleta (WCAG 2.1 AA)', () => {
@@ -71,12 +81,12 @@ describe('contraste da paleta (WCAG 2.1 AA)', () => {
 describe('anel de foco', () => {
   /**
    * O anel tem dois tons porque o foco cai sobre branco, sobre o canvas,
-   * sobre o navy e sobre o vermelho do botao — e nenhuma cor unica alcanca
+   * sobre o navy e sobre o vinho do botao — e nenhuma cor unica alcanca
    * 3:1 contra todos. Enquanto os dois tons estiverem longe um do outro,
    * pelo menos um deles contrasta com o que houver atras.
    */
   const CLARO = BRANCO
-  const ESCURO = NAVY_900
+  const ESCURO = GRAFITE_900
 
   it('os dois tons ficam a pelo menos 3:1 um do outro', () => {
     expect(razaoDeContraste(CLARO, ESCURO)).toBeGreaterThanOrEqual(3)
@@ -85,9 +95,9 @@ describe('anel de foco', () => {
   it.each([
     ['branco', BRANCO],
     ['canvas', CANVAS],
-    ['navy 900', NAVY_900],
-    ['navy 950', NAVY_950],
-    ['vermelho do botao', '#d22b26'],
+    ['grafite 900', GRAFITE_900],
+    ['grafite 950', GRAFITE_950],
+    ['vinho do botao', '#8e1c21'],
     ['verde do WhatsApp', '#118848'],
     ['amarelo de pendente', AMARELO_PENDENTE],
   ])('pelo menos um tom aparece sobre %s', (_nome, fundo) => {
@@ -95,10 +105,10 @@ describe('anel de foco', () => {
     expect(melhor).toBeGreaterThanOrEqual(3)
   })
 
-  it('o azul de sistema antigo teria falhado sobre o botao vermelho', () => {
+  it('o azul de sistema antigo teria falhado sobre o botao da marca', () => {
     // Registra por que o anel de uma cor so foi trocado: 1.32:1, invisivel
     // exatamente no controle mais clicado do site.
-    expect(razaoDeContraste('#2f80ed', '#d22b26')).toBeLessThan(3)
+    expect(razaoDeContraste('#2f80ed', '#8e1c21')).toBeLessThan(3)
   })
 })
 
@@ -108,12 +118,12 @@ describe('razaoDeContraste', () => {
   })
 
   it('devolve 1 para a mesma cor', () => {
-    expect(razaoDeContraste('#d22b26', '#d22b26')).toBeCloseTo(1, 5)
+    expect(razaoDeContraste('#8e1c21', '#8e1c21')).toBeCloseTo(1, 5)
   })
 
   it('nao depende da ordem dos argumentos', () => {
-    expect(razaoDeContraste('#0f2033', '#ffffff')).toBeCloseTo(
-      razaoDeContraste('#ffffff', '#0f2033'),
+    expect(razaoDeContraste('#1f1b1d', '#ffffff')).toBeCloseTo(
+      razaoDeContraste('#ffffff', '#1f1b1d'),
       10
     )
   })

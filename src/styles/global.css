@@ -7,50 +7,62 @@
    cliente, so este bloco muda.
    ========================================================================== */
 @theme {
-  /* --- Base institucional (fundos escuros, titulos) --- */
-  --color-navy-950: #08131f;
-  --color-navy-900: #0b1b2e;
-  --color-navy-800: #13293f;
-  --color-navy-700: #1d3a55;
+  /* ==========================================================================
+     IDENTIDADE: VINHO E GRAFITE
+
+     Extraida da logo. O vinho e o do wordmark BRADO; os cinzas escuros levam
+     um toque quente de vermelho de proposito. Cinza neutro ao lado de vinho
+     parece acidente de paleta; cinza quente parece decisao.
+
+     A paleta anterior era navy azul com vermelho de sinalizacao. Alem de nao
+     ser mais a marca, ela era menos legivel: o vermelho #d22b26 dava 4.60:1
+     sobre branco, no limite do minimo. O vinho da 8.98:1.
+     ========================================================================== */
+
+  /* --- Grafite: fundos escuros e titulos --- */
+  --color-graphite-950: #171415;
+  --color-graphite-900: #201c1e;
+  --color-graphite-800: #2c2729;
+  --color-graphite-700: #3d3739;
 
   /* --- Cinzas de apoio --- */
-  --color-steel-500: #5c6e85;
-  /* Escurecido de #8496a9: aquele valor dava 3.04:1 sobre branco, abaixo do
-     minimo de 4.5:1 do WCAG AA. Nao estava em uso — era armadilha esperando
-     o primeiro texto secundario. */
-  --color-steel-400: #667482;
+  --color-ash-500: #6e6668;
+  --color-ash-400: #6b6365;
 
   /* --- Texto --- */
-  --color-ink: #0f2033;
-  --color-ink-soft: #42576d;
+  --color-ink: #1f1b1d;
+  --color-ink-soft: #554e51;
 
   /* --- Superficies e bordas --- */
-  --color-line: #e3e9f0;
-  --color-line-soft: #eef2f7;
-  --color-canvas: #f6f8fb;
+  --color-line: #e4e0e1;
+  --color-line-soft: #efeded;
+  --color-canvas: #f7f5f5;
 
-  /* --- Acento da marca (vermelho extraido da logo).
-         E acento, nunca fundo: usar em CTA, urgencia e divisao Fire. --- */
-  --color-fire: #d22b26;
-  --color-fire-dark: #ae201c;
-  --color-fire-soft: #fdf0ef;
+  /* --- Acento da marca. E acento, nunca fundo de pagina inteira:
+         usar em CTA, urgencia e na divisao Fire. --- */
+  --color-wine: #8e1c21;
+  --color-wine-dark: #741418;
+  --color-wine-soft: #f9eff0;
 
-  /* --- Cores que separam as tres divisoes sem parecerem tres empresas --- */
-  --color-div-fire: #d22b26;
-  --color-div-doc: #1d4e89;
-  --color-div-auto: #0e7c86;
+  /* --- Cores que separam as tres divisoes sem parecerem tres empresas.
+         Dessaturadas de proposito: matiz saturado brigaria com o vinho.
+         Diferem por matiz e nao por luminancia (as tres ficam entre 6.9 e
+         9.0 sobre branco), o que mantem o mesmo peso visual. Quem nao
+         distingue cor continua orientado pelo rotulo escrito no cartao. --- */
+  --color-div-fire: #8e1c21;
+  --color-div-doc: #3f5468;
+  --color-div-auto: #2f6259;
 
   /* --- Sinalizacao de status (usada no painel de vencimentos) --- */
-  --color-ok: #127a4b;
+  --color-ok: #1d6b45;
 
   /* --- Verde do WhatsApp (botao flutuante).
          #128c4a dava 4.31:1 com texto branco, abaixo do minimo de 4.5:1.
          Estava escrito dentro do componente, contra a regra do projeto. --- */
   --color-whats: #118848;
   --color-whats-dark: #0e7539;
-  /* Escurecido de #b4720c: sobre o amarelo do DadoCliente (#fff8e9) dava
-     3.71:1. Este da 4.55:1. */
-  --color-warn: #a0650b;
+  /* Sobre o amarelo do dado pendente (#fdf6ec) da 5.52:1. */
+  --color-warn: #8a5a0a;
 
   /* --- Tipografia. A variavel --font-plus-jakarta vem da Fonts API do Astro,
          configurada em astro.config.mjs e servida do nosso dominio. --- */
@@ -99,8 +111,8 @@
   --radius-xl: 22px;
 
   /* --- Sombras discretas (excesso de sombra foi vetado no briefing) --- */
-  --shadow-card: 0 1px 2px rgb(11 27 46 / 0.04), 0 8px 24px -12px rgb(11 27 46 / 0.18);
-  --shadow-float: 0 10px 30px -8px rgb(11 27 46 / 0.35);
+  --shadow-card: 0 1px 2px rgb(32 28 30 / 0.04), 0 8px 24px -12px rgb(32 28 30 / 0.18);
+  --shadow-float: 0 10px 30px -8px rgb(32 28 30 / 0.35);
 
   /* --- Largura maxima do conteudo --- */
   --spacing-wrap: 1180px;
@@ -130,7 +142,7 @@
   h2,
   h3,
   h4 {
-    color: var(--color-navy-900);
+    color: var(--color-graphite-900);
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -140,17 +152,17 @@
   /* Foco sempre visivel: quem navega por teclado precisa enxergar onde esta.
 
      Anel de dois tons, e nao de uma cor so. O site tem foco sobre branco,
-     sobre o canvas, sobre o navy escuro e sobre o vermelho do botao — e
+     sobre o canvas, sobre o grafite escuro e sobre o vinho do botao, e
      nenhuma cor unica alcanca os 3:1 exigidos contra todos esses fundos.
      Medido: o antigo #2f80ed dava 1.32:1 sobre o botao vermelho, ou seja,
      sumia justamente no controle mais clicado do site.
 
-     Branco e navy estao a 16.5:1 um do outro, entao pelo menos um dos dois
+     Branco e grafite estao a 16.8:1 um do outro, entao pelo menos um dos dois
      sempre contrasta com o que estiver atras. */
   :focus-visible {
     outline: 2px solid var(--color-white);
     outline-offset: 0;
-    box-shadow: 0 0 0 5px var(--color-navy-900);
+    box-shadow: 0 0 0 5px var(--color-graphite-900);
     border-radius: 5px;
   }
 
@@ -158,25 +170,25 @@
      Superficies do navegador.
 
      Selecao de texto, cursor, barra de rolagem e sublinhado vem com um
-     padrao que nao pertence a design system nenhuma — normalmente um azul
+     padrao que nao pertence a design system nenhuma, normalmente um azul
      de sistema. Deixar assim e o detalhe que denuncia pagina montada em vez
      de construida, e some no meio de um site que acerta todo o resto.
      -------------------------------------------------------------------- */
 
   ::selection {
-    background-color: var(--color-fire);
+    background-color: var(--color-wine);
     color: var(--color-white);
   }
 
   /* O cursor de texto e um tracinho de 1px: precisa da cor mais forte, nao
-     do vermelho de acento, para nao desaparecer enquanto se digita. */
+     do vinho de acento, para nao desaparecer enquanto se digita. */
   :where(input, textarea, select) {
-    caret-color: var(--color-navy-900);
+    caret-color: var(--color-graphite-900);
   }
 
   /* Checkbox, radio e barra de progresso nativos. Sem isto ficam azuis. */
   :where(input, progress) {
-    accent-color: var(--color-fire);
+    accent-color: var(--color-wine);
   }
 
   /* O sublinhado padrao corta as descidas do g, j, p e q. */
@@ -194,7 +206,7 @@
   /* Barra de rolagem discreta, na paleta. Firefox usa scrollbar-color;
      WebKit e Chromium usam o pseudo-elemento. */
   html {
-    scrollbar-color: var(--color-steel-400) var(--color-line-soft);
+    scrollbar-color: var(--color-ash-400) var(--color-line-soft);
     scrollbar-width: thin;
   }
 
@@ -208,13 +220,13 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-steel-400);
+    background: var(--color-ash-400);
     border: 3px solid var(--color-line-soft);
     border-radius: 999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-steel-500);
+    background: var(--color-ash-500);
   }
 
   /* Respeita quem configurou o sistema para reduzir animacao (enjoo, vertigem). */
@@ -249,21 +261,21 @@
   --card-foreground: var(--color-ink);
   --popover: #ffffff;
   --popover-foreground: var(--color-ink);
-  --primary: var(--color-fire);
+  --primary: var(--color-wine);
   --primary-foreground: #ffffff;
-  --secondary: var(--color-navy-900);
+  --secondary: var(--color-graphite-900);
   --secondary-foreground: #ffffff;
   --muted: var(--color-canvas);
   --muted-foreground: var(--color-ink-soft);
   --accent: var(--color-line-soft);
-  --accent-foreground: var(--color-navy-900);
-  --destructive: var(--color-fire-dark);
+  --accent-foreground: var(--color-graphite-900);
+  --destructive: var(--color-wine-dark);
   --border: var(--color-line);
-  --input: #cfdae6;
+  --input: #cfc9ca;
   /* O anel do shadcn segue o anel do site: navy, nao o azul de sistema que
      vem no template. Ainda nao ha componente shadcn instalado, mas se um
      entrar com o valor original o foco dele destoaria do resto. */
-  --ring: var(--color-navy-900);
+  --ring: var(--color-graphite-900);
   --radius: 0.6875rem;
 }
 

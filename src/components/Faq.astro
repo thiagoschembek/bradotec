@@ -31,8 +31,8 @@ const perguntas = (await getCollection('faq', ({ data }) => data.paginas.include
     <section class="bg-canvas py-20 lg:py-24" id="faq">
       <div class="mx-auto w-full max-w-wrap px-5">
         <div class="mb-9 max-w-[760px]">
-          <span class="mb-3 inline-flex items-center gap-2 text-apoio font-bold text-fire">
-            <span class="h-0.5 w-[22px] rounded-sm bg-fire" aria-hidden="true" />
+          <span class="mb-3 inline-flex items-center gap-2 text-apoio font-bold text-wine">
+            <span class="h-0.5 w-[22px] rounded-sm bg-wine" aria-hidden="true" />
             Dúvidas
           </span>
           <h2 class="text-secao">{titulo}</h2>
@@ -42,10 +42,10 @@ const perguntas = (await getCollection('faq', ({ data }) => data.paginas.include
         <div class="max-w-[860px]">
           {perguntas.map((item) => (
             <details class="group border-b border-line py-1">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-0.5 py-4 text-cartao font-bold text-navy-900 [&::-webkit-details-marker]:hidden">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-0.5 py-4 text-cartao font-bold text-graphite-900 [&::-webkit-details-marker]:hidden">
                 {item.pergunta}
                 <span
-                  class="size-3 shrink-0 rotate-45 border-b-2 border-r-2 border-steel-500 transition-transform group-open:-rotate-135"
+                  class="size-3 shrink-0 rotate-45 border-b-2 border-r-2 border-ash-500 transition-transform group-open:-rotate-135"
                   aria-hidden="true"
                 />
               </summary>

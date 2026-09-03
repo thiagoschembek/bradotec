@@ -93,12 +93,12 @@ const cotacao = doGrupo('cotacao')
     </div>
   </section>
 
-  <section class="bg-navy-900 py-20 text-white lg:py-28" aria-labelledby="em-jogo">
+  <section class="bg-graphite-900 py-20 text-white lg:py-28" aria-labelledby="em-jogo">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="em-jogo" class="max-w-[24ch] text-secao text-white">
         O que está em jogo quando o AVCB vence
       </h2>
-      <p class="mt-4 max-w-[66ch] text-guia text-[#b9c9da]">
+      <p class="mt-4 max-w-[66ch] text-guia text-[#c9c2c4]">
         A multa costuma ser a primeira coisa que vem à cabeça, e é a menor delas. O que pesa mais
         aparece depois, e quase sempre no pior momento.
       </p>
@@ -108,11 +108,11 @@ const cotacao = doGrupo('cotacao')
           riscos.map((risco) => (
             <div class="relative border-t border-white/15 pt-7">
               <span
-                class="absolute -top-0.5 left-0 h-[3px] w-9 rounded-full bg-fire"
+                class="absolute -top-0.5 left-0 h-[3px] w-9 rounded-full bg-wine"
                 aria-hidden="true"
               />
               <dt class="text-cartao-lg text-white">{risco.data.titulo}</dt>
-              <dd class="mt-3 text-corpo text-[#b9c9da]">{risco.data.descricao}</dd>
+              <dd class="mt-3 text-corpo text-[#c9c2c4]">{risco.data.descricao}</dd>
             </div>
           ))
         }
@@ -168,10 +168,10 @@ const cotacao = doGrupo('cotacao')
         Quase todo texto sobre AVCB que circula na internet é de São Paulo, e fala em validade de
         três a cinco anos e multa que passa de R$ 200 mil. Nenhum dos dois números vale aqui: os
         dois são definidos por legislação estadual. Na Paraíba, quem manda é a{' '}
-        <a class="font-semibold text-fire" href={leis.base.url} target="_blank" rel="noopener">
+        <a class="font-semibold text-wine" href={leis.base.url} target="_blank" rel="noopener">
           {leis.base.rotulo}
         </a>, alterada pela{' '}
-        <a class="font-semibold text-fire" href={leis.alteracao.url} target="_blank" rel="noopener">
+        <a class="font-semibold text-wine" href={leis.alteracao.url} target="_blank" rel="noopener">
           {leis.alteracao.rotulo}
         </a>.
       </p>
@@ -221,7 +221,7 @@ const cotacao = doGrupo('cotacao')
               Multa por nível de risco, em UFR-PB e em reais
             </caption>
             <thead>
-              <tr class="border-b border-line text-left text-rotulo uppercase tracking-[0.06em] text-steel-500">
+              <tr class="border-b border-line text-left text-rotulo uppercase tracking-[0.06em] text-ash-500">
                 <th class="py-2 font-bold" scope="col">Risco</th>
                 <th class="py-2 text-right font-bold" scope="col">UFR-PB</th>
                 <th class="py-2 text-right font-bold" scope="col">Equivalente</th>
@@ -246,7 +246,7 @@ const cotacao = doGrupo('cotacao')
             </tbody>
           </table>
 
-          <p class="mt-4 text-apoio text-steel-500">
+          <p class="mt-4 text-apoio text-ash-500">
             Valores de base, para até {areaBaseM2} m². Equivalência calculada pela UFR-PB de {
               ufrPb.mes
             }, de {emReais(ufrPb.valor)}. O índice é corrigido todo mês pelo IPCA, então o valor
@@ -255,7 +255,7 @@ const cotacao = doGrupo('cotacao')
         </div>
       </div>
 
-      <div class="mt-6 rounded-xl border-l-4 border-l-fire border-y border-r border-line bg-white p-7 shadow-card">
+      <div class="mt-6 rounded-xl border-l-4 border-l-wine border-y border-r border-line bg-white p-7 shadow-card">
         <h3 class="text-cartao font-bold text-ink">Onde a conta cresce</h3>
         <p class="mt-3 max-w-[76ch] text-ink-soft">
           Um condomínio de {exemplo.area.toLocaleString('pt-BR')} m² classificado como
@@ -286,7 +286,7 @@ const cotacao = doGrupo('cotacao')
           cotacao.map((pergunta, indice) => (
             <li class="flex gap-4 rounded-xl border border-line bg-white p-5 shadow-card">
               <span
-                class="flex size-7 shrink-0 items-center justify-center rounded-full bg-navy-900 text-rotulo font-bold text-white"
+                class="flex size-7 shrink-0 items-center justify-center rounded-full bg-graphite-900 text-rotulo font-bold text-white"
                 aria-hidden="true"
               >
                 {indice + 1}

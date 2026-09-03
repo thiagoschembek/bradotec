@@ -8,13 +8,13 @@ const { titulo, subtitulo, trilha } = Astro.props
 const atual = trilha[trilha.length - 1]
 ---
 
-<section class="bg-gradient-to-b from-navy-900 to-navy-800 py-12 text-white">
+<section class="bg-gradient-to-b from-graphite-900 to-graphite-800 py-12 text-white">
   <div class="mx-auto w-full max-w-[820px] px-5">
-    <nav class="mb-4 text-rotulo text-[#8fa3b8]" aria-label="Você está em">
+    <nav class="mb-4 text-rotulo text-[#a8a0a2]" aria-label="Você está em">
       {
         trilha.slice(0, -1).map((item) => (
           <>
-            <a class="text-[#b9c9da] no-underline hover:underline" href={item.href}>
+            <a class="text-[#c9c2c4] no-underline hover:underline" href={item.href}>
               {item.nome}
             </a>
             <span aria-hidden="true"> › </span>
@@ -25,7 +25,7 @@ const atual = trilha[trilha.length - 1]
     </nav>
 
     <h1 class="text-pagina text-white">{titulo}</h1>
-    {subtitulo && <p class="mt-2 text-cartao text-[#b9c9da]">{subtitulo}</p>}
+    {subtitulo && <p class="mt-2 text-cartao text-[#c9c2c4]">{subtitulo}</p>}
     <slot />
   </div>
 </section>

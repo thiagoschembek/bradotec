@@ -9,7 +9,7 @@ const atual = Astro.url.pathname.replace(/\/$/, '') || '/'
 const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
 ---
 
-<header class="sticky top-0 z-100 border-b border-white/10 bg-navy-900">
+<header class="sticky top-0 z-100 border-b border-white/10 bg-graphite-900">
   <div class="mx-auto w-full max-w-wrap px-5">
     <div class="flex min-h-[74px] items-center gap-4">
       <a class="mr-auto flex items-center gap-3 no-underline" href="/" aria-label={`${site.nome}, página inicial`}>
@@ -18,7 +18,7 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
           <b class="text-guia font-extrabold tracking-[0.01em] text-white">
             {site.nome.toUpperCase()}
           </b>
-          <span class="text-micro font-semibold tracking-[0.02em] text-[#93a7bc]">
+          <span class="text-micro font-semibold tracking-[0.02em] text-[#a19a9c]">
             {site.descritivo}
           </span>
         </span>
@@ -36,7 +36,7 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
                     'block whitespace-nowrap rounded-lg px-3 py-2 text-corpo font-semibold no-underline transition-colors',
                     estaAtiva(item.href)
                       ? 'bg-white/10 text-white'
-                      : 'text-[#c9d6e4] hover:bg-white/10 hover:text-white',
+                      : 'text-[#d3cdce] hover:bg-white/10 hover:text-white',
                   ]}
                 >
                   {item.curto}
@@ -76,7 +76,7 @@ const estaAtiva = (href: string) => atual === href.replace(/\/$/, '')
           <a
             href={item.href}
             aria-current={estaAtiva(item.href) ? 'page' : undefined}
-            class="block border-b border-white/5 px-1 py-3.5 font-semibold text-[#d8e3ee] no-underline"
+            class="block border-b border-white/5 px-1 py-3.5 font-semibold text-[#dfdadb] no-underline"
           >
             {item.completo}
           </a>

@@ -81,7 +81,7 @@ const etapas = [
 
       <p class="mt-6">
         <a
-          class="group inline-flex items-center gap-2 font-bold text-fire"
+          class="group inline-flex items-center gap-2 font-bold text-wine"
           href="/avcb"
         >
           Entenda o AVCB: o que é, o que exige e o que muda quando vence
@@ -111,12 +111,12 @@ const etapas = [
     descricao="Da organização do que já existe até o acompanhamento da vistoria, dentro de um único processo."
   />
 
-  <section class="bg-navy-900 py-20 text-white lg:py-24" aria-labelledby="em-jogo">
+  <section class="bg-graphite-900 py-20 text-white lg:py-24" aria-labelledby="em-jogo">
     <div class="mx-auto w-full max-w-wrap px-5">
       <h2 id="em-jogo" class="max-w-[26ch] text-secao text-white">
         Documentação de incêndio pendente não fica parada. Ela cobra.
       </h2>
-      <p class="mt-3 max-w-[72ch] text-[#b9c9da]">
+      <p class="mt-3 max-w-[72ch] text-[#c9c2c4]">
         Enquanto o processo não é concluído, a edificação segue exposta em frentes que costumam
         aparecer todas juntas, e quase sempre no pior momento.
       </p>
@@ -124,8 +124,8 @@ const etapas = [
       <ul class="mt-11 grid list-none gap-4 md:grid-cols-2">
         {
           riscos.map((risco) => (
-            <li class="flex items-start gap-3 rounded-lg border border-white/12 bg-white/5 p-5 text-corpo text-[#dce7f2]">
-              <span class="mt-[0.45em] size-1.5 shrink-0 rounded-full bg-fire" aria-hidden="true" />
+            <li class="flex items-start gap-3 rounded-lg border border-white/12 bg-white/5 p-5 text-corpo text-[#e6e1e2]">
+              <span class="mt-[0.45em] size-1.5 shrink-0 rounded-full bg-wine" aria-hidden="true" />
               {risco}
             </li>
           ))
@@ -149,7 +149,7 @@ const etapas = [
         {
           etapas.map((etapa, indice) => (
             <li class="rounded-xl border border-line bg-white p-6 shadow-card">
-              <span class="inline-flex size-8 items-center justify-center rounded-full bg-navy-900 text-apoio font-bold text-white">
+              <span class="inline-flex size-8 items-center justify-center rounded-full bg-graphite-900 text-apoio font-bold text-white">
                 {indice + 1}
               </span>
               <h3 class="mt-4 text-cartao text-ink">{etapa.titulo}</h3>
