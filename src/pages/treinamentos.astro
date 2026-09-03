@@ -123,15 +123,9 @@ const motivos = [
               <p class="mt-5 text-rotulo font-bold uppercase tracking-[0.08em] text-ash-500">
                 Programa
               </p>
-              <ul class="mt-3 flex flex-col gap-2.5 border-t border-line-soft pt-4 text-corpo text-ink-soft">
+              <ul class="mt-3 flex flex-col gap-2 border-l-2 border-l-div-fire/35 pl-4 text-corpo text-ink-soft">
                 {curso.data.conteudo.map((topico) => (
-                  <li class="flex items-start gap-2.5">
-                    <span
-                      class="mt-[0.5em] size-1.5 shrink-0 rounded-full bg-div-fire"
-                      aria-hidden="true"
-                    />
-                    {topico}
-                  </li>
+                  <li>{topico}</li>
                 ))}
               </ul>
 
@@ -205,7 +199,6 @@ const motivos = [
 
         <div class="flex flex-wrap gap-3">
           <BotaoWhatsapp origem="treinamento">Solicitar proposta</BotaoWhatsapp>
-          <BotaoLink href="/contato" variante="sobreEscuro">Enviar pelo formulário</BotaoLink>
         </div>
       </div>
     </div>

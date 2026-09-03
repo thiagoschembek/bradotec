@@ -28,9 +28,9 @@ const restantes = servicos.length - mostrados.length
  * tempo de execucao — a cor sairia do CSS final.
  */
 const estilos = {
-  fire: { texto: 'text-div-fire', marcador: 'bg-div-fire', topo: 'before:bg-div-fire' },
-  doc: { texto: 'text-div-doc', marcador: 'bg-div-doc', topo: 'before:bg-div-doc' },
-  auto: { texto: 'text-div-auto', marcador: 'bg-div-auto', topo: 'before:bg-div-auto' },
+  fire: { texto: 'text-div-fire', borda: 'border-l-div-fire/35', topo: 'before:bg-div-fire' },
+  doc: { texto: 'text-div-doc', borda: 'border-l-div-doc/35', topo: 'before:bg-div-doc' },
+  auto: { texto: 'text-div-auto', borda: 'border-l-div-auto/35', topo: 'before:bg-div-auto' },
 } as const
 
 const estilo = estilos[cor]
@@ -50,16 +50,15 @@ const estilo = estilos[cor]
   <h3 class="mt-2 text-cartao-lg text-ink">{titulo}</h3>
   <p class="mt-2 text-ink-soft">{resumo}</p>
 
-  <ul class="mt-5 flex flex-col gap-2.5 border-t border-line-soft pt-5 text-corpo text-ink-soft">
+  <ul
+    class:list={[
+      "mt-5 flex flex-col gap-2 border-l-2 pl-4 text-corpo text-ink-soft",
+      estilo.borda,
+    ]}
+  >
     {
       mostrados.map((servico) => (
-        <li class="flex items-start gap-2.5">
-          <span
-            class:list={['mt-[0.5em] size-1.5 shrink-0 rounded-full', estilo.marcador]}
-            aria-hidden="true"
-          />
-          {servico}
-        </li>
+        <li>{servico}</li>
       ))
     }
     {restantes > 0 && (

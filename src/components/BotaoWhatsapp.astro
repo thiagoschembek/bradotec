@@ -46,8 +46,11 @@ const classes = cn(
     </a>
   ) : (
     /* Numero ainda nao configurado: leva ao formulario em vez de abrir uma
-       conversa com numero inexistente. */
-    <a class={classes} href="/contato" data-wa-pendente={origem}>
+       conversa com numero inexistente.
+
+       A ancora importa: sem ela, o botao dentro da propria /contato apontava
+       para /contato e recarregava a pagina no mesmo lugar. */
+    <a class={classes} href="/contato#formulario" data-wa-pendente={origem}>
       <IconeWhatsapp />
       <slot />
     </a>
