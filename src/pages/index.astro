@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import fotoJoaoPessoa from '@/assets/fotos-provisorias/joao-pessoa-vista-aerea.jpg'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CartaoDivisao from '@/components/CartaoDivisao.astro'
@@ -56,7 +57,11 @@ const diferenciais = [
   <section
     class="overflow-hidden bg-graphite-900 bg-[radial-gradient(900px_480px_at_85%_-10%,rgba(142,28,33,0.30),transparent_62%)] py-20 text-white lg:py-24"
   >
-    <FundoIlustrado cena="fachada" />
+    <FundoIlustrado
+      cena="fachada"
+      foto={fotoJoaoPessoa}
+      descricaoDaFoto="Vista aérea de João Pessoa, com os edifícios da orla e o mar ao fundo"
+    />
 
     <div class="relative mx-auto w-full max-w-wrap px-5">
       <div class="grid items-center gap-11 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">

@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils'
  */
 interface Props {
   href: string
-  variante?: 'sobreEscuro' | 'contorno' | 'escuro'
+  variante?: 'primario' | 'sobreEscuro' | 'contorno' | 'escuro'
   larguraTotal?: boolean
   pequeno?: boolean
   class?: string
@@ -26,6 +26,9 @@ const {
 } = Astro.props
 
 const variantes = {
+  /* Solida, para o CTA principal. E a unica legivel sobre foto: botao
+     fantasma sobre fundo fotografico e o caso que a norma manda evitar. */
+  primario: 'border-transparent bg-wine text-white hover:bg-wine-dark',
   sobreEscuro: 'border-white/30 bg-white/10 text-white hover:bg-white/20',
   contorno: 'border-[#cfc9ca] text-graphite-900 hover:border-graphite-900 hover:bg-line-soft',
   escuro: 'border-transparent bg-graphite-900 text-white hover:bg-graphite-700',

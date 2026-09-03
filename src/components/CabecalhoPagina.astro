@@ -8,15 +8,19 @@ interface Props {
   trilha: readonly { nome: string; href: string }[]
   /** Cena de fundo. Sem ela o cabecalho fica so com o grafite chapado. */
   cena?: Cena
+  /** Foto de fundo. Entra no lugar da cena desenhada. */
+  foto?: ImageMetadata
+  /** Texto alternativo da foto. */
+  descricaoDaFoto?: string
 }
-const { titulo, subtitulo, trilha, cena } = Astro.props
+const { titulo, subtitulo, trilha, cena, foto, descricaoDaFoto } = Astro.props
 const atual = trilha[trilha.length - 1]
 ---
 
 <section
   class="relative overflow-hidden bg-gradient-to-b from-graphite-900 to-graphite-800 py-12 text-white"
 >
-  {cena && <FundoIlustrado cena={cena} />}
+  {cena && <FundoIlustrado cena={cena} foto={foto} descricaoDaFoto={descricaoDaFoto} />}
 
   <div class="relative mx-auto w-full max-w-[820px] px-5">
     <nav class="mb-4 text-rotulo text-[#a8a0a2]" aria-label="Você está em">

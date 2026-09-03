@@ -1,4 +1,5 @@
 ---
+import fotoCarimbo from '@/assets/fotos-provisorias/carimbo-em-documentos.jpg'
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
@@ -33,13 +34,15 @@ const situacoes = [
   schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
+    foto={fotoCarimbo}
+    descricaoDaFoto="Mãos carimbando documentos sobre uma mesa de escritório"
     cena="fachada"
     titulo="Regularizações, licenças e gestão documental"
     subtitulo="Licenças, certidões, protocolos e regularização de empresas e imóveis em João Pessoa, com o processo acompanhado até a conclusão."
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoLink href="/contato">Solicitar orçamento</BotaoLink>
+      <BotaoLink href="/contato" variante="primario">Solicitar orçamento</BotaoLink>
     </div>
   </CabecalhoPagina>
 

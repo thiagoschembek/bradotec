@@ -1,13 +1,25 @@
 ---
+import { Image } from 'astro:assets'
 import type { Cena } from '@/lib/cenas'
 
 interface Props {
   cena: Cena
+  /**
+   * Foto de fundo. Quando presente, entra no lugar da cena desenhada, no
+   * mesmo slot e com o mesmo veu — entao o teste de contraste que ja existe
+   * passa a cobrir a foto sem nenhuma mudanca.
+   *
+   * As fotos de src/assets/fotos-provisorias sao marcador de lugar e nao
+   * tem licenca de uso. Ver o LEIA-ME daquela pasta.
+   */
+  foto?: ImageMetadata
+  /** Texto alternativo. Obrigatorio quando ha foto. */
+  descricaoDaFoto?: string
   /** Classe extra para posicionamento. */
   class?: string
 }
 
-const { cena, class: classe = '' } = Astro.props
+const { cena, foto, descricaoDaFoto = '', class: classe = '' } = Astro.props
 
 /**
  * Fundo ilustrado das faixas escuras.
@@ -75,8 +87,39 @@ const blocos =
     : []
 ---
 
+{
+  foto && (
+    <div class:list={['pointer-events-none absolute inset-0', classe]}>
+      <Image
+        src={foto}
+        alt={descricaoDaFoto}
+        class="h-full w-full object-cover"
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        loading="eager"
+      />
+      {/*
+        Veu sobre a foto, mais forte que o do desenho. Foto tem areas claras
+        que desenho nao tem, e o texto por cima precisa do mesmo contraste de
+        sempre. O valor foi medido, nao chutado: ver
+        e2e/contraste-sobre-ilustracao.spec.ts, que cobre estas fotos sem
+        precisar de nenhuma mudanca.
+
+        Sao duas camadas: uma uniforme, que garante o piso, e uma que escurece
+        mais o lado esquerdo, onde o texto fica.
+      */}
+      <div class="absolute inset-0 bg-graphite-950/70" />
+      <div class="absolute inset-0 bg-gradient-to-r from-graphite-950/85 via-graphite-950/50 to-graphite-950/20" />
+    </div>
+  )
+}
+
 <svg
-  class={`pointer-events-none absolute inset-0 h-full w-full ${classe}`}
+  class:list={[
+    'pointer-events-none absolute inset-0 h-full w-full',
+    foto && 'hidden',
+    classe,
+  ]}
   viewBox="0 0 1200 620"
   preserveAspectRatio="xMidYMax slice"
   fill="none"

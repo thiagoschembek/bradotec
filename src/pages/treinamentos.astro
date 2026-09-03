@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import fotoExtintor from '@/assets/fotos-provisorias/extintor-e-prancheta.jpg'
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
@@ -58,13 +59,15 @@ const motivos = [
   schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
+    foto={fotoExtintor}
+    descricaoDaFoto="Extintor de incêndio ao lado de uma prancheta com ficha de inspeção"
     cena="treinamento"
     titulo="Treinamento de brigada de incêndio e primeiros socorros"
     subtitulo="Para a equipe saber o que fazer nos primeiros minutos, e para a edificação cumprir o que o Corpo de Bombeiros exige."
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoLink href="/contato">Solicitar proposta</BotaoLink>
+      <BotaoLink href="/contato" variante="primario">Solicitar proposta</BotaoLink>
     </div>
   </CabecalhoPagina>
 

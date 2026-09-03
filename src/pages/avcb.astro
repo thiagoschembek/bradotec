@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import fotoInspecao from '@/assets/fotos-provisorias/inspecao-de-extintores.png'
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
@@ -56,13 +57,15 @@ const cotacao = doGrupo('cotacao')
   schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
+    foto={fotoInspecao}
+    descricaoDaFoto="Inspeção de extintores em uma casa de máquinas, com prancheta de conferência"
     cena="rota"
     titulo="AVCB: o que é, para que serve e o que costuma ser exigido"
     subtitulo="O documento que atesta que a edificação está em conformidade com as normas de segurança contra incêndio, e o que acontece quando ele vence."
     trilha={trilha}
   >
     <div class="mt-6 flex flex-wrap gap-3">
-      <BotaoLink href="/diagnostico">Responder as 4 perguntas</BotaoLink>
+      <BotaoLink href="/diagnostico" variante="primario">Responder as 4 perguntas</BotaoLink>
     </div>
   </CabecalhoPagina>
 
