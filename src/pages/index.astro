@@ -144,26 +144,34 @@ const diferenciais = [
       </p>
 
       {/*
-        Sem numeracao nos cartoes: sao oito situacoes paralelas, nao uma
-        sequencia. Numerar sugeriria uma ordem que nao existe.
-        A seta e o unico enfeite, e existe para dizer que o cartao navega.
+        Lista, e nao nove cartoes.
+
+        Duas razoes. A primeira e de composicao: esta secao e a de "Tres
+        divisoes" usavam a MESMA familia de layout, grade de tres colunas com
+        cartao, uma logo depois da outra. Duas secoes seguidas com o mesmo
+        desenho fazem a pagina parecer template. Agora esta e lista e a
+        outra e cartao, e cada uma se distingue.
+
+        A segunda e de peso: nove caixas com borda e sombra somavam nove
+        blocos disputando atencao logo abaixo do hero. Como lista, o mesmo
+        conteudo ocupa menos e le mais rapido.
+
+        Sem numeracao: sao nove situacoes paralelas, nao uma sequencia.
+        O fio a esquerda acende no hover, que e o que diz que a linha navega.
       */}
-      <ul class="mt-11 grid list-none gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul class="mt-11 grid list-none gap-x-10 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
         {
           caminhos.map((caminho) => (
             <li>
               <a
-                class="group flex h-full flex-col rounded-xl border border-line bg-white p-5 no-underline shadow-card transition-[translate,box-shadow,border-color] duration-200 ease-saida hover:-translate-y-0.5 hover:border-graphite-900 hover:shadow-float"
+                class="group flex h-full flex-col border-l-2 border-l-line py-4 pl-5 no-underline transition-[border-color,padding] duration-200 ease-saida hover:border-l-wine hover:pl-6"
                 href={caminho.data.href}
               >
-                <span class="text-cartao font-bold text-ink transition-colors group-hover:text-wine">
+                <span class="flex items-center gap-2 text-cartao font-bold text-ink transition-colors group-hover:text-wine">
                   {caminho.data.titulo}
-                </span>
-                <span class="mt-2 text-corpo text-ink-soft">{caminho.data.descricao}</span>
-                <span class="mt-auto block pt-5 text-ash-400 group-hover:text-wine">
                   <svg
-                    width="19"
-                    height="19"
+                    width="17"
+                    height="17"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -171,11 +179,12 @@ const diferenciais = [
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     aria-hidden="true"
-                    class="transition-transform duration-200 ease-saida group-hover:translate-x-1"
+                    class="shrink-0 opacity-0 transition-[opacity,translate] duration-200 ease-saida group-hover:translate-x-1 group-hover:opacity-100"
                   >
                     <path d="M5 12h13m-5-6 6 6-6 6" />
                   </svg>
                 </span>
+                <span class="mt-1.5 text-corpo text-ink-soft">{caminho.data.descricao}</span>
               </a>
             </li>
           ))
