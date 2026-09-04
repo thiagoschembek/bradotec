@@ -15,11 +15,22 @@ interface Props {
   foto?: ImageMetadata
   /** Texto alternativo. Obrigatorio quando ha foto. */
   descricaoDaFoto?: string
+  /**
+   * Enquadramento do corte, em object-position. Foto vertical num bloco
+   * largo e baixo perde o assunto se o corte for sempre pelo centro.
+   */
+  enquadramento?: string
   /** Classe extra para posicionamento. */
   class?: string
 }
 
-const { cena, foto, descricaoDaFoto = '', class: classe = '' } = Astro.props
+const {
+  cena,
+  foto,
+  descricaoDaFoto = '',
+  enquadramento = '50% 50%',
+  class: classe = '',
+} = Astro.props
 
 /**
  * Fundo ilustrado das faixas escuras.
@@ -94,6 +105,7 @@ const blocos =
         src={foto}
         alt={descricaoDaFoto}
         class="h-full w-full object-cover"
+        style={`object-position: ${enquadramento}`}
         widths={[768, 1280, 1920]}
         sizes="100vw"
         loading="eager"

@@ -15,10 +15,12 @@ notificação de direito autoral.
 |---|---|---|
 | `casa-de-bomba.webp` | /seguranca-contra-incendio | vistoria real da equipe |
 | `inspecao-de-extintores.png` | /avcb | inspeção real |
-| `extintor-e-prancheta.jpg` | /treinamentos | treinamento do sogro |
 | `carimbo-em-documentos.jpg` | /regularizacoes | protocolo real |
 | `joao-pessoa-vista-aerea.jpg` | home | foto própria ou licenciada |
 
-O teste `e2e/contraste-sobre-ilustracao.spec.ts` já cobre estas imagens:
-foto é muito mais clara que desenho, e ele falha se o texto por cima perder
-contraste.
+Uma já saiu: `extintor-e-prancheta.jpg`, substituída pelas fotos reais em
+`../fotos/`. Restam quatro.
+
+O teste `e2e/contraste-sobre-ilustracao.spec.ts` cobre estas imagens: foto é
+muito mais clara que desenho, e ele falha se o texto por cima perder
+contraste. Ele já pegou uma queda para 3.83:1 durante o ajuste do véu.

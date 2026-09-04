@@ -12,15 +12,22 @@ interface Props {
   foto?: ImageMetadata
   /** Texto alternativo da foto. */
   descricaoDaFoto?: string
+  /** Enquadramento do corte da foto. */
+  enquadramento?: string
 }
-const { titulo, subtitulo, trilha, cena, foto, descricaoDaFoto } = Astro.props
+const { titulo, subtitulo, trilha, cena, foto, descricaoDaFoto, enquadramento } = Astro.props
 const atual = trilha[trilha.length - 1]
 ---
 
 <section
   class="relative overflow-hidden bg-gradient-to-b from-graphite-900 to-graphite-800 py-12 text-white"
 >
-  {cena && <FundoIlustrado cena={cena} foto={foto} descricaoDaFoto={descricaoDaFoto} />}
+  {cena && <FundoIlustrado
+      cena={cena}
+      foto={foto}
+      descricaoDaFoto={descricaoDaFoto}
+      enquadramento={enquadramento}
+    />}
 
   <div class="relative mx-auto w-full max-w-[820px] px-5">
     <nav class="mb-4 text-rotulo text-[#a8a0a2]" aria-label="Você está em">

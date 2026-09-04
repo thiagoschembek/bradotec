@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
-import fotoExtintor from '@/assets/fotos-provisorias/extintor-e-prancheta.jpg'
+import fotoInstrutor from '@/assets/fotos/instrutor-demonstracao.jpg'
+import fotoTurma from '@/assets/fotos/turma-treinamento.jpg'
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
@@ -59,8 +61,6 @@ const motivos = [
   schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
-    foto={fotoExtintor}
-    descricaoDaFoto="Extintor de incêndio ao lado de uma prancheta com ficha de inspeção"
     cena="treinamento"
     titulo="Treinamento de brigada de incêndio e primeiros socorros"
     subtitulo="Para a equipe saber o que fazer nos primeiros minutos, e para a edificação cumprir o que o Corpo de Bombeiros exige."
@@ -82,6 +82,26 @@ const motivos = [
         documentação da edificação forma a brigada dela, sem contratar dois fornecedores para o
         mesmo assunto.
       </p>
+
+      {/*
+        Foto real, visivel e sem veu. Ela estava no cabecalho e sumia: e uma
+        imagem vertical, e num bloco largo o corte so se move na vertical, o
+        que jogava o instrutor sempre no lado escurecido para o texto. Aqui
+        ela ocupa a largura toda e o assunto aparece.
+      */}
+      <figure class="m-0 mt-11">
+        <Image
+          src={fotoInstrutor}
+          alt="Instrutor da Bradotec preparando a demonstração prática com botijão de gás, ao lado das placas de extintor de água e de pó BC"
+          class="aspect-[16/7] w-full rounded-xl object-cover object-[50%_42%]"
+          widths={[768, 1280, 1920]}
+          sizes="(min-width: 1180px) 1140px, 100vw"
+          loading="lazy"
+        />
+        <figcaption class="mt-3 text-apoio text-ash-500">
+          Montagem da demonstração prática, antes da queima controlada.
+        </figcaption>
+      </figure>
 
       <dl class="mt-11 grid gap-6 md:grid-cols-3">
         {
@@ -183,7 +203,7 @@ const motivos = [
 
   <section class="bg-graphite-900 py-16 text-white lg:py-20" aria-labelledby="proposta">
     <div class="mx-auto w-full max-w-wrap px-5">
-      <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
           <h2 id="proposta" class="max-w-[24ch] text-secao text-white">
             A proposta sai depois de olhar a sua edificação
@@ -198,11 +218,31 @@ const motivos = [
             Diga quantas pessoas participariam e que tipo de edificação é, e a proposta volta com o
             dimensionamento já feito.
           </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <BotaoWhatsapp origem="treinamento">Solicitar proposta</BotaoWhatsapp>
+          </div>
         </div>
 
-        <div class="flex flex-wrap gap-3">
-          <BotaoWhatsapp origem="treinamento">Solicitar proposta</BotaoWhatsapp>
-        </div>
+        {/*
+          Foto real de um treinamento conduzido pela Bradotec. Fica visivel,
+          sem veu por cima: e a coisa mais forte que o site tem para mostrar,
+          e escurece-la para virar textura desperdicaria justamente o que ela
+          prova. Legenda funcional, sem numero inventado de participantes.
+        */}
+        <figure class="m-0">
+          <Image
+            src={fotoTurma}
+            alt="Turma ao final de um treinamento da Bradotec, reunida atrás de uma queima controlada, com extintores de CO2 e de pó BC em primeiro plano"
+            class="w-full rounded-xl object-cover"
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            loading="lazy"
+          />
+          <figcaption class="mt-3 text-apoio text-[#a19a9c]">
+            Fim de um treinamento com queima controlada, em João Pessoa.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
