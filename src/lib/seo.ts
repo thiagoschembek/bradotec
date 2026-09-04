@@ -46,6 +46,38 @@ export function jsonLdNegocioLocal(siteUrl: string) {
   })
 }
 
+/**
+ * A pessoa a frente da empresa, com a formacao declarada.
+ *
+ * Serve ao mesmo proposito que a secao visivel: e a unica prova de
+ * autoridade que este site pode declarar hoje sem inventar nada. Nao entra
+ * nota, avaliacao nem numero de clientes, que continuam placeholder.
+ */
+export function jsonLdPessoa(
+  pessoa: {
+    nome: string
+    resumoCurto: string
+    credenciais: readonly { titulo: string }[]
+  },
+  siteUrl: string
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: pessoa.nome,
+    description: pessoa.resumoCurto,
+    worksFor: {
+      '@type': 'Organization',
+      name: `${site.nome}: ${site.descritivo}`,
+      url: siteUrl,
+    },
+    hasCredential: pessoa.credenciais.map((c) => ({
+      '@type': 'EducationalOccupationalCredential',
+      name: c.titulo,
+    })),
+  }
+}
+
 export function jsonLdBreadcrumb(
   trilha: readonly { nome: string; href: string }[],
   siteUrl: string

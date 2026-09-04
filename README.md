@@ -109,6 +109,14 @@ preenchidos em `src/config/site.ts`, aparecem sozinhas.
 Dados de contato ainda pendentes aparecem **destacados em amarelo** na tela,
 para ninguém publicar sem perceber que faltou preencher.
 
+A autoridade do site vem de outro lugar: a formação e a carreira de quem está
+à frente da empresa, em `src/content/lideranca.json`. É dado verificável, veio
+do cliente e não depende de nenhum número. O schema dessa coleção exige o campo
+`limite`, a frase que diz o que a experiência **não** abrevia — sem ela o build
+falha, porque currículo de segurança pública num site que vende regularização
+junto ao Corpo de Bombeiros é exatamente onde uma página escorrega para
+insinuar acesso privilegiado.
+
 ---
 
 ## 5. Como o projeto está organizado

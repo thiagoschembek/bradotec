@@ -3,10 +3,14 @@
 Diferente de `../fotos-provisorias/`, estas sao fotos do proprio trabalho da
 empresa e podem ficar no site.
 
-| Arquivo | O que mostra |
-|---|---|
-| `instrutor-demonstracao.jpg` | Instrutor preparando a demonstracao com botijao, ao lado das placas de extintor de agua e po BC |
-| `turma-treinamento.jpg` | Turma ao fim de um treinamento, com a queima controlada e os extintores de CO2 e po BC |
+| Arquivo | O que mostra | Onde aparece |
+|---|---|---|
+| `instrutor-demonstracao.jpg` | Miguel Arcanjo preparando a demonstracao com botijao, ao lado das placas de extintor de agua e po BC | `/treinamentos` (faixa 16:7) e a secao "Quem esta por tras" na home e em `/sobre` (corte quadrado) |
+| `turma-treinamento.jpg` | Turma ao fim de um treinamento, com a queima controlada e os extintores de CO2 e po BC | `/treinamentos` |
+
+A pessoa de `instrutor-demonstracao.jpg` e identificada pelo nome no site, e e
+a mesma que esta a frente da empresa. Publicar a propria imagem e decisao dela,
+nao de terceiro: nao ha aqui a pendencia que existe na foto da turma, abaixo.
 
 ## Um ponto que depende do cliente
 

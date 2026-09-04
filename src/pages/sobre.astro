@@ -1,16 +1,23 @@
 ---
+import { getCollection } from 'astro:content'
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
 import DadoCliente from '@/components/DadoCliente.astro'
+import Lideranca from '@/components/Lideranca.astro'
 import { site } from '@/config/site'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { jsonLdPessoa } from '@/lib/seo'
 
 const trilha = [
   { nome: 'Início', href: '/' },
   { nome: 'A Bradotec', href: '/sobre' },
 ] as const
+
+const siteUrl = Astro.site?.href ?? 'https://dominio-do-cliente.example/'
+const [pessoa] = (await getCollection('lideranca')).sort((a, b) => a.data.ordem - b.data.ordem)
+const schemaPessoa = pessoa ? jsonLdPessoa(pessoa.data, siteUrl) : undefined
 
 const comoTrabalhamos = [
   'Levantamento antes da proposta: primeiro entender a situação, depois definir o escopo',
@@ -25,6 +32,7 @@ const comoTrabalhamos = [
   titulo={`A ${site.nome}: despachadoria e soluções documentais em ${site.cidade} (${site.estado})`}
   descricao="A Bradotec reúne gestão documental, regularização, licenciamento e segurança contra incêndio em um só interlocutor, para empresas, condomínios, instituições e frotas em João Pessoa e região."
   trilha={trilha}
+  schemasExtras={schemaPessoa ? [schemaPessoa] : []}
 >
   <CabecalhoPagina
     cena="fachada"
@@ -54,7 +62,9 @@ const comoTrabalhamos = [
     </div>
   </section>
 
-  <section class="bg-canvas py-14" aria-labelledby="como-trabalhamos">
+  <Lideranca />
+
+  <section class="py-14" aria-labelledby="como-trabalhamos">
     <div class="mx-auto w-full max-w-[820px] px-5">
       <h2 id="como-trabalhamos" class="text-secao text-ink">Como trabalhamos</h2>
       <ul class="mt-6 flex list-none flex-col gap-3">
@@ -70,7 +80,7 @@ const comoTrabalhamos = [
     </div>
   </section>
 
-  <section class="py-14" aria-labelledby="onde-atuamos">
+  <section class="bg-canvas py-14" aria-labelledby="onde-atuamos">
     <div class="mx-auto w-full max-w-[820px] px-5">
       <h2 id="onde-atuamos" class="text-secao text-ink">Onde atuamos</h2>
       <p class="mt-4 text-ink-soft">
@@ -103,9 +113,9 @@ const comoTrabalhamos = [
       </dl>
 
       <p class="mt-5 text-apoio text-ash-500">
-        Histórico da empresa, ano de fundação, equipe, certificações e números de atendimento não
-        foram informados e, por isso, não foram criados. Assim que forem enviados, entram nesta
-        página.
+        Histórico da empresa, ano de fundação, demais integrantes da equipe e números de
+        atendimento não foram informados e, por isso, não foram criados. Assim que forem enviados,
+        entram nesta página.
       </p>
     </div>
   </section>

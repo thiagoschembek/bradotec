@@ -162,6 +162,43 @@ const treinamentos = defineCollection({
   }),
 })
 
+/**
+ * Quem esta a frente da empresa.
+ *
+ * E a unica prova de autoridade que o site pode exibir hoje: numero de
+ * clientes, depoimento e nota do Google sao placeholder, e a regra do projeto
+ * proibe inventar. Formacao e carreira de uma pessoa real, informadas pelo
+ * cliente, sao verificaveis e nao dependem de nenhum numero.
+ *
+ * `limite` e obrigatorio de proposito. Curriculo de quem veio da seguranca
+ * publica, num site que vende regularizacao junto ao Corpo de Bombeiros, e
+ * exatamente o lugar onde uma pagina escorrega para insinuar acesso
+ * privilegiado ou prazo garantido. O schema nao deixa a secao existir sem a
+ * frase que diz o que a experiencia NAO faz.
+ */
+const lideranca = defineCollection({
+  loader: file('src/content/lideranca.json'),
+  schema: z.object({
+    nome: z.string().min(3),
+    /** Como a pessoa se relaciona com a empresa, nas palavras do cliente. */
+    papel: z.string().min(5),
+    /** Versao de uma frase, para a home, onde nao cabe a secao inteira. */
+    resumoCurto: z.string().min(60).max(320),
+    apresentacao: z.array(z.string().min(80)).min(1),
+    credenciais: z
+      .array(
+        z.object({
+          titulo: z.string().min(5),
+          detalhe: z.string().min(30).max(300),
+        })
+      )
+      .min(3),
+    /** O que a experiencia nao abrevia. Sem isto a secao vira promessa. */
+    limite: z.string().min(80),
+    ordem: z.number().int().positive(),
+  }),
+})
+
 export const collections = {
   faq,
   divisoes,
@@ -170,4 +207,5 @@ export const collections = {
   caminhos,
   avcb,
   treinamentos,
+  lideranca,
 }

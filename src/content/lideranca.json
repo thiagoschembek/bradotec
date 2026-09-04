@@ -1,0 +1,36 @@
+[
+  {
+    "id": "miguel-arcanjo",
+    "nome": "Miguel Arcanjo",
+    "papel": "À frente da Bradotec",
+    "resumoCurto": "Coronel da Polícia Militar, da reserva, com trinta anos de segurança pública. Bacharel em Direito, técnico em prevenção e combate a incêndio e despachante documentalista credenciado no CFDD.",
+    "apresentacao": [
+      "Trinta anos na segurança pública, como oficial da Polícia Militar, hoje na reserva. Foi tempo suficiente para ver de perto as duas pontas do mesmo problema: o que acontece quando a prevenção existe só no papel, e o que a lei cobra de quem administra depois que alguma coisa acontece.",
+      "A Bradotec trabalha em três frentes, e as três estão nessa formação. A prevenção e o combate a incêndio sustentam a divisão Fire. O Direito sustenta a leitura de norma que a regularização de empresas, imóveis e condomínios exige. O credenciamento de despachante documentalista sustenta a divisão Auto. Não é uma empresa que aprendeu segurança por fora: é a mesma carreira, aplicada agora do lado de quem precisa se regularizar."
+    ],
+    "credenciais": [
+      {
+        "titulo": "Coronel da Polícia Militar, da reserva",
+        "detalhe": "Trinta anos de carreira em segurança pública, lidando com risco real e não com risco descrito em relatório."
+      },
+      {
+        "titulo": "Especialista em segurança pública",
+        "detalhe": "Formação específica na mesma área em que atuou a carreira inteira, o que é diferente de ter lido sobre ela."
+      },
+      {
+        "titulo": "Bacharel em Direito",
+        "detalhe": "Regularizar é, no fim, leitura de norma: o que a lei exige, de quem ela exige e a partir de quando passa a exigir."
+      },
+      {
+        "titulo": "Técnico em prevenção e combate a incêndio",
+        "detalhe": "A base técnica da divisão Fire: extintores, saídas, sinalização, brigada e o processo junto ao Corpo de Bombeiros."
+      },
+      {
+        "titulo": "Despachante documentalista credenciado no CFDD",
+        "detalhe": "Credenciamento no Conselho Federal dos Despachantes Documentalistas, a entidade de classe da profissão. É a base da divisão Auto."
+      }
+    ],
+    "limite": "Trinta anos de segurança pública não abreviam análise, vistoria nem aprovação: essas decisões são do órgão competente e continuam sendo. O que a experiência muda é a qualidade do que chega até lá, e a quantidade de exigências que voltam.",
+    "ordem": 1
+  }
+]

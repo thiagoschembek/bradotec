@@ -6,6 +6,7 @@ import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CartaoDivisao from '@/components/CartaoDivisao.astro'
 import Faq from '@/components/Faq.astro'
 import FundoIlustrado from '@/components/FundoIlustrado.astro'
+import Lideranca from '@/components/Lideranca.astro'
 import PainelVencimentos from '@/components/PainelVencimentos.astro'
 import { site } from '@/config/site'
 import BaseLayout from '@/layouts/BaseLayout.astro'
@@ -252,6 +253,15 @@ const diferenciais = [
       </dl>
     </div>
   </section>
+
+  {/*
+    A home nao tem numero de clientes, depoimento nem nota do Google: sao
+    placeholder, e a regra do projeto proibe inventar. Esta faixa e a prova
+    de autoridade que resta, e ela e melhor que as tres juntas, porque tem
+    nome, formacao e cara. Versao curta de proposito: a secao completa mora
+    em /sobre, e a home ja tinha informacao demais.
+  */}
+  <Lideranca compacto />
 
   <Faq pagina="home" />
 </BaseLayout>
