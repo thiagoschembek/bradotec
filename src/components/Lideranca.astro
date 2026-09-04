@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
-import retrato from '@/assets/fotos/instrutor-demonstracao.jpg'
+import retrato from '@/assets/fotos/miguel-arcanjo.jpg'
 import Kicker from '@/components/Kicker.astro'
 
 /**
@@ -12,9 +12,11 @@ import Kicker from '@/components/Kicker.astro'
  * componente porque o texto sai de um arquivo so e as duas paginas nao
  * podem divergir.
  *
- * A foto e a mesma que aparece em /treinamentos, com enquadramento
- * diferente. Nao e economia: e a pessoa da secao trabalhando, e nao um
- * retrato de estudio. Vale mais como prova do que qualquer pose.
+ * O retrato e de estudio, sem legenda. A foto do treinamento, que estava
+ * aqui antes, situava a cena mas nao apresentava a pessoa: ela aparecia
+ * pequena, curvada e de perfil. Quem esta decidindo contratar quer ver com
+ * quem vai falar. A foto do treinamento continua em /treinamentos, que e
+ * onde ela prova alguma coisa.
  */
 interface Props {
   /** Faixa curta da home. Sem ela, a secao completa de /sobre. */
@@ -27,7 +29,7 @@ if (!pessoa) throw new Error('Coleção `lideranca` está vazia.')
 
 const { nome, papel, resumoCurto, apresentacao, credenciais, limite } = pessoa.data
 
-const descricaoDaFoto = `${nome} preparando a demonstração prática de combate a incêndio, ao lado das placas de extintor de água e de pó BC`
+const descricaoDaFoto = `Retrato de ${nome}, de terno escuro, sobre fundo preto`
 ---
 
 {
@@ -38,19 +40,18 @@ const descricaoDaFoto = `${nome} preparando a demonstração prática de combate
           Quem está por trás da Bradotec
         </h2>
 
-        <div class="mt-9 grid gap-8 sm:grid-cols-[minmax(0,300px)_1fr] sm:items-center sm:gap-10">
+        <div class="mt-9 grid gap-8 sm:grid-cols-[minmax(0,260px)_1fr] sm:items-center sm:gap-10">
           {/*
-            Corte quadrado. A foto original e 3:4, entao o quadrado tira 25%
-            da altura: sai o teto vazio em cima e parte do chao embaixo, que
-            era o que sobrava. Fechar mais no rosto perderia as placas de
-            extintor, e sao elas que dizem onde a cena se passa.
+            O retrato e 2:3 e o corte de 4/5 tira 17% da altura, do peito
+            para baixo. O enquadramento sobe para 28% porque o assunto e o
+            rosto: centralizado, sobrava fundo preto acima da cabeca.
           */}
           <Image
             src={retrato}
             alt={descricaoDaFoto}
-            class="aspect-square w-full rounded-xl object-cover object-[50%_45%]"
-            widths={[320, 520]}
-            sizes="(min-width: 640px) 300px, 100vw"
+            class="aspect-[4/5] w-full rounded-xl object-cover object-[50%_28%]"
+            widths={[280, 560]}
+            sizes="(min-width: 640px) 260px, 100vw"
             loading="lazy"
           />
 
@@ -97,19 +98,14 @@ const descricaoDaFoto = `${nome} preparando a demonstração prática de combate
         <p class="mt-1 text-cartao font-bold text-wine">{papel}</p>
 
         <div class="mt-8 grid gap-8 sm:grid-cols-[minmax(0,0.95fr)_1.05fr] sm:items-start sm:gap-9">
-          <figure class="m-0">
-            <Image
-              src={retrato}
-              alt={descricaoDaFoto}
-              class="aspect-square w-full rounded-xl object-cover object-[50%_45%]"
-              widths={[400, 760]}
-              sizes="(min-width: 640px) 380px, 100vw"
-              loading="lazy"
-            />
-            <figcaption class="mt-3 text-apoio text-ash-500">
-              Em treinamento conduzido pela Bradotec, em João Pessoa.
-            </figcaption>
-          </figure>
+          <Image
+            src={retrato}
+            alt={descricaoDaFoto}
+            class="aspect-[4/5] w-full rounded-xl object-cover object-[50%_28%]"
+            widths={[400, 800]}
+            sizes="(min-width: 640px) 380px, 100vw"
+            loading="lazy"
+          />
 
           <div>
             {apresentacao.map((paragrafo, i) => (

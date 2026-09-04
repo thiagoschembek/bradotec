@@ -5,12 +5,17 @@ empresa e podem ficar no site.
 
 | Arquivo | O que mostra | Onde aparece |
 |---|---|---|
-| `instrutor-demonstracao.jpg` | Miguel Arcanjo preparando a demonstracao com botijao, ao lado das placas de extintor de agua e po BC | `/treinamentos` (faixa 16:7) e a secao "Quem esta por tras" na home e em `/sobre` (corte quadrado) |
+| `miguel-arcanjo.jpg` | Retrato de estudio, terno escuro sobre fundo preto | Secao "Quem esta por tras", na home e em `/sobre` |
+| `instrutor-demonstracao.jpg` | Miguel Arcanjo preparando a demonstracao com botijao, ao lado das placas de extintor de agua e po BC | `/treinamentos` |
 | `turma-treinamento.jpg` | Turma ao fim de um treinamento, com a queima controlada e os extintores de CO2 e po BC | `/treinamentos` |
 
-A pessoa de `instrutor-demonstracao.jpg` e identificada pelo nome no site, e e
-a mesma que esta a frente da empresa. Publicar a propria imagem e decisao dela,
+As duas primeiras sao da mesma pessoa, que e quem esta a frente da empresa, e
+ela e identificada pelo nome no site. Publicar a propria imagem e decisao dela,
 nao de terceiro: nao ha aqui a pendencia que existe na foto da turma, abaixo.
+
+`miguel-arcanjo.jpg` chegou com 852x1280, exportado do WhatsApp. Da conta do
+tamanho em que e exibido (380px, ou 760px em tela 2x), mas com pouca margem.
+Se existir o arquivo original da sessao de fotos, vale trocar.
 
 ## Um ponto que depende do cliente
 

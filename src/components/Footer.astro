@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import logo from '@/assets/logo-small.png'
+import logo from '@/assets/marca/logo-bradotec.png'
 import DadoCliente from '@/components/DadoCliente.astro'
 import { navegacaoRodape } from '@/config/navegacao'
 import { ehPlaceholder, site } from '@/config/site'
@@ -18,7 +18,7 @@ const hrefEmail = ehPlaceholder(site.email) ? '/contato' : `mailto:${site.email}
   <div class="mx-auto w-full max-w-wrap px-5">
     <div class="grid gap-9 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
       <div>
-        <Image src={logo} alt={site.nome} width={61} height={52} loading="lazy" class="mb-3.5 h-[52px] w-auto" />
+        <Image src={logo} alt={site.nome} height={104} loading="lazy" class="mb-4 h-[52px] w-auto" />
         <p class="max-w-[34ch] text-apoio text-[#948c8f]">
           Gestão documental, regularização, licenciamento e segurança contra incêndio para
           empresas, condomínios e frotas em {site.cidade} e região.

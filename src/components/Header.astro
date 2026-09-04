@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import logo from '@/assets/logo-small.png'
+import logo from '@/assets/marca/logo-bradotec.png'
 import BotaoLink from '@/components/BotaoLink.astro'
 import { navegacaoPrincipal, paiNoMenu } from '@/config/navegacao'
 import { site } from '@/config/site'
@@ -28,16 +28,23 @@ const estaAtiva = (href: string) => referencia === href.replace(/\/$/, '')
   */}
   <div class="mx-auto w-full px-5 lg:px-8">
     <div class="flex min-h-[74px] items-center gap-4">
-      <a class="mr-auto flex min-h-[44px] items-center gap-3 no-underline" href="/" aria-label={`${site.nome}, página inicial`}>
-        <Image src={logo} alt="" width={49} height={42} loading="eager" class="h-[42px] w-auto" />
-        <span class="flex flex-col leading-[1.05]">
-          <b class="text-guia font-extrabold tracking-[0.01em] text-white">
-            {site.nome.toUpperCase()}
-          </b>
-          <span class="text-micro font-semibold tracking-[0.02em] text-[#a19a9c]">
-            {site.descritivo}
-          </span>
-        </span>
+      {/*
+        A marca vem inteira do arquivo do cliente: escudo e palavra sao um
+        lockup so, com espacamento proprio. Antes o escudo era imagem e a
+        palavra era texto HTML ao lado, o que so funcionava porque a marca
+        antiga nao tinha tipografia propria. Redesenhar o lockup com a fonte
+        do site seria inventar uma marca que nao e a dele.
+
+        O descritivo saiu daqui. Medido: "Despachadoria & Solucoes
+        Documentais" ocupa 245px a 12px, contra 131px do lockup. A legenda
+        ficava quase duas vezes mais larga que a marca que ela legenda, e
+        essa e a forma classica de um lockup parecer amador. Aumentar a marca
+        ate 245px pediria 86px de altura, mais do que a barra inteira tem.
+        O descritivo continua no titulo de cada pagina, no JSON-LD e no
+        rodape, e a propria navegacao ja diz o que a empresa faz.
+      */}
+      <a class="mr-auto inline-flex min-h-[44px] items-center no-underline" href="/" aria-label={`${site.nome}, página inicial`}>
+        <Image src={logo} alt="" height={92} loading="eager" class="h-[46px] w-auto" />
       </a>
 
       <nav class="hidden lg:block" aria-label="Principal">

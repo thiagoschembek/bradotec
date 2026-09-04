@@ -137,7 +137,12 @@ src/
   pages/             Uma rota por arquivo
   styles/
     global.css       IDENTIDADE VISUAL — cores, fontes, espaçamentos
+  assets/
+    marca/           Logo do cliente e tudo derivado dela
+    fotos/           Fotos reais da empresa
 e2e/                 Testes que rodam em navegador de verdade
+scripts/
+  extrair-logo.mjs   Gera logo, favicon e imagem de compartilhamento da marca
 legacy/              Site estático anterior, guardado para consulta
 public/              Arquivos servidos como estão (favicon, _headers)
 ```
@@ -167,6 +172,7 @@ Resultado: a home hoje não baixa **nenhum** arquivo de framework.
 | Depoimentos e nota do Google reais | `src/config/site.ts` | Cliente |
 | Domínio definitivo | variável `SITE_URL` no deploy | Cliente |
 | Histórico e fundação da empresa | página `sobre` | Cliente |
+| Arquivo vetorial da logo (`.svg`/`.ai`) | `src/assets/marca/logo-fonte.jpg` | Cliente |
 | Quiz de 4 perguntas | ilha React | Desenvolvimento |
 | Envio do formulário para quem não usa WhatsApp | back-end (ver `specs/backend/`) | Desenvolvimento |
 
