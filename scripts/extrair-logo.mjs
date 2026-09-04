@@ -138,8 +138,18 @@ const marca = branco(simbolo)
 await gravarPng('src/assets/marca/logo-bradotec.png', lockup, 2)
 await gravarPng('src/assets/marca/simbolo.png', marca, 2)
 
-/** Icone: escudo branco centralizado num quadrado vinho. */
-const vinho = { r: fundo[0], g: fundo[1], b: fundo[2] }
+/**
+ * Icone: escudo branco centralizado num quadrado vinho.
+ *
+ * O vinho e o do site (--color-wine), nao o do arquivo enviado. Sao dois
+ * vermelhos diferentes: o arquivo do cliente tem #610506 de fundo, e o site
+ * usa #8e1c21, tirado das letras da logo anterior. Proximos o bastante para
+ * parecerem erro se aparecessem lado a lado, e a aba do navegador aparece
+ * lado a lado com a pagina. O cliente escolheu manter o do site.
+ *
+ * Se --color-wine mudar em global.css, mudar aqui e rodar o script de novo.
+ */
+const vinho = { r: 0x8e, g: 0x1c, b: 0x21 }
 async function icone(destino, lado) {
   const interno = Math.round(lado * 0.68)
   const escudo = await sharp(marca.buffer, {

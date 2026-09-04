@@ -53,14 +53,33 @@ test.describe('Contraste dos botões', () => {
       await page.waitForLoadState('networkidle')
 
       const trechos = await page.evaluate(() => {
-        const emHex = (canais: number[]) =>
-          `#${canais
-            .map((v) =>
-              Math.max(0, Math.min(255, Math.round(v)))
-                .toString(16)
-                .padStart(2, '0')
-            )
-            .join('')}`
+        /*
+         * Le a cor do texto em sRGB, com o alfa separado.
+         *
+         * Nao da para confiar em ler `getComputedStyle().color` com regex. O
+         * modificador de opacidade do Tailwind 4 (`text-white/80`) compila
+         * para `color-mix(in oklab, ...)`, e o navegador devolve
+         * `oklab(0.999994 0.0000455677 0.0000200868 / 0.8)`. Os tres
+         * primeiros numeros dali sao coordenadas oklab, nao canais RGB: lidos
+         * como RGB dao #010000, quase preto, quando a cor e branco.
+         *
+         * Foi assim que o teste acusou 1.92:1 num texto branco sobre vinho.
+         *
+         * Pintar num canvas resolve os dois problemas de uma vez: o canvas
+         * aceita qualquer formato de cor do CSS e devolve sempre sRGB, e
+         * entrega o alfa junto — que a versao anterior ignorava. Ignorar o
+         * alfa era o defeito mais grave dos dois: um `text-white/20` sobre
+         * fundo escuro passaria como se fosse branco puro.
+         */
+        const tela = document.createElement('canvas').getContext('2d')
+        const emSrgb = (cor: string): [number, number, number, number] => {
+          if (!tela) return [0, 0, 0, 1]
+          tela.clearRect(0, 0, 1, 1)
+          tela.fillStyle = cor
+          tela.fillRect(0, 0, 1, 1)
+          const p = tela.getImageData(0, 0, 1, 1).data
+          return [p[0] ?? 0, p[1] ?? 0, p[2] ?? 0, (p[3] ?? 255) / 255]
+        }
 
         const alvos = document.querySelectorAll<HTMLElement>(
           'a[class*="min-h-"], button[class*="min-h-"], button[class*="rounded"]'
@@ -68,7 +87,7 @@ test.describe('Contraste dos botões', () => {
 
         const saida: {
           texto: string
-          frente: string
+          frente: [number, number, number, number]
           caixa: { x: number; y: number; width: number; height: number }
         }[] = []
 
@@ -94,9 +113,7 @@ test.describe('Contraste dos botões', () => {
             if (!dono || vistos.has(dono)) continue
             vistos.add(dono)
 
-            const canais = getComputedStyle(dono)
-              .color.match(/[\d.]+/g)
-              ?.map(Number) ?? [0, 0, 0]
+            const frente = emSrgb(getComputedStyle(dono).color)
 
             /*
              * A caixa medida e a DO TEXTO, nao a do botao.
@@ -111,7 +128,7 @@ test.describe('Contraste dos botões', () => {
 
             saida.push({
               texto: conteudo.slice(0, 40),
-              frente: emHex(canais.slice(0, 3)),
+              frente,
               caixa: {
                 x: (caixaDoTexto.width > 4 ? caixaDoTexto.x : caixa.x) + window.scrollX,
                 y: (caixaDoTexto.height > 4 ? caixaDoTexto.y : caixa.y) + window.scrollY,
@@ -197,14 +214,39 @@ test.describe('Contraste dos botões', () => {
         }
       )
 
+      const emHex = (canais: number[]) =>
+        `#${canais
+          .map((v) =>
+            Math.max(0, Math.min(255, Math.round(v)))
+              .toString(16)
+              .padStart(2, '0')
+          )
+          .join('')}`
+
+      const canaisDe = (hex: string): [number, number, number] => [
+        Number.parseInt(hex.slice(1, 3), 16),
+        Number.parseInt(hex.slice(3, 5), 16),
+        Number.parseInt(hex.slice(5, 7), 16),
+      ]
+
       for (const [i, { texto, frente }] of trechos.entries()) {
         const fundo = fundos[i]
         if (!fundo) continue
 
-        const razao = razaoDeContraste(frente, fundo)
+        // Texto com alfa nao e a cor declarada: e a mistura dela com o fundo.
+        // E o fundo aqui e medido em pixel, entao a mistura sai exata.
+        const [fr, fg, fb, alfa] = frente
+        const [br, bg, bb] = canaisDe(fundo)
+        const composta = emHex([
+          alfa * fr + (1 - alfa) * br,
+          alfa * fg + (1 - alfa) * bg,
+          alfa * fb + (1 - alfa) * bb,
+        ])
+
+        const razao = razaoDeContraste(composta, fundo)
         expect(
           razao,
-          `${rota} · "${texto}": ${razao.toFixed(2)}:1 do texto ${frente} sobre o fundo ${fundo}, abaixo do mínimo de ${MINIMO}:1`
+          `${rota} · "${texto}": ${razao.toFixed(2)}:1 do texto ${composta} sobre o fundo ${fundo}, abaixo do mínimo de ${MINIMO}:1`
         ).toBeGreaterThanOrEqual(MINIMO)
       }
     })

@@ -1,4 +1,5 @@
 ---
+import fotoPatio from '@/assets/fotos-licenciadas/patio-de-veiculos.jpg'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
@@ -29,6 +30,9 @@ const outrasFrentes = [
   schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
+    foto={fotoPatio}
+    descricaoDaFoto="Fileira de veículos novos estacionados em um pátio"
+    enquadramento="50% 48%"
     cena="fachada"
     titulo="Documentação veicular e frotas"
     subtitulo="Transferência, emplacamento, segunda via e regularização de pendências em João Pessoa. Para empresas, a documentação da frota inteira sob controle."

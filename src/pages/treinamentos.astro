@@ -3,6 +3,7 @@ import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import fotoInstrutor from '@/assets/fotos/instrutor-demonstracao.jpg'
 import fotoTurma from '@/assets/fotos/turma-treinamento.jpg'
+import fotoTreinamento from '@/assets/fotos-licenciadas/treinamento-com-extintor.jpg'
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
@@ -67,6 +68,9 @@ const motivos = [
   schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
+    foto={fotoTreinamento}
+    descricaoDaFoto="Participantes de um treinamento usando extintor sobre um foco de fogo controlado, ao ar livre"
+    enquadramento="50% 52%"
     cena="treinamento"
     titulo="Treinamento de brigada de incêndio e primeiros socorros"
     subtitulo="Para a equipe saber o que fazer nos primeiros minutos, e para a edificação cumprir o que o Corpo de Bombeiros exige."

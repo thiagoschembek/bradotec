@@ -38,6 +38,10 @@ const alvos: { rota: string; nome: string; seletor: string; minimo: number }[] =
     seletor: 'main h1',
     minimo: 4.5,
   },
+  { rota: '/documentacao-veicular', nome: 'titulo da pagina', seletor: 'main h1', minimo: 4.5 },
+  { rota: '/documentacao-veicular', nome: 'subtitulo', seletor: 'main section p', minimo: 4.5 },
+  { rota: '/empresas', nome: 'titulo da pagina', seletor: 'main h1', minimo: 4.5 },
+  { rota: '/empresas', nome: 'subtitulo', seletor: 'main section p', minimo: 4.5 },
 ]
 
 test.describe('Contraste do texto sobre as faixas ilustradas', () => {
@@ -47,7 +51,23 @@ test.describe('Contraste do texto sobre as faixas ilustradas', () => {
 
       const elemento = page.locator(seletor).first()
       const caixa = await elemento.boundingBox()
-      const cor = await elemento.evaluate((e) => getComputedStyle(e).color)
+      /*
+       * A cor sai pelo canvas, e nao por regex sobre `color`.
+       *
+       * `text-white/80` do Tailwind 4 compila para color-mix, e o navegador
+       * devolve `oklab(0.999994 0.0000455677 0.0000200868 / 0.8)`. Um
+       * `match(/\d+/g)` ali le "0", "999994", "0": lixo. O canvas aceita
+       * qualquer formato de cor do CSS, devolve sRGB e entrega o alfa, que a
+       * versao anterior ignorava.
+       */
+      const cor = await elemento.evaluate((e): [number, number, number, number] => {
+        const tela = document.createElement('canvas').getContext('2d')
+        if (!tela) return [255, 255, 255, 1]
+        tela.fillStyle = getComputedStyle(e).color
+        tela.fillRect(0, 0, 1, 1)
+        const p = tela.getImageData(0, 0, 1, 1).data
+        return [p[0] ?? 255, p[1] ?? 255, p[2] ?? 255, (p[3] ?? 255) / 255]
+      })
       expect(caixa, `nao achei "${seletor}" em ${rota}`).not.toBeNull()
       if (!caixa) return
 
@@ -93,9 +113,15 @@ test.describe('Contraste do texto sobre as faixas ilustradas', () => {
         return claro
       }, captura.toString('base64'))
 
-      const canais = cor.match(/\d+/g)?.map(Number) ?? [255, 255, 255]
-      const frente = emHex(canais[0] ?? 255, canais[1] ?? 255, canais[2] ?? 255)
       const fundo = emHex(fundoMaisClaro[0], fundoMaisClaro[1], fundoMaisClaro[2])
+
+      // Texto com alfa nao e a cor declarada: e a mistura dela com o fundo.
+      const [fr, fg, fb, alfa] = cor
+      const frente = emHex(
+        Math.round(alfa * fr + (1 - alfa) * fundoMaisClaro[0]),
+        Math.round(alfa * fg + (1 - alfa) * fundoMaisClaro[1]),
+        Math.round(alfa * fb + (1 - alfa) * fundoMaisClaro[2])
+      )
       const razao = razaoDeContraste(frente, fundo)
 
       expect(

@@ -14,13 +14,38 @@ interface Props {
   descricaoDaFoto?: string
   /** Enquadramento do corte da foto. */
   enquadramento?: string
+  /**
+   * Cor do fundo pintado.
+   *
+   * `grafite` e o padrao das paginas de servico, onde a foto ou a cena
+   * carrega a identidade. `vinho` e para as paginas sobre a propria empresa,
+   * /sobre e /contato, onde nao ha o que fotografar e a cor da marca e que
+   * faz o trabalho.
+   */
+  fundo?: 'grafite' | 'vinho'
 }
-const { titulo, subtitulo, trilha, cena, foto, descricaoDaFoto, enquadramento } = Astro.props
+const {
+  titulo,
+  subtitulo,
+  trilha,
+  cena,
+  foto,
+  descricaoDaFoto,
+  enquadramento,
+  fundo = 'grafite',
+} = Astro.props
 const atual = trilha[trilha.length - 1]
+
+const noVinho = fundo === 'vinho'
 ---
 
 <section
-  class="relative overflow-hidden bg-gradient-to-b from-graphite-900 to-graphite-800 py-12 text-white"
+  class:list={[
+    'relative overflow-hidden py-12 text-white',
+    noVinho
+      ? 'bg-wine bg-gradient-to-b from-wine-dark to-wine'
+      : 'bg-gradient-to-b from-graphite-900 to-graphite-800',
+  ]}
 >
   {cena && <FundoIlustrado
       cena={cena}
@@ -30,11 +55,25 @@ const atual = trilha[trilha.length - 1]
     />}
 
   <div class="relative mx-auto w-full max-w-[820px] px-5">
-    <nav class="mb-4 text-rotulo text-[#a8a0a2]" aria-label="Você está em">
+    {/*
+      Sobre o vinho os cinzas do grafite ficam sujos: cinza neutro sobre
+      vermelho puxa para o esverdeado. Branco com transparencia herda a
+      matiz do fundo e continua da mesma familia.
+    */}
+    <nav
+      class:list={['mb-4 text-rotulo', noVinho ? 'text-white/65' : 'text-[#a8a0a2]']}
+      aria-label="Você está em"
+    >
       {
         trilha.slice(0, -1).map((item) => (
           <>
-            <a class="inline-flex min-h-[36px] items-center text-[#c9c2c4] no-underline hover:underline" href={item.href}>
+            <a
+              class:list={[
+                'inline-flex min-h-[36px] items-center no-underline hover:underline',
+                noVinho ? 'text-white/80' : 'text-[#c9c2c4]',
+              ]}
+              href={item.href}
+            >
               {item.nome}
             </a>
             <span aria-hidden="true"> › </span>
@@ -45,7 +84,11 @@ const atual = trilha[trilha.length - 1]
     </nav>
 
     <h1 class="text-pagina text-white">{titulo}</h1>
-    {subtitulo && <p class="mt-2 text-cartao text-[#c9c2c4]">{subtitulo}</p>}
+    {subtitulo && (
+      <p class:list={['mt-2 text-cartao', noVinho ? 'text-wine-soft' : 'text-[#c9c2c4]']}>
+        {subtitulo}
+      </p>
+    )}
     <slot />
   </div>
 </section>
