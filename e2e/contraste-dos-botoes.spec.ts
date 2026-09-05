@@ -35,6 +35,7 @@ const rotas = [
   '/seguranca-contra-incendio',
   '/avcb',
   '/treinamentos',
+  '/carregadores-eletricos',
   '/regularizacoes',
   '/documentacao-veicular',
   '/empresas',

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { site } from '../src/config/site'
 
 /**
  * O formulario de contato no navegador.
@@ -80,7 +81,27 @@ test.describe('Formulário de contato', () => {
     await expect(page.getByText('Informe o seu nome.')).toHaveCount(0)
   })
 
-  test('com o WhatsApp ainda em placeholder, monta a mensagem para copiar', async ({ page }) => {
+  /*
+   * Este teste ja verificou o contrario: enquanto o WhatsApp era placeholder,
+   * o formulario entregava a mensagem numa caixa para copiar, e era isso que
+   * se checava. Com o numero real preenchido em src/config/site.ts esse ramo
+   * deixou de rodar, e o teste passou a falhar por estar certo demais.
+   *
+   * O que importa continua sendo o mesmo: a mensagem tem de sair montada com
+   * tudo que a pessoa digitou. So mudou o destino. Aqui a mensagem e lida do
+   * link do WhatsApp, e o numero vem da configuracao, nao escrito a mao, para
+   * o teste seguir o cliente se o numero mudar.
+   */
+  test('monta a mensagem com o que foi preenchido e abre o WhatsApp com ela', async ({ page }) => {
+    // Captura o destino em vez de abrir uma aba.
+    await page.addInitScript(() => {
+      window.open = ((url?: string | URL) => {
+        ;(window as unknown as { destinoDoTeste?: string }).destinoDoTeste = String(url)
+        return null
+      }) as typeof window.open
+    })
+    await page.goto('/contato')
+
     await page.locator('#nome').fill('Maria Souza')
     await page.locator('#telefone').fill('83999998888')
     await page.locator('#cidade').fill('João Pessoa')
@@ -92,10 +113,16 @@ test.describe('Formulário de contato', () => {
 
     await page.getByRole('button', { name: /Enviar pelo WhatsApp|Montar mensagem/ }).click()
 
-    const area = page.getByLabel('Mensagem pronta para copiar')
-    await expect(area).toBeVisible()
+    const destino = await page.evaluate(
+      () => (window as unknown as { destinoDoTeste?: string }).destinoDoTeste
+    )
+    expect(destino, 'o formulário não abriu o WhatsApp').toBeTruthy()
+    if (!destino) return
 
-    const texto = await area.inputValue()
+    const url = new URL(destino)
+    expect(url.origin + url.pathname).toBe(`https://wa.me/${site.whatsapp}`)
+
+    const texto = url.searchParams.get('text') ?? ''
     expect(texto).toContain('Maria Souza')
     expect(texto).toContain('83999998888')
     expect(texto).toContain('Condomínio Aurora')

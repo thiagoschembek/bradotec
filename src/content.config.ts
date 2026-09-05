@@ -29,6 +29,7 @@ export const paginasComFaq = [
   'empresas',
   'avcb',
   'treinamentos',
+  'carregadores-eletricos',
 ] as const
 
 export type PaginaComFaq = (typeof paginasComFaq)[number]
@@ -44,6 +45,13 @@ const faq = defineCollection({
     resposta: z.string().min(60).max(900),
     /** Em quais paginas esta pergunta aparece. */
     paginas: z.array(z.enum(paginasComFaq)).min(1),
+    /**
+     * Ordem de exibicao. Opcional: sem ela a pergunta cai no fim, e ali as
+     * empatadas mantem a ordem que o Astro devolve, que e alfabetica por id.
+     * Existe porque a ordem do FAQ e argumento: a pergunta que derruba a
+     * objecao principal precisa vir antes da curiosidade.
+     */
+    ordem: z.number().int().positive().default(99),
   }),
 })
 
@@ -199,6 +207,28 @@ const lideranca = defineCollection({
   }),
 })
 
+/**
+ * Conteudo da pagina de carregadores de veiculo eletrico (SAVE), em dois
+ * grupos dentro do mesmo arquivo:
+ *
+ *   exigencia -> o que a NT 040/2025 do CBMPB passou a exigir
+ *   etapa     -> o que a Bradotec faz, na ordem em que faz
+ *
+ * Fica em colecao pelo mesmo motivo do AVCB: e conteudo tecnico que muda
+ * quando a norma muda, e o schema impede que um item entre sem descricao.
+ */
+const gruposSave = ['exigencia', 'etapa'] as const
+
+const save = defineCollection({
+  loader: file('src/content/save.json'),
+  schema: z.object({
+    grupo: z.enum(gruposSave),
+    titulo: z.string().min(5),
+    descricao: z.string().min(30).max(500),
+    ordem: z.number().int().positive(),
+  }),
+})
+
 export const collections = {
   faq,
   divisoes,
@@ -208,4 +238,5 @@ export const collections = {
   avcb,
   treinamentos,
   lideranca,
+  save,
 }

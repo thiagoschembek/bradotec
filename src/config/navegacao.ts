@@ -25,6 +25,7 @@ export const paiNoMenu: Readonly<Record<string, string>> = {
   '/avcb': '/seguranca-contra-incendio',
   '/solucoes': '/empresas',
   '/diagnostico': '/contato',
+  '/carregadores-eletricos': '/seguranca-contra-incendio',
 }
 
 export const navegacaoPrincipal: readonly ItemNavegacao[] = [
@@ -52,6 +53,7 @@ export const navegacaoRodape = [
       { href: '/empresas', rotulo: 'Gestão documental recorrente' },
       { href: '/avcb', rotulo: 'AVCB: o que é e o que exige' },
       { href: '/treinamentos', rotulo: 'Brigada e primeiros socorros' },
+      { href: '/carregadores-eletricos', rotulo: 'Carregadores de veículo elétrico' },
     ],
   },
   {

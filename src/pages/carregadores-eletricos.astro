@@ -1,0 +1,230 @@
+---
+import { getCollection } from 'astro:content'
+import AvisoEscopo from '@/components/AvisoEscopo.astro'
+import BotaoLink from '@/components/BotaoLink.astro'
+import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
+import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
+import Faq from '@/components/Faq.astro'
+import Kicker from '@/components/Kicker.astro'
+import { site } from '@/config/site'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { schemaFaqDaPagina } from '@/lib/faq'
+
+const trilha = [
+  { nome: 'Início', href: '/' },
+  { nome: 'Segurança contra incêndio', href: '/seguranca-contra-incendio' },
+  { nome: 'Carregadores de veículo elétrico', href: '/carregadores-eletricos' },
+] as const
+
+const schemaFaq = await schemaFaqDaPagina('carregadores-eletricos')
+
+const conteudo = await getCollection('save')
+const doGrupo = (grupo: 'exigencia' | 'etapa') =>
+  conteudo.filter(({ data }) => data.grupo === grupo).sort((a, b) => a.data.ordem - b.data.ordem)
+
+const exigencias = doGrupo('exigencia')
+const etapas = doGrupo('etapa')
+
+/**
+ * A norma, citada pelo nome e com link para a fonte oficial.
+ *
+ * Uma pagina que diz ao sindico "voce esta irregular agora" precisa dizer
+ * onde isso esta escrito. Sem a fonte, e alarme comercial.
+ */
+const norma = {
+  numero: 'Norma Técnica nº 040/2025',
+  orgao: 'Corpo de Bombeiros Militar da Paraíba',
+  titulo:
+    'Ocupações destinadas a garagens e locais com Sistemas de Alimentação de Veículos Elétricos (SAVE)',
+  fonte: 'https://bravo.bombeiros.pb.gov.br/portal/normas-tecnicas/',
+} as const
+---
+
+<BaseLayout
+  titulo={`Carregador de carro elétrico em condomínio: o que a NT 040/2025 exige | ${site.nome}`}
+  descricao="A NT 040/2025 do Corpo de Bombeiros da Paraíba mudou as regras de carregadores de veículos elétricos em condomínios. O que passou a ser proibido, o que a norma exige e o que fazer se a instalação já existe."
+  trilha={trilha}
+  schemasExtras={schemaFaq ? [schemaFaq] : []}
+>
+  <CabecalhoPagina
+    cena="rota"
+    titulo="Carregador de carro elétrico no condomínio: a norma mudou"
+    subtitulo="Se o seu condomínio tem carregador instalado, ele provavelmente está irregular. E, para a parte elétrica, não existe prazo de carência."
+    trilha={trilha}
+  >
+    <div class="mt-6 flex flex-wrap gap-3">
+      <BotaoLink href="/contato" variante="primario">Agendar o diagnóstico</BotaoLink>
+    </div>
+  </CabecalhoPagina>
+
+  <section class="py-16 lg:py-20" aria-labelledby="o-que-mudou">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <Kicker>Bradotec Fire</Kicker>
+      <h2 id="o-que-mudou" class="mt-2 max-w-[24ch] text-secao text-ink">O que mudou</h2>
+
+      <div class="mt-6 max-w-[68ch] space-y-5 text-guia text-ink-soft">
+        <p>
+          O {norma.orgao} publicou a <strong class="font-bold text-ink">{norma.numero}</strong>,
+          que regulamenta a instalação e o uso de sistemas de recarga de veículos elétricos em
+          condomínios residenciais. Ela entrou em vigor em 1º de janeiro de 2026 e alcança
+          edificações novas e existentes em todo o estado.
+        </p>
+        <p>
+          A norma trata a garagem com carregador como uma ocupação de risco próprio. Bateria de
+          veículo elétrico não queima como combustível: exige detecção, corte de energia e
+          instalação dedicada.
+        </p>
+      </div>
+
+      <p class="mt-6 max-w-[68ch] text-apoio text-ash-500">
+        {norma.numero}, {norma.titulo}. Texto oficial em{' '}
+        <a class="font-bold text-wine" href={norma.fonte} rel="noopener" target="_blank">
+          bombeiros.pb.gov.br
+        </a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-graphite-900 py-16 text-white lg:py-20" aria-labelledby="proibido">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
+        <div>
+          <h2 id="proibido" class="max-w-[22ch] text-secao text-white">
+            O que passou a ser proibido
+          </h2>
+          <p class="mt-4 max-w-[56ch] text-guia text-[#c9c2c4]">
+            Extensão, adaptador, benjamim e tomada comum para recarga. Somente são admitidos os
+            modos de recarga 3 e 4.
+          </p>
+          <p class="mt-4 max-w-[56ch] text-[#c9c2c4]">
+            Na prática, a solução mais comum nos condomínios, o morador puxando um cabo até a
+            tomada da garagem, deixou de ser aceitável.
+          </p>
+        </div>
+
+        {/*
+          O prazo e o ponto da pagina. E o que separa "vou ver isso depois" de
+          "estou irregular agora", e e onde a maior parte dos condominios se
+          engana: existe carencia, mas ela nao cobre a parte eletrica.
+        */}
+        <div class="rounded-xl border border-wine/50 bg-wine/10 p-7">
+          <p class="text-rotulo font-bold uppercase tracking-[0.08em] text-[#e8b9bb]">
+            O ponto que mais pega os condomínios
+          </p>
+          <p class="mt-3 text-cartao-lg text-white">
+            A carência não vale para a instalação elétrica.
+          </p>
+          <p class="mt-3 text-corpo text-[#c9c2c4]">
+            Para edificações existentes há prazo para as adequações gerais de segurança contra
+            incêndio. As instalações elétricas do SAVE, não: precisam estar em conformidade desde a
+            entrada em vigor da norma. Quem tem carregador ligado de forma improvisada está
+            irregular agora.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="exigencias">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <h2 id="exigencias" class="max-w-[22ch] text-secao text-ink">O que a norma exige</h2>
+      <p class="mt-4 max-w-[68ch] text-guia text-ink-soft">
+        A lista abaixo é o que a NT 040/2025 pede para a instalação. O enquadramento exato depende
+        da edificação, e é o que o diagnóstico define.
+      </p>
+
+      <dl class="mt-11 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          exigencias.map((item) => (
+            <div class="relative rounded-xl border border-line bg-white p-6 shadow-card">
+              <span
+                class="absolute left-6 top-0 h-[3px] w-9 rounded-full bg-div-fire"
+                aria-hidden="true"
+              />
+              <dt class="text-cartao font-bold text-ink">{item.data.titulo}</dt>
+              <dd class="mt-2 text-corpo text-ink-soft">{item.data.descricao}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20" aria-labelledby="responsabilidade">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="max-w-[68ch]">
+        <h2 id="responsabilidade" class="max-w-[24ch] text-secao text-ink">
+          De quem é a responsabilidade
+        </h2>
+        <p class="mt-5 text-guia text-ink-soft">
+          A norma atribui a responsabilidade pela instalação e pela garantia de eficiência ao
+          responsável técnico e à empresa instaladora, em conjunto com o proprietário ou
+          responsável pelo uso.
+        </p>
+        <p class="mt-4 text-guia text-ink-soft">
+          Para o síndico, isso significa responsabilidade direta sobre a instalação que existe na
+          garagem. Não é o morador que respondeu por ela quando puxou o cabo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="como-resolve">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <h2 id="como-resolve" class="max-w-[24ch] text-secao text-ink">Como a Bradotec resolve</h2>
+      <p class="mt-4 max-w-[68ch] text-guia text-ink-soft">
+        Na ordem em que fazemos. O síndico não coordena ninguém: quem articula engenheiro,
+        instalador e processo é a Bradotec.
+      </p>
+
+      {/*
+        Numerado de proposito, ao contrario dos caminhos da home: aqui a
+        ordem carrega informacao. Nao da para adequar o circuito antes de
+        saber a viabilidade eletrica do predio.
+      */}
+      <ol class="mt-11 grid list-none gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          etapas.map((etapa, i) => (
+            <li class="border-t border-line pt-5">
+              <span class="text-rotulo font-bold text-wine">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <p class="mt-1.5 text-cartao font-bold text-ink">{etapa.data.titulo}</p>
+              <p class="mt-1.5 text-corpo text-ink-soft">{etapa.data.descricao}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-graphite-900 py-16 text-white lg:py-20" aria-labelledby="diagnostico-save">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="max-w-[62ch]">
+        <h2 id="diagnostico-save" class="max-w-[24ch] text-secao text-white">
+          Tem carregador no seu condomínio?
+        </h2>
+        <p class="mt-4 text-guia text-[#c9c2c4]">
+          O diagnóstico compara o que está instalado com o que a norma exige e devolve a lista do
+          que precisa mudar. Se nada precisar, você fica sabendo disso também.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <BotaoWhatsapp origem="save">Agendar o diagnóstico</BotaoWhatsapp>
+          <BotaoLink href="/avcb" variante="sobreEscuro">Ver o que o AVCB exige</BotaoLink>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <AvisoEscopo titulo="O que a Bradotec faz e o que é feito por terceiros">
+    A Bradotec conduz o diagnóstico, coordena a rede técnica e acompanha o processo junto ao Corpo
+    de Bombeiros. Projeto elétrico, ART e execução da instalação são de responsabilidade de
+    engenheiros e empresas legalmente habilitados. A análise, a vistoria e a aprovação são do órgão
+    competente, e o prazo delas não depende da Bradotec.
+  </AvisoEscopo>
+
+  <Faq
+    pagina="carregadores-eletricos"
+    titulo="Perguntas frequentes sobre carregadores em condomínio"
+  />
+</BaseLayout>

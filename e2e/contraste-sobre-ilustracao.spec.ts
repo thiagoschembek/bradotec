@@ -46,6 +46,12 @@ const alvos: { rota: string; nome: string; seletor: string; minimo: number }[] =
   { rota: '/sobre', nome: 'subtitulo', seletor: 'main section p', minimo: 4.5 },
   { rota: '/contato', nome: 'titulo da pagina', seletor: 'main h1', minimo: 4.5 },
   { rota: '/contato', nome: 'subtitulo', seletor: 'main section p', minimo: 4.5 },
+  {
+    rota: '/carregadores-eletricos',
+    nome: 'titulo da pagina',
+    seletor: 'main h1',
+    minimo: 4.5,
+  },
 ]
 
 test.describe('Contraste do texto sobre as faixas ilustradas', () => {

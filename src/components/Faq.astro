@@ -21,9 +21,9 @@ interface Props {
 
 const { pagina, titulo = 'Perguntas frequentes', descricao } = Astro.props
 
-const perguntas = (await getCollection('faq', ({ data }) => data.paginas.includes(pagina))).map(
-  (entrada) => entrada.data
-)
+const perguntas = (await getCollection('faq', ({ data }) => data.paginas.includes(pagina)))
+  .map((entrada) => entrada.data)
+  .sort((x, y) => x.ordem - y.ordem)
 ---
 
 {

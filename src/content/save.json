@@ -1,0 +1,101 @@
+[
+  {
+    "id": "circuito-exclusivo",
+    "grupo": "exigencia",
+    "titulo": "Circuito exclusivo para cada ponto",
+    "descricao": "Cada ponto de recarga precisa do próprio circuito. Não pode dividir com iluminação, portão ou tomada de garagem.",
+    "ordem": 1
+  },
+  {
+    "id": "disjuntor",
+    "grupo": "exigencia",
+    "titulo": "Disjuntor próprio e identificado",
+    "descricao": "Um disjuntor por ponto, sinalizado no quadro, para que qualquer pessoa consiga desligar o ponto certo sem tentativa e erro.",
+    "ordem": 2
+  },
+  {
+    "id": "dr",
+    "grupo": "exigencia",
+    "titulo": "Dispositivo DR de alta sensibilidade",
+    "descricao": "Proteção contra corrente de fuga. É o que interrompe a alimentação antes de a falha virar choque ou princípio de incêndio.",
+    "ordem": 3
+  },
+  {
+    "id": "dps",
+    "grupo": "exigencia",
+    "titulo": "DPS contra surtos",
+    "descricao": "Dispositivo de proteção contra surtos, exigido para que uma descarga na rede não alcance o carregador nem o veículo ligado a ele.",
+    "ordem": 4
+  },
+  {
+    "id": "desligamento",
+    "grupo": "exigencia",
+    "titulo": "Desligamento manual a até 5 metros",
+    "descricao": "Um dispositivo de desligamento manual a no máximo cinco metros da entrada da garagem, da porta principal ou das escadas, para cortar a energia sem entrar na área.",
+    "ordem": 5
+  },
+  {
+    "id": "deteccao",
+    "grupo": "exigencia",
+    "titulo": "Detecção de incêndio na garagem",
+    "descricao": "Sistema de detecção nas áreas de garagem, conforme o enquadramento da edificação. Bateria de veículo elétrico queima diferente, e o tempo de aviso é o que muda o desfecho.",
+    "ordem": 6
+  },
+  {
+    "id": "modos",
+    "grupo": "exigencia",
+    "titulo": "Somente modos de recarga 3 e 4",
+    "descricao": "Tomada comum, extensão, adaptador e benjamim estão proibidos para recarga. A solução mais vista nos condomínios, o morador puxando um cabo até a tomada da garagem, deixou de ser aceitável.",
+    "ordem": 7
+  },
+  {
+    "id": "normas",
+    "grupo": "exigencia",
+    "titulo": "Instalação conforme as normas técnicas",
+    "descricao": "A instalação precisa atender às ABNT NBR 5410, NBR 17019 e NBR IEC 61851-1, e à NR 10 quanto à segurança em serviços com eletricidade.",
+    "ordem": 8
+  },
+
+  {
+    "id": "diagnostico",
+    "grupo": "etapa",
+    "titulo": "Diagnóstico da instalação existente",
+    "descricao": "Levantamento do que está instalado hoje, item a item, comparado ao que a NT 040/2025 exige. O resultado diz o que está em conformidade e o que não está.",
+    "ordem": 1
+  },
+  {
+    "id": "viabilidade",
+    "grupo": "etapa",
+    "titulo": "Viabilidade elétrica da edificação",
+    "descricao": "A conta é feita considerando os próximos pontos, e não só o atual. Condomínio que adequa um ponto por vez costuma refazer o quadro na terceira solicitação.",
+    "ordem": 2
+  },
+  {
+    "id": "projeto",
+    "grupo": "etapa",
+    "titulo": "Projeto e ART com profissional habilitado",
+    "descricao": "Coordenação do projeto e da anotação de responsabilidade técnica com engenheiro registrado. A execução é de quem tem habilitação legal para assinar.",
+    "ordem": 3
+  },
+  {
+    "id": "adequacao",
+    "grupo": "etapa",
+    "titulo": "Adequação da instalação",
+    "descricao": "Circuitos, proteções, sinalização e pontos de desligamento executados conforme o projeto, com acompanhamento da execução.",
+    "ordem": 4
+  },
+  {
+    "id": "processo",
+    "grupo": "etapa",
+    "titulo": "Inclusão no processo de segurança contra incêndio",
+    "descricao": "O SAVE entra no processo da edificação junto ao Corpo de Bombeiros, e não como assunto separado. É ali que ele é verificado.",
+    "ordem": 5
+  },
+  {
+    "id": "vencimentos",
+    "grupo": "etapa",
+    "titulo": "Controle de vencimentos",
+    "descricao": "A documentação entra no calendário de conformidade da edificação, com aviso antes de cada vencimento. Regularizar uma vez não mantém regular.",
+    "ordem": 6
+  }
+]

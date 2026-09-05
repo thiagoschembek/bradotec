@@ -81,7 +81,7 @@ export const site = siteSchema.parse({
     'condomínios e imóveis, licenças, segurança contra incêndio e pânico e documentação ' +
     'veicular, com acompanhamento de processo do início ao fim.',
 
-  whatsapp: '[NUMERO DE WHATSAPP]',
+  whatsapp: '5583981447001',
   telefone: '[TELEFONE]',
   email: '[EMAIL]',
   endereco: '[ENDEREÇO COMPLETO]',

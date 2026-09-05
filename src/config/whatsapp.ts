@@ -25,6 +25,7 @@ export const mensagensWhatsapp = {
   posto: 'Olá! Tenho um posto de combustível e preciso regularizar a documentação.',
   treinamento:
     'Olá! Gostaria de uma proposta de treinamento de brigada de incêndio e/ou primeiros socorros.',
+  save: 'Olá! Temos carregador de veículo elétrico no condomínio e gostaria de agendar o diagnóstico da instalação.',
 } as const
 
 /** Chaves validas para o atributo data-wa / prop `origem`. */

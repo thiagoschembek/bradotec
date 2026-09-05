@@ -168,8 +168,7 @@ Resultado: a home hoje não baixa **nenhum** arquivo de framework.
 
 | Item | Onde entra | Quem resolve |
 |---|---|---|
-| Número de WhatsApp | `src/config/site.ts` | Cliente |
-| Telefone, e-mail, endereço, CEP, CNPJ, horário | `src/config/site.ts` | Cliente |
+| Telefone fixo, e-mail, endereço, CEP, CNPJ, horário | `src/config/site.ts` | Cliente |
 | Link do Instagram | `src/config/site.ts` | Cliente |
 | Depoimentos e nota do Google reais | `src/config/site.ts` | Cliente |
 | Domínio definitivo | variável `SITE_URL` no deploy | Cliente |

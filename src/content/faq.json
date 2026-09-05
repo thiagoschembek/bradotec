@@ -118,5 +118,33 @@
     "pergunta": "Quanto custa o treinamento?",
     "resposta": "Não publicamos tabela porque o número sairia errado para quase todo mundo: carga horária, tamanho da brigada e formato dependem da ocupação, da população fixa e do risco da edificação. Não existe pacote único que sirva para um condomínio de doze apartamentos e para uma indústria. Diga quantas pessoas participariam e que tipo de edificação é, e a proposta volta com o dimensionamento já feito.",
     "paginas": ["treinamentos"]
+  },
+  {
+    "id": "save-licenca-anual",
+    "pergunta": "Preciso licenciar o carregador de veículo elétrico todo ano?",
+    "resposta": "Não existe licença anual separada para o carregador. O SAVE entra como exigência dentro do processo de segurança contra incêndio da edificação, e é verificado na análise de projeto, na vistoria e na renovação do AVCB. Ou seja: não é um documento a mais para controlar, é mais um item que pode travar o documento que você já controla.",
+    "paginas": ["carregadores-eletricos"],
+    "ordem": 1
+  },
+  {
+    "id": "save-instalado-ha-dois-anos",
+    "pergunta": "O carregador já está instalado há dois anos. Preciso mexer?",
+    "resposta": "Sim, se a instalação não atende à norma. Para edificações existentes há prazo para as adequações gerais de segurança contra incêndio, mas as instalações elétricas do SAVE precisam estar em conformidade desde a entrada em vigor da NT 040/2025. A parte elétrica não tem prazo de carência.",
+    "paginas": ["carregadores-eletricos"],
+    "ordem": 3
+  },
+  {
+    "id": "save-tomada-da-garagem",
+    "pergunta": "Posso usar a tomada comum da garagem para carregar?",
+    "resposta": "Não. A NT 040/2025 proíbe tomada comum, extensão, adaptador e benjamim para recarga. Somente são admitidos os modos de recarga 3 e 4, em circuito exclusivo e com as proteções que a norma exige. É justamente a solução mais comum nos condomínios que deixou de ser aceitável.",
+    "paginas": ["carregadores-eletricos"],
+    "ordem": 2
+  },
+  {
+    "id": "save-responsabilidade",
+    "pergunta": "Quem responde se acontecer um incêndio a partir do carregador?",
+    "resposta": "A norma atribui a responsabilidade pela instalação e pela garantia de eficiência ao responsável técnico e à empresa instaladora, em conjunto com o proprietário ou responsável pelo uso. Para o síndico, isso significa responsabilidade direta sobre a instalação que existe na garagem do condomínio.",
+    "paginas": ["carregadores-eletricos"],
+    "ordem": 4
   }
 ]
