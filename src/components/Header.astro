@@ -18,7 +18,7 @@ const referencia = paiNoMenu[atual] ?? atual
 const estaAtiva = (href: string) => referencia === href.replace(/\/$/, '')
 ---
 
-<header class="sticky top-0 z-100 border-b border-white/10 bg-graphite-900">
+<header class="sticky top-0 z-100 border-b border-white/15 bg-wine">
   {/*
     A barra do topo e larga de proposito, enquanto o conteudo das paginas
     fica em 1180px. Presa no mesmo max-w-wrap, a logo ficava a 150px da
@@ -58,8 +58,8 @@ const estaAtiva = (href: string) => referencia === href.replace(/\/$/, '')
                   class:list={[
                     'block whitespace-nowrap rounded-lg px-3 py-2 text-corpo font-semibold no-underline transition-colors',
                     estaAtiva(item.href)
-                      ? 'bg-white/10 text-white'
-                      : 'text-[#d3cdce] hover:bg-white/10 hover:text-white',
+                      ? 'bg-white/15 text-white'
+                      : 'text-white/80 hover:bg-white/15 hover:text-white',
                   ]}
                 >
                   {item.curto}
@@ -70,7 +70,7 @@ const estaAtiva = (href: string) => referencia === href.replace(/\/$/, '')
         </ul>
       </nav>
 
-      <BotaoLink href="/contato" variante="primario" pequeno class="hidden whitespace-nowrap lg:inline-flex">
+      <BotaoLink href="/contato" variante="claro" pequeno class="hidden whitespace-nowrap lg:inline-flex">
         Solicitar orçamento
       </BotaoLink>
 
@@ -111,13 +111,13 @@ const estaAtiva = (href: string) => referencia === href.replace(/\/$/, '')
           <a
             href={item.href}
             aria-current={estaAtiva(item.href) ? 'page' : undefined}
-            class="block border-b border-white/5 px-1 py-3.5 font-semibold text-[#dfdadb] no-underline"
+            class="block border-b border-white/10 px-1 py-3.5 font-semibold text-white/90 no-underline"
           >
             {item.completo}
           </a>
         ))
       }
-      <BotaoLink href="/contato" variante="primario" larguraTotal class="mt-4">
+      <BotaoLink href="/contato" variante="claro" larguraTotal class="mt-4">
         Solicitar orçamento
       </BotaoLink>
     </nav>
