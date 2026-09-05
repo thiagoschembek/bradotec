@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import fotoFachada from '@/assets/fotos-licenciadas/fachada-de-edificio.jpg'
 import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
@@ -35,7 +36,10 @@ const comoTrabalhamos = [
   schemasExtras={schemaPessoa ? [schemaPessoa] : []}
 >
   <CabecalhoPagina
-    fundo="vinho"
+    foto={fotoFachada}
+    descricaoDaFoto="Fachada de um edifício comercial vista de baixo, contra o céu"
+    enquadramento="50% 40%"
+    cena="fachada"
     titulo="A Bradotec"
     subtitulo="Uma central de soluções documentais em João Pessoa: gestão, regularização, licenciamento e segurança contra incêndio reunidos em um só interlocutor."
     trilha={trilha}

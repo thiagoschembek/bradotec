@@ -1,4 +1,5 @@
 ---
+import fotoAtendimento from '@/assets/fotos-licenciadas/escritorio-atendimento.jpg'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
@@ -27,7 +28,10 @@ const canais = [
   trilha={trilha}
 >
   <CabecalhoPagina
-    fundo="vinho"
+    foto={fotoAtendimento}
+    descricaoDaFoto="Escritório com estações de trabalho e janelas amplas ao fundo"
+    enquadramento="50% 46%"
+    cena="fachada"
     titulo="Falar com a Bradotec"
     subtitulo="Conte a sua situação pelo canal que preferir. O retorno é feito por quem vai conduzir o processo."
     trilha={trilha}

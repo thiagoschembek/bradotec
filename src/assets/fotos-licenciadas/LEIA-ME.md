@@ -9,6 +9,24 @@ precisar pedir autorizacao.
 | `patio-de-veiculos.jpg` | Cabecalho de `/documentacao-veicular` | https://www.pexels.com/photo/rows-of-new-suvs-in-dealership-parking-lot-29566906/ |
 | `reuniao-de-gestao.jpg` | Cabecalho de `/empresas` | https://www.pexels.com/photo/business-partners-having-a-meeting-at-the-office-7433848/ |
 | `treinamento-com-extintor.jpg` | Cabecalho de `/treinamentos` | https://www.pexels.com/photo/people-extinguishing-fire-18340568/ |
+| `fachada-de-edificio.jpg` | Cabecalho de `/sobre` | https://www.pexels.com/photo/low-angle-shot-of-modern-buildings-in-city-16846525/ |
+| `escritorio-atendimento.jpg` | Cabecalho de `/contato` | https://www.pexels.com/photo/interior-of-a-modern-office-space-18033178/ |
+
+## Por que estas e nao outras
+
+A faixa do cabecalho corta a foto em cerca de 4,7:1 e o veu escurece o que
+sobra. So massa grande sobrevive: detalhe fino vira ruido cinza.
+
+Duas candidatas foram descartadas por medicao, nao por gosto. Uma vista aerea
+de bairro de Joao Pessoa, que era a mais honesta das opcoes para `/sobre`,
+ficou preta: os predios vistos de cima sao pequenos demais e o verde do mangue,
+a 30% de luz, nao se distingue de preto. E uma foto de pessoa ao telefone em
+`/contato` colocava um rosto exatamente atras do titulo, porque o corte da
+faixa nao tem margem vertical para acomodar uma figura em pe.
+
+Tambem ficaram de fora vistas do Recife e do Rio, que sao bonitas e nao sao
+Joao Pessoa: cidade reconhecivel na pagina de uma empresa daqui e afirmacao
+errada, ainda que decorativa.
 
 ## Uma regra que vale para as tres
 
