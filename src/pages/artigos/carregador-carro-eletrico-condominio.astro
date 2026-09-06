@@ -59,48 +59,10 @@ const norma = {
   fonte: 'https://bravo.bombeiros.pb.gov.br/portal/normas-tecnicas/',
 } as const
 
-const exigencias = [
-  {
-    titulo: 'Conformidade com as normas técnicas',
-    descricao:
-      'ABNT NBR 5410, que trata de instalações elétricas de baixa tensão; NBR 17019 e NBR IEC 61851-1, específicas de recarga de veículos elétricos; e NR 10, sobre a segurança de quem trabalha com eletricidade.',
-  },
-  {
-    titulo: 'Circuito exclusivo para cada ponto de recarga',
-    descricao:
-      'Cada ponto precisa do próprio circuito. Não pode dividir com iluminação, portão ou tomada de garagem.',
-  },
-  {
-    titulo: 'Disjuntor próprio e identificado',
-    descricao:
-      'Um por ponto, sinalizado no quadro, para que qualquer pessoa consiga desligar o ponto certo sem tentativa e erro.',
-  },
-  {
-    titulo: 'Dispositivo DR de alta sensibilidade',
-    descricao:
-      'DR é o dispositivo diferencial residual. Ele percebe corrente escapando por onde não devia e corta a energia antes de a falha virar choque ou princípio de incêndio.',
-  },
-  {
-    titulo: 'DPS, dispositivo de proteção contra surtos',
-    descricao:
-      'Impede que uma descarga na rede elétrica chegue ao carregador e ao carro ligado nele.',
-  },
-  {
-    titulo: 'Desligamento manual a até 5 metros',
-    descricao:
-      'Um dispositivo de desligamento manual a no máximo cinco metros da entrada da garagem, da porta principal ou das escadas, para cortar a energia sem entrar na área.',
-  },
-  {
-    titulo: 'Afastamento entre estações, quando há uma só saída',
-    descricao:
-      'Em garagens com apenas uma rota de fuga, as estações de recarga precisam guardar no mínimo cinco metros entre si.',
-  },
-  {
-    titulo: 'Detecção de incêndio nas áreas de garagem',
-    descricao:
-      'Conforme o enquadramento da edificação. Prédios que já possuem chuveiros automáticos do tipo ordinário I nas garagens não precisam de adaptação nesse ponto.',
-  },
-] as const
+/** Sai da mesma colecao que a pagina de servico usa para as etapas. */
+const exigencias = (await getCollection('save'))
+  .filter(({ data }) => data.grupo === 'exigencia')
+  .sort((a, b) => a.data.ordem - b.data.ordem)
 
 const checklist = [
   {
@@ -460,8 +422,8 @@ const checklist = [
                 class="absolute left-0 top-[1.85rem] h-0.5 w-[13px] rounded-sm bg-wine"
                 aria-hidden="true"
               />
-              <dt class="text-cartao font-bold text-ink">{item.titulo}</dt>
-              <dd class="mt-1.5 text-corpo text-ink-soft">{item.descricao}</dd>
+              <dt class="text-cartao font-bold text-ink">{item.data.titulo}</dt>
+              <dd class="mt-1.5 text-corpo text-ink-soft">{item.data.descricao}</dd>
             </div>
           ))
         }
