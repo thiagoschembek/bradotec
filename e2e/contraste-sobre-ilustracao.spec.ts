@@ -46,6 +46,13 @@ const alvos: { rota: string; nome: string; seletor: string; minimo: number }[] =
   { rota: '/sobre', nome: 'subtitulo', seletor: 'main section p', minimo: 4.5 },
   { rota: '/contato', nome: 'titulo da pagina', seletor: 'main h1', minimo: 4.5 },
   { rota: '/contato', nome: 'subtitulo', seletor: 'main section p', minimo: 4.5 },
+  { rota: '/artigos', nome: 'titulo da pagina', seletor: 'main h1', minimo: 4.5 },
+  {
+    rota: '/artigos/carregador-carro-eletrico-condominio',
+    nome: 'titulo do artigo',
+    seletor: 'main h1',
+    minimo: 4.5,
+  },
   {
     rota: '/carregadores-eletricos',
     nome: 'titulo da pagina',

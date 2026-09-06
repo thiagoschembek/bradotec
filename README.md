@@ -145,7 +145,8 @@ src/
 e2e/                 Testes que rodam em navegador de verdade
 scripts/
   extrair-logo.mjs   Gera logo, favicon e imagem de compartilhamento da marca
-artigos/             Artigos avulsos, HTML autocontido, fora do build do Astro
+artigos/             Versao avulsa dos artigos, HTML autocontido, fora do build
+                     (a versao publicada mora em src/pages/artigos/)
 legacy/              Site estático anterior, guardado para consulta
 public/              Arquivos servidos como estão (favicon, _headers)
 ```

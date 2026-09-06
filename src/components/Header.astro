@@ -15,7 +15,18 @@ const atual = Astro.url.pathname.replace(/\/$/, '') || '/'
  * e o visitante perdia a nocao de onde estava dentro do site.
  */
 const referencia = paiNoMenu[atual] ?? atual
-const estaAtiva = (href: string) => referencia === href.replace(/\/$/, '')
+
+/**
+ * Acende o item quando a pagina E o item, ou quando esta DENTRO dele.
+ *
+ * O prefixo cobre /artigos/<slug> sem exigir uma linha em `paiNoMenu` por
+ * artigo publicado. Nenhuma rota do menu e prefixo de outra, e a home nao
+ * esta no menu: por isso nao ha item que acenda em toda pagina.
+ */
+const estaAtiva = (href: string) => {
+  const item = href.replace(/\/$/, '')
+  return referencia === item || referencia.startsWith(`${item}/`)
+}
 ---
 
 <header class="sticky top-0 z-100 border-b border-white/15 bg-wine">

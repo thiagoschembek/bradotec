@@ -4,19 +4,15 @@ import AvisoEscopo from '@/components/AvisoEscopo.astro'
 import BotaoLink from '@/components/BotaoLink.astro'
 import BotaoWhatsapp from '@/components/BotaoWhatsapp.astro'
 import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
-import Faq from '@/components/Faq.astro'
 import Kicker from '@/components/Kicker.astro'
 import { site } from '@/config/site'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import { schemaFaqDaPagina } from '@/lib/faq'
 
 const trilha = [
   { nome: 'Início', href: '/' },
   { nome: 'Segurança contra incêndio', href: '/seguranca-contra-incendio' },
   { nome: 'Carregadores de veículo elétrico', href: '/carregadores-eletricos' },
 ] as const
-
-const schemaFaq = await schemaFaqDaPagina('carregadores-eletricos')
 
 const conteudo = await getCollection('save')
 const doGrupo = (grupo: 'exigencia' | 'etapa') =>
@@ -44,7 +40,6 @@ const norma = {
   titulo={`Carregador de carro elétrico em condomínio: o que a NT 040/2025 exige | ${site.nome}`}
   descricao="A NT 040/2025 do Corpo de Bombeiros da Paraíba mudou as regras de carregadores de veículos elétricos em condomínios. O que passou a ser proibido, o que a norma exige e o que fazer se a instalação já existe."
   trilha={trilha}
-  schemasExtras={schemaFaq ? [schemaFaq] : []}
 >
   <CabecalhoPagina
     cena="rota"
@@ -223,8 +218,33 @@ const norma = {
     competente, e o prazo delas não depende da Bradotec.
   </AvisoEscopo>
 
-  <Faq
-    pagina="carregadores-eletricos"
-    titulo="Perguntas frequentes sobre carregadores em condomínio"
-  />
+  {/*
+    O FAQ saiu daqui e foi para o artigo, junto com o texto longo.
+
+    Nao e arrumacao: as duas paginas tratam do mesmo assunto, e no mesmo
+    dominio elas competem entre si na busca. Com o FAQ nos dois lugares o
+    JSON-LD de FAQPage ficaria duplicado, que e a forma mais direta de o
+    Google escolher uma e ignorar a outra. Agora cada uma tem um papel: esta
+    diz o que a Bradotec faz, o artigo explica a norma.
+  */}
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="entender">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <div class="max-w-[64ch]">
+        <Kicker>Artigo técnico</Kicker>
+        <h2 id="entender" class="mt-2 max-w-[26ch] text-secao text-ink">
+          Quer entender a norma antes de decidir?
+        </h2>
+        <p class="mt-4 text-guia text-ink-soft">
+          O artigo destrincha a NT 040/2025 com ilustrações, explica o prazo que engana e traz um
+          checklist de seis perguntas para o síndico responder sozinho, na garagem. Também responde
+          as dúvidas mais comuns.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <BotaoLink href="/artigos/carregador-carro-eletrico-condominio" variante="primario">
+            Ler o artigo completo
+          </BotaoLink>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

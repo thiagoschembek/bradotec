@@ -38,6 +38,7 @@ export const navegacaoPrincipal: readonly ItemNavegacao[] = [
   { href: '/documentacao-veicular', curto: 'Veicular', completo: 'Documentação veicular' },
   { href: '/empresas', curto: 'Empresas', completo: 'Empresas e condomínios' },
   { href: '/treinamentos', curto: 'Treinamentos', completo: 'Brigada e primeiros socorros' },
+  { href: '/artigos', curto: 'Artigos', completo: 'Artigos técnicos' },
   { href: '/sobre', curto: 'A Bradotec', completo: 'A Bradotec' },
   { href: '/contato', curto: 'Contato', completo: 'Contato' },
 ] as const
@@ -59,6 +60,7 @@ export const navegacaoRodape = [
   {
     titulo: 'Empresa',
     itens: [
+      { href: '/artigos', rotulo: 'Artigos técnicos' },
       { href: '/sobre', rotulo: 'A Bradotec' },
       { href: '/solucoes', rotulo: 'Todas as soluções' },
       { href: '/diagnostico', rotulo: 'Diagnóstico de Regularização' },

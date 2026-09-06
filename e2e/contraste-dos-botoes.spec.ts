@@ -36,6 +36,8 @@ const rotas = [
   '/avcb',
   '/treinamentos',
   '/carregadores-eletricos',
+  '/artigos',
+  '/artigos/carregador-carro-eletrico-condominio',
   '/regularizacoes',
   '/documentacao-veicular',
   '/empresas',

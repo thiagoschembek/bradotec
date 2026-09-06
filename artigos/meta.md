@@ -99,15 +99,20 @@ dela: o que está valendo agora é a instalação elétrica.
 
 ## Observações de publicação
 
-**Duplicidade com o site.** O site da Bradotec já tem a página
-`/carregadores-eletricos`, sobre o mesmo assunto. Publicar este artigo no
-mesmo domínio faria as duas competirem na busca. Três saídas, em ordem de
-preferência:
+**Duplicidade com o site: resolvida.** O artigo agora vive no site, em
+`/artigos/carregador-carro-eletrico-condominio`, com a identidade do site em
+vez desta paleta. A página `/carregadores-eletricos` continua existindo, mas
+perdeu o FAQ e o texto longo: ela virou a página do serviço, e o artigo virou
+a explicação da norma. As duas se linkam.
 
-1. Substituir a página atual por este artigo, que é mais completo.
-2. Publicar este como artigo e apontar `rel="canonical"` da página curta para
-   ele.
-3. Publicar em domínio ou blog separado.
+O FAQ ficou só no artigo de propósito. Com ele nos dois lugares, o JSON-LD de
+FAQPage sairia duplicado no mesmo domínio, que é a forma mais direta de o
+Google escolher uma página e ignorar a outra.
+
+Este arquivo continua sendo a versão avulsa, na paleta pedida para material de
+entrega. Serve para enviar por e-mail, imprimir ou publicar fora do site. Se o
+texto mudar num lado, precisa mudar no outro: são duas cópias de propósito, e
+só as ilustrações são copiadas por script.
 
 **Contraste do cinza.** `#7A7A7A` sobre branco mede 4,30:1. O mínimo da WCAG
 AA para texto pequeno é 4,5:1. A paleta foi usada exatamente como especificada,

@@ -229,6 +229,38 @@ const save = defineCollection({
   }),
 })
 
+/**
+ * Artigos tecnicos.
+ *
+ * Aqui mora so o METADADO do artigo. O texto fica na propria pagina, dentro
+ * de src/pages/artigos/, porque artigo com ilustracao usa componente e SVG
+ * inline, e markdown puro nao renderiza componente sem MDX, que e dependencia
+ * nova.
+ *
+ * A colecao existe para o indice: ele lista daqui, ordenado por data, e o
+ * schema garante que nenhum artigo entre sem resumo ou com slug fora do
+ * padrao. O teste em src/content/artigos.test.ts confere que cada entrada tem
+ * uma pagina de verdade, que e o que markdown daria de graca e aqui nao da.
+ */
+const artigos = defineCollection({
+  loader: file('src/content/artigos.json'),
+  schema: z.object({
+    titulo: z.string().min(20).max(120),
+    /** Aparece no indice e como meta description. */
+    resumo: z.string().min(80).max(320),
+    /** Vira /artigos/<slug>. So minusculas, numeros e hifen. */
+    slug: z
+      .string()
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug deve ser minusculo e separado por hifen'),
+    /** ISO, AAAA-MM-DD. */
+    data: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'data deve ser AAAA-MM-DD'),
+    /** Tempo de leitura, em minutos. */
+    minutos: z.number().int().positive().max(60),
+    /** Assunto, para agrupar depois. */
+    tema: z.string().min(4),
+  }),
+})
+
 export const collections = {
   faq,
   divisoes,
@@ -239,4 +271,5 @@ export const collections = {
   treinamentos,
   lideranca,
   save,
+  artigos,
 }

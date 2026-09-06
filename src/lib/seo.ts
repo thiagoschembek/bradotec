@@ -78,6 +78,42 @@ export function jsonLdPessoa(
   }
 }
 
+/**
+ * Artigo tecnico.
+ *
+ * `author` e a pessoa, e nao a empresa, de proposito: o Google trata artigo
+ * assinado por quem tem credencial diferente de artigo institucional, e a
+ * credencial ja esta declarada em /sobre pelo jsonLdPessoa.
+ */
+export function jsonLdArtigo(
+  artigo: {
+    titulo: string
+    resumo: string
+    data: string
+    url: string
+    autor: string
+  },
+  siteUrl: string
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: artigo.titulo,
+    description: artigo.resumo,
+    inLanguage: 'pt-BR',
+    datePublished: artigo.data,
+    dateModified: artigo.data,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(artigo.url, siteUrl).href },
+    author: { '@type': 'Person', name: artigo.autor },
+    publisher: semVazios({
+      '@type': 'Organization',
+      name: `${site.nome}: ${site.descritivo}`,
+      url: siteUrl,
+      taxID: soSePreenchido(site.cnpj),
+    }),
+  }
+}
+
 export function jsonLdBreadcrumb(
   trilha: readonly { nome: string; href: string }[],
   siteUrl: string
