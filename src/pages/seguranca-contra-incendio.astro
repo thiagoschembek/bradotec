@@ -7,6 +7,12 @@ import CabecalhoPagina from '@/components/CabecalhoPagina.astro'
 import Faq from '@/components/Faq.astro'
 import Kicker from '@/components/Kicker.astro'
 import SecaoServicos from '@/components/SecaoServicos.astro'
+import {
+  atribuicoes,
+  condicoesParaExercer,
+  leiDaProfissao,
+  semDespachante,
+} from '@/config/despachante'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { schemaFaqDaPagina } from '@/lib/faq'
 
@@ -159,6 +165,106 @@ const etapas = [
           ))
         }
       </ol>
+    </div>
+  </section>
+
+  {/*
+    Esta secao responde a pergunta que vem depois de "como conduzimos": por
+    que contratar alguem para conduzir, em vez de tocar por conta ou deixar
+    com quem ja esta na obra.
+
+    O argumento e de lei, e nao de opiniao, e por isso a lei aparece citada.
+    Ver src/config/despachante.ts: a redacao dos itens segue a do texto legal
+    de perto, e quem reescrever para soar mais comercial precisa conferir.
+  */}
+  <section class="bg-canvas py-16 lg:py-20" aria-labelledby="por-que-despachante">
+    <div class="mx-auto w-full max-w-wrap px-5">
+      <Kicker>Quem conduz o processo</Kicker>
+      <h2 id="por-que-despachante" class="mt-2 max-w-[26ch] text-secao text-ink">
+        Por que isso é trabalho de despachante documentalista
+      </h2>
+
+      <p class="mt-5 max-w-[68ch] text-guia text-ink-soft">
+        O processo junto ao Corpo de Bombeiros não é um documento, é uma tramitação: protocolo,
+        análise, exigência, resposta à exigência, vistoria e emissão. Quem conduz precisa conhecer
+        o rito, e não apenas a norma técnica.
+      </p>
+
+      <div class="mt-11 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+        <div class="border-l-[5px] border-l-wine bg-white p-7">
+          <p class="text-rotulo font-bold uppercase tracking-[0.08em] text-wine">
+            A profissão é regulamentada
+          </p>
+          <p class="mt-3 text-corpo text-ink-soft">
+            A{' '}
+            <a class="font-bold text-wine" href={leiDaProfissao.url} rel="noopener" target="_blank">
+              {leiDaProfissao.rotulo}
+            </a>{' '}
+            define as atribuições do despachante documentalista como os atos e procedimentos legais
+            necessários à mediação e à representação do cliente perante os órgãos da administração
+            pública. Na prática, é isto:
+          </p>
+
+          <ul class="mt-5 flex list-none flex-col gap-2.5">
+            {
+              atribuicoes.map((item) => (
+                <li class="flex items-start gap-3 text-corpo text-ink">
+                  <span
+                    class="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-wine"
+                    aria-hidden="true"
+                  />
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+
+          <p class="mt-6 border-t border-line pt-4 text-apoio text-ash-500">
+            Para exercer, a lei exige {condicoesParaExercer[0]} e {condicoesParaExercer[1]}.
+          </p>
+        </div>
+
+        <div>
+          <p class="text-cartao-lg text-ink">O que costuma acontecer sem isso</p>
+          <dl class="mt-5 border-t border-line">
+            {
+              semDespachante.map((caso) => (
+                <div class="border-b border-line py-5">
+                  <dt class="text-cartao font-bold text-ink">{caso.quem}</dt>
+                  <dd class="mt-1.5 text-corpo text-ink-soft">{caso.oQueAcontece}</dd>
+                </div>
+              ))
+            }
+          </dl>
+
+          <p class="mt-6 text-corpo text-ink-soft">
+            Nada disso substitui o engenheiro. Projeto e laudo continuam sendo de quem tem
+            habilitação legal para assinar, e a aprovação continua sendo do Corpo de Bombeiros. O
+            que muda é ter alguém cuja profissão é justamente conduzir o processo até lá.
+          </p>
+
+          <a
+            class="mt-6 inline-flex items-center gap-2 font-bold text-wine"
+            href="/sobre#quem-esta-por-tras"
+          >
+            Ver o registro e a formação de quem responde
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              class="shrink-0"
+            >
+              <path d="M5 12h13m-5-6 6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
